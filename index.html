@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+        <title>SLHS Simulations</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+        <!-- jQuery + jQuery template support -->
+        <script type="text/javascript" src="lib/jquery-latest.min.js"></script>
+        <script type="text/javascript" src="lib/jquery.tmpl.js"></script>
+
+        <!-- Bootstrap -->
+        <link href="lib/bootstrap/css/bootstrap.css" rel="stylesheet" media="screen">
+        <link type="text/css" href="lib/bootstrap/css/bootstrap-theme.css" rel="stylesheet" />
+        <script type="text/javascript" src="lib/bootstrap/js/bootstrap.js"></script>
+
+        <!-- Alpaca -->
+        <script type="text/javascript" src="lib/alpaca/alpaca.js"></script>
+        <link type="text/css" href="lib/alpaca/alpaca.css" rel="stylesheet" />
+
+        <!-- Alpaca support for Bootstrap -->
+        <link type="text/css" href="lib/alpaca/alpaca-bootstrap.css" rel="stylesheet" />
+
+        <!-- Sidr -->
+        <link rel="stylesheet" href="lib/sidr/stylesheets/jquery.sidr.dark.css"/>
+        <script src="lib/sidr/jquery.sidr.min.js"></script>
+
+        <!-- Custom Files -->
+        <link rel="stylesheet" href="css/main.css">
+        <script type="text/javascript" src="js/main.js"></script>
+        <script type="text/javascript" src="js/form.js"></script>
+
+</head>
+<body>
+    <div class="navbar navbar-inverse navbar-fixed-top" role="navigation">
+      <div class="container">
+        <div class="navbar-header">
+          <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+            <span class="sr-only">Toggle navigation</span>
+          </button>
+          <a class="navbar-brand" href="#">SLHS Simulations</a>
+        </div>
+      </div>
+    </div>
+
+    <a id="simple-menu" href= "#" ><button type="button" class="btn btn-default"><span class="glyphicon glyphicon-align-justify"></span></button></a> 
+    <div id="sidr">
+      <div id="form"></div>
+    </div> 
+    <!-- Main jumbotron for a primary marketing message or call to action -->
+    <div class="jumbotron">
+      <div id="content-container" class="container">
+        <h1>Get Watching</h1>
+        <p>Select any of the videos below to begin watching the simulation and taking notes.</p>
+		
+	  </div>
+    </div>
+
+    <div class="container">
+      <!-- Example row of columns -->
+      <div class="row">
+        <div class="col-md-4">
+          <div class="thumbnail">
+            <a id="playVid1" href="#" onclick="loadVideo('www.youtube.com/embed/WyQ8a1nqWJk')"><img src="https://i.ytimg.com/vi/WyQ8a1nqWJk/mqdefault.jpg"></a>
+            <h3>Simulation 1</h3>
+            <p>Simulation of a misbehaving child.</p>
+          </div>
+        </div>
+
+        <div class="col-md-4">
+          <div class="thumbnail">
+            <a id="playVid2" href="#" onclick="loadVideo('www.youtube.com/embed/YoptLoEj_tk')"><img src="https://i.ytimg.com/vi/YoptLoEj_tk/mqdefault.jpg"></a>
+            <h3>Simulation 2</h3>
+            <p>Simulation of Bart Simpson.</p>
+          </div>
+        </div>
+
+        <div class="col-md-4">
+          <div class="thumbnail">
+            <a id="playVid3" href="#" onclick="loadVideo('www.youtube.com/embed/cNkp4QF3we8')"><img src="https://i.ytimg.com/vi/cNkp4QF3we8/mqdefault.jpg"></a>
+            <h3>Simulation 3</h3>
+            <p>Simulation of Stewie Griffin.</p>
+          </div>
+        </div>
+      </div>
+      <hr>
+      <footer>
+        <p>&copy; Company 2014</p>
+      </footer>
+    </div> <!-- /container -->
+        <script>
+        $(document).ready(function() {
+          $( '#simple-menu' ).sidr({
+            side: 'right'
+            });
+        });
+        </script>
+    </body>
+</html>
+
