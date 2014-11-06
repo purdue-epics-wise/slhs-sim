@@ -1,28 +1,29 @@
 <!DOCTYPE html>
 <html>
-    <head>
-        <title>Saving Data with Cookies</title>
-</head>
-<body>
+<head>
     <script>
-        // FUNCTIONS TAKEN FROM W3SCHOOLS.COM
-        // to delete a cookie, set "expires" parameter to a past date
+        // Functions taken from w3schools.com
+        // setCookie modified to add path spec
         function setCookie(cname, cvalue, exdays) {
             var d = new Date();
             d.setTime(d.getTime() + (exdays * 24 * 60 * 60 * 1000));
-            var expires = "expires=" + d.toUTCString();
-            document.cookie = cname + "=" + cvalue + "; " + expires;
+            var expires = "expires=" + d.toGMTString();
+            document.cookie = cname + "=" + cvalue + "; " + expires + "; path=/";
         }
+
         function getCookie(cname) {
             var name = cname + "=";
             var ca = document.cookie.split(';');
             for (var i = 0; i < ca.length; i++) {
                 var c = ca[i];
                 while (c.charAt(0) == ' ') c = c.substring(1);
-                if (c.indexOf(name) != -1) return c.substring(name.length, c.length);
+                if (c.indexOf(name) != -1) {
+                    return c.substring(name.length, c.length);
+                }
             }
             return "";
         }
+
         function checkCookie() {
             var user = getCookie("username");
             if (user != "") {
@@ -30,14 +31,19 @@
             } else {
                 user = prompt("Please enter your name:", "");
                 if (user != "" && user != null) {
-                    setCookie("username", user, 365);
+                    setCookie("username", user, 30);
                 }
             }
         }
-        setCookie(test, butt, 7);
-        var disp_str = document.cookie;
-        console.log(disp_str);
+
+    </script>
+</head>
+<body>
+    <p id="para">swag</p>
+    <script>
+        setCookie("hi", "turtles", 7);
+        //var x = document.cookie;
+        //document.getElementById("para").innerHTML = x;
     </script>
 </body>
 </html>
-
