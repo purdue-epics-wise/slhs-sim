@@ -14,13 +14,6 @@
         <link type="text/css" href="lib/bootstrap/css/bootstrap-theme.css" rel="stylesheet" />
         <script type="text/javascript" src="lib/bootstrap/js/bootstrap.js"></script>
 
-        <!-- Alpaca -->
-        <script type="text/javascript" src="lib/alpaca/alpaca.js"></script>
-        <link type="text/css" href="lib/alpaca/alpaca.css" rel="stylesheet" />
-
-        <!-- Alpaca support for Bootstrap -->
-        <link type="text/css" href="lib/alpaca/alpaca-bootstrap.css" rel="stylesheet" />
-
         <!-- Sidr -->
         <link rel="stylesheet" href="lib/sidr/stylesheets/jquery.sidr.light.css"/>
         <script src="lib/sidr/jquery.sidr.min.js"></script>
@@ -43,10 +36,47 @@
       </div>
     </div>
 
-    <a id="simple-menu" href= "#" ><button type="button" class="btn btn-default"><span class="glyphicon glyphicon-align-justify"></span></button></a> 
+    <a id="simple-menu" href="#"><button type="button" class="btn btn-default"><span class="glyphicon glyphicon-align-justify"></span></button></a> 
     <div id="sidr">
-      <div id="ppvt4-form"></div>
-    </div> 
+
+
+    <div id="form"></div>
+
+    <form class="form-horizontal">
+    <fieldset>
+
+    <legend>Set 1</legend>
+
+    <div class="form-group">
+      <label class="col-md-1" for="q1"> </label>
+      <label class="col-md-2" for="q1">A</label>
+      <label class="col-md-2" for="q1">B</label>
+      <label class="col-md-2" for="q1">C</label>
+      <label class="col-md-2" for="q1">D</label>
+      <label class="col-md-2" for="q1">Error</label>
+
+      <label class="col-md-1" for="q1">1.</label>
+      <label class="col-md-2" for="q1-1">
+        <input type="radio" name="q1" id="q1-1" value="1">
+      </label>
+      <label class="col-md-2" for="q1-2">
+        <input type="radio" name="q1" id="q1-2" value="2">
+      </label> 
+      <label class="col-md-2" for="q1-3">
+        <input type="radio" name="q1" id="q1-3" value="3">
+      </label>
+      <label class="col-md-2" for="q1-4">
+        <input type="radio" name="q1" id="q1-4" value="4">
+      </label>
+      <label class="col-md-2" for="q1-error">
+        <input type="checkbox" name="q1" id="q1-error" value="5">
+      </label>
+    </div>
+
+    </fieldset>
+    </form>
+
+    </div>
     <!-- Main jumbotron for a primary marketing message or call to action -->
     <div class="jumbotron">
       <div id="content-container" class="container">
@@ -93,6 +123,7 @@
           $( '#simple-menu' ).sidr({
             side: 'right'
             });
+          insertForm("Set 1");
         });
         </script>
     </body>
