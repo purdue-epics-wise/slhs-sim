@@ -5,12 +5,23 @@
     <script type="text/javascript" src="lib/jquery-latest.min.js"></script>
     <script type="text/javascript" src="lib/jquery.cookie.js"></script>
     <meta http-equiv="Content-Type" content="text/html;charset=ISO-8859-1">
+    <script>
+        function saveAnswerList(setNum, answerList) {
+            var setStr = setNum.toString();
+            console.log(setStr);
+            var cookieName = "Set" + setStr;
+            console.log(cookieName);
+            $.cookie(cookieName, answerList, { expires: 7, path: '/' });
+        }
+    </script>
 </head>
 <body>
-    <p id="para">swag</p>
+    <p id="Answers">Answer list goes here.</p>
+    <p id="Errors">Error count goes here.</p>
     <script>
-        $.cookie('hi', 'turtles', { expires: 7, path: '/' });
-        document.getElementById("para").innerHTML = $.cookie('hi', 'turtle');
+        saveAnswerList(1, "ABCDABCDABCD");
+        document.getElementById("Answers").innerHTML = $.cookie();
+        document.getElementById("Errors").innerHTML = $.cookie();
     </script>
 </body>
 </html>
