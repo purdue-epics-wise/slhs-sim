@@ -18,9 +18,14 @@
         <link rel="stylesheet" href="lib/sidr/stylesheets/jquery.sidr.light.css"/>
         <script src="lib/sidr/jquery.sidr.min.js"></script>
 
+        <!-- Owl Carousel -->
+        <link rel="stylesheet" href="lib/owl-carousel/owl.carousel.css">
+        <link rel="stylesheet" href="lib/owl-carousel/owl.theme.css">
+        <script src="lib/owl-carousel/owl.carousel.js"></script>
+
         <!-- Custom Files -->
         <link rel="stylesheet" href="css/main.css">
-        <script type="text/javascript" src="js/main.js">insertForm("Set 1");</script>
+        <script type="text/javascript" src="js/main.js"></script>
 
 </head>
 <body>
@@ -37,8 +42,21 @@
 
     <a id="simple-menu" href="#"><button type="button" class="btn btn-default"><span class="glyphicon glyphicon-align-justify"></span></button></a> 
     <div id="sidr">
-
-    <div id="form"></div>
+    
+      <div id="form-carousel">
+        <div id="set1"></div>
+        <div id="set2"></div>
+        <div id="set3"></div>
+        <div id="set4"></div>
+        <div id="set5"></div>
+        <div id="set6"></div>
+        <div id="set7"></div>
+        <div id="set8"></div>
+        <div id="set9"></div>
+        <div id="set10"></div>
+        <div id="set11"></div>
+        <div id="set12"></div>
+      </div>
  
     </div>
     <!-- Main jumbotron for a primary marketing message or call to action -->
@@ -87,7 +105,16 @@
           $( '#simple-menu' ).sidr({
             side: 'right'
             });
-          insertForm("Set 1");
+          
+          $("#form-carousel").owlCarousel({
+            navigation : true,
+            pagination : false,
+            slideSpeed : 300,
+            paginationSpeed : 400,
+            singleItem : true
+            });
+
+          insertForms();
         });
         </script>
     </body>
