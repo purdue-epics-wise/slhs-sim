@@ -1,5 +1,5 @@
 SLHS-VID
-========
+=========
 
 Speech therapy examination simulation for the Department of Speech, Language, and Hearing Sciences (SLHS) at Purdue University.
 
