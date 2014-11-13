@@ -18,10 +18,21 @@
         <link rel="stylesheet" href="lib/sidr/stylesheets/jquery.sidr.light.css"/>
         <script src="lib/sidr/jquery.sidr.min.js"></script>
 
+		<!-- HTML5 Compatibility-->
+		<script type="text/javascript">
+		  document.createElement('video');document.createElement('audio');document.createElement('track');
+		</script>
+		
+		
+		<!-- Video.JS -->
+		<link type="text/css" href="lib/video-js/video-js.css" rel="stylesheet">
+		<script src="lib/video-js/video.js"></script>
+
         <!-- Owl Carousel -->
         <link rel="stylesheet" href="lib/owl-carousel/owl.carousel.css">
         <link rel="stylesheet" href="lib/owl-carousel/owl.theme.css">
         <script src="lib/owl-carousel/owl.carousel.js"></script>
+
 
         <!-- Custom Files -->
         <link rel="stylesheet" href="css/main.css">
@@ -64,7 +75,6 @@
       <div id="content-container" class="container">
         <h1>Get Watching</h1>
         <p>Select any of the videos below to begin watching the simulation and taking notes.</p>
-		
 	  </div>
     </div>
 
@@ -94,6 +104,27 @@
             <p>Simulation of Stewie Griffin.</p>
           </div>
         </div>
+		
+		<div class="col-md-4">
+		  <div class="thumbnail">
+		    <a id="playVid4" href="#" onclick="loadLocalVideo('vid/Speech Therapy 22 Months')"><img src="https://i.ytimg.com/vi/WyQ8a1nqWJk/mqdefault.jpg"></a>
+			<h3>Simulation 4</h3>
+            <p>Simulation of a misbehaving child.</p>
+		  </div>
+		</div>
+<div class="col-md-4">
+<video id="example_video_1" class="video-js vjs-default-skin"  
+  controls preload="auto" width="640" height="264"  
+  data-setup='{"example_option":true}'>  
+ <source src="http://video-js.zencoder.com/oceans-clip.mp4" type='video/mp4' />  
+ <source src="http://video-js.zencoder.com/oceans-clip.webm" type='video/webm' />  
+ <source src="http://video-js.zencoder.com/oceans-clip.ogv" type='video/ogg' />  
+
+ <track kind="captions" src="http://example.com/path/to/captions.vtt" srclang="fr" label="Francis" default />
+
+</video>
+</div>
+		
       </div>
       <hr>
       <footer>
