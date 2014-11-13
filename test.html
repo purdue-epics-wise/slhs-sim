@@ -6,12 +6,9 @@
     <script type="text/javascript" src="lib/jquery.cookie.js"></script>
     <meta http-equiv="Content-Type" content="text/html;charset=ISO-8859-1">
     <script>
-        function saveAnswerList(setNum, answerList) {
-            var setStr = setNum.toString();
-            console.log(setStr);
-            var cookieName = "Set" + setStr;
-            console.log(cookieName);
-            $.cookie(cookieName, answerList, { expires: 7, path: '/' });
+        function saveData(cookieName, dataStr) {
+            document.cookie = cookieName + "=" + dataStr+"; path=/";
+            console.log(document.cookie);
         }
     </script>
 </head>
@@ -19,9 +16,13 @@
     <p id="Answers">Answer list goes here.</p>
     <p id="Errors">Error count goes here.</p>
     <script>
-        saveAnswerList(1, "ABCDABCDABCD");
-        document.getElementById("Answers").innerHTML = $.cookie();
-        document.getElementById("Errors").innerHTML = $.cookie();
+        var setNum = 1;
+        var setNumStr = setNum.toString();
+        var numErrors = 0;
+        saveData("Answers" + setNumStr, "ABCDABCDABCD");
+        saveData("Errors" + setNumStr, numErrors.toString());
+        document.getElementById("Answers").innerHTML = $.cookie("Answers"+setNumStr);
+        document.getElementById("Errors").innerHTML = $.cookie("Errors"+setNumStr);
     </script>
 </body>
 </html>
