@@ -1,8 +1,8 @@
-function loadVideo(videoEmbeddedUrl) {
+function loadM//gideo(videoEmbeddedUrl) {
   document.getElementById("content-container").innerHTML='<center><iframe width="960" height="720" src="http://' + videoEmbeddedUrl + '" frameborder="0" allowfullscreen></iframe></center>';
 }
 
-function loadLocalVideo(videoFile){
+function loadLocalM//gideo(videoFile){
   document.getElementById("content-container").innerHTML='<center><video id="mainPlayer" class="video-js vjs-default-skin vjs-big-play-centered" controls preload="auto" width="960" height="720"></video></center>'
   document.getElementById("mainPlayer").innerHTML='<source src="'+ videoFile + '.mp4" type=\'video/mp4\' > <track kind="captions" src="' + videoFile + '.vtt" label="English" default >'
   videojs("mainPlayer", {}, function(){}) // Player (this) is initialized and ready.
