@@ -14,4 +14,5 @@ SLHS students need practice in administering these examinations, however, the pr
 * [Sidr](http://www.berriart.com/sidr/) - [License](https://github.com/artberri/sidr/blob/master/LICENSE-MIT) JavaScript/jQuery library for the slide out sidebar.
 * [Alpaca](http://www.alpacajs.org/) - [License](https://github.com/gitana/alpaca/blob/master/license.txt) JavaScript/jQuery library for form creation/rendering.
 * [Owl Carousel](http://owlgraphic.com/owlcarousel/) - [License](https://github.com/OwlFonk/OwlCarousel/blob/master/LICENSE) JavaScript/jQuery library for sets carousel.
+* [Video.js](http://www.videojs.com/) - [License](https://github.com/videojs/video.js/blob/master/LICENSE) JavaScript library for HTML5 video player
 
