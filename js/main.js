@@ -13,13 +13,14 @@ function insertForms() {
 
   for (var f = 0; f < 12; f++) {
 
-    var setDiv = "#set" + (f + 1);
+    var currentF = (f + 1);
+    var setDiv = "#set" + currentF;
     var setDivContent = setDiv + "-form-content";
 
     var markupHeader = "<form class='form-horizontal'>" +
       "<fieldset>" +
-      "<legend>Set " + (f + 1) + "</legend>" +
-      "<div id='set"+ (f + 1) +"-form-content' class='form-group'>" +
+      "<legend>Set " + currentF + "</legend>" +
+      "<div id='set"+ currentF +"-form-content' class='form-group'>" +
       "<label class='col-md-1' for='q1'> </label>";
 
     $.template("formHeader", markupHeader);
@@ -41,14 +42,15 @@ function insertForms() {
 
     var markupFormContentData = [];
     for (var i = 0; i < 12; i++) {
+      var currentI = (i + 1);
       markupFormContentData[i] = {
-        questionNumber: (i + 1),
-        questionId: "q" + (i + 1),
-        questionIdRadio1: "q" + (i + 1) + "-1",
-        questionIdRadio2: "q" + (i + 1) + "-2",
-        questionIdRadio3: "q" + (i + 1) + "-3",
-        questionIdRadio4: "q" + (i + 1) + "-4",
-        questionIdError: "q" + (i + 1) + "-error"
+        questionNumber: currentI,
+        questionId: "q" + currentI,
+        questionIdRadio1: "q" + currentI + "-1",
+        questionIdRadio2: "q" + currentI + "-2",
+        questionIdRadio3: "q" + currentI + "-3",
+        questionIdRadio4: "q" + currentI + "-4",
+        questionIdError: "q" + currentI + "-error"
       };
     }
     var markupFormContent = "<label class='col-md-1' for='${questionID}'>${questionNumber}.</label>" +
