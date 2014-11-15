@@ -4,9 +4,37 @@ function loadVideo(videoEmbeddedUrl) {
 
 function loadLocalVideo(videoFile){
   document.getElementById("content-container").innerHTML='<center><video id="mainPlayer" class="video-js vjs-default-skin vjs-big-play-centered" controls preload="auto" width="960" height="720"></video></center>'
-  document.getElementById("mainPlayer").innerHTML='<source src="'+ videoFile + '.mp4" type=\'video/mp4\' > <track kind="captions" src="' + videoFile + '.vtt" label="English" default >'
+  document.getElementById("mainPlayer").innerHTML='<source src="'+ videoFile + '.mp4" type=\'video/mp4\' > <track label="English" kind="subtitles" srclang="en" src="' + videoFile + '.vtt" default>'
   videojs("mainPlayer", {}, function(){}) // Player (this) is initialized and ready.
 
+}
+
+function getFormData() {
+
+  var formData = [];
+
+  for (var f = 0; f < 12; f++) {
+
+    var currentFormData = [];
+    var currentF = (f + 1);
+
+    for (var i = 0; i < 12; i++) {
+      var currentI = (i + 1);
+      var questionID = "s" + currentF + "q" + currentI;
+
+      var answer = $('input[name="'+ questionID +'"]:checked').val();
+      var isError = $("#"+ questionID +"-error").is(":checked");
+
+      currentFormData[currentFormData.length] = {
+        Answer: answer,
+        Error: isError
+      }
+    }
+
+    formData[formData.length] = currentFormData;
+  }
+
+  return formData;
 }
 
 function insertForms() {
@@ -45,12 +73,12 @@ function insertForms() {
       var currentI = (i + 1);
       markupFormContentData[i] = {
         questionNumber: currentI,
-        questionId: "q" + currentI,
-        questionIdRadio1: "q" + currentI + "-1",
-        questionIdRadio2: "q" + currentI + "-2",
-        questionIdRadio3: "q" + currentI + "-3",
-        questionIdRadio4: "q" + currentI + "-4",
-        questionIdError: "q" + currentI + "-error"
+        questionId: "s" + currentF + "q" + currentI,
+        questionIdRadio1: "s" + currentF + "q" + currentI + "-1",
+        questionIdRadio2: "s" + currentF + "q" + currentI + "-2",
+        questionIdRadio3: "s" + currentF + "q" + currentI + "-3",
+        questionIdRadio4: "s" + currentF + "q" + currentI + "-4",
+        questionIdError: "s" + currentF + "q" + currentI + "-error"
       };
     }
     var markupFormContent = "<label class='col-md-1' for='${questionID}'>${questionNumber}.</label>" +
