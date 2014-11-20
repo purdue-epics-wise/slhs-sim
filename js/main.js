@@ -116,3 +116,36 @@ function insertForms() {
   }
 }
 
+function owlInit() {
+  var owl = $("#form-carousel");
+  var setNumber = 0;
+  var nextSet = 1;
+  var prevSet = 11;
+
+  owl.owlCarousel({
+    navigation: true,
+    navigationText: ["<p onclick='videoSet("+ prevSet +")'>prev</p>", "<p onclick='videoSet(" + nextSet + ")'>next</p>"],
+    pagination: false,
+    slideSpeed: 300,
+    paginationSpeed: 400,
+    afterAction: afterAction,
+    singleItem: true
+  });
+
+  function afterAction() {
+    setNumber = this.owl.currentItem;
+    
+    if (setNumber == 0) {
+      nextSet = 1;
+      prevSet = 11;
+    } else if (setNumber == 11) {
+      nextSet = 0;
+      prevSet = 10;
+    } else {
+      nextSet = setNumber + 1;
+      prevSet = setNumber - 1;
+    }
+  }
+
+}
+
