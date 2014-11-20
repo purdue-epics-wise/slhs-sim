@@ -14,7 +14,7 @@ function videoSet(setNum){
 	var duration = player.duration();
 	var timeStamp = 0;
 	if (setNum > 0)
-		timeStamp = duration / 12 * (setNum - 1);
+		timeStamp = duration / 12 * setNum;
     player.currentTime(timeStamp);
 	player.play();
 }
