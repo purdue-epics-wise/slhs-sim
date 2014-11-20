@@ -9,6 +9,12 @@ function loadLocalVideo(videoFile){
 
 }
 
+function videoSet(setNum){
+    var player = videojs("mainPlayer");
+    player.currentTime(200);
+	player.play();
+}
+
 function getFormData() {
 
   var formData = [];
