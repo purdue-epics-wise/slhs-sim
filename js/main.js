@@ -62,10 +62,10 @@ function insertForms() {
 
 
     var markupFormHeaderData = [
-        { Label: "A" },
-        { Label: "B" },
-        { Label: "C" },
-        { Label: "D" },
+        { Label: "1" },
+        { Label: "2" },
+        { Label: "3" },
+        { Label: "4" },
         { Label: "Error" }
       ];
     var markupFormHeader = "<label class='col-md-2' for='q1'>${Label}</label>";
