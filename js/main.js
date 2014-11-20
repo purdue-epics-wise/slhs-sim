@@ -6,13 +6,26 @@ function loadLocalVideo(videoFile){
   document.getElementById("content-container").innerHTML='<center><video id="mainPlayer" class="video-js vjs-default-skin vjs-big-play-centered" controls preload="auto" width="960" height="720"></video></center>'
   document.getElementById("mainPlayer").innerHTML='<source src="'+ videoFile + '.mp4" type=\'video/mp4\' > <track label="English" kind="subtitles" srclang="en" src="' + videoFile + '.vtt" default>'
   videojs("mainPlayer", {}, function(){}) // Player (this) is initialized and ready.
-
+  pauseForSet();
 }
 
 function videoSet(setNum){
     var player = videojs("mainPlayer");
-    player.currentTime(200);
+	var duration = player.duration();
+	var timeStamp = 0;
+	if (setNum > 0)
+		timeStamp = duration / 12 * (setNum - 1);
+    player.currentTime(timeStamp);
 	player.play();
+}
+
+function pauseForSet(){
+	var player = videojs("mainPlayer");
+	var interval = player.duration() / 12;
+	player.addEventListener("timeupdate", function() {
+		if (player.currentTime % interval)
+			video.pause();
+	}, false);
 }
 
 function getFormData() {
