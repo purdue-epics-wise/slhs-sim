@@ -1,3 +1,6 @@
+
+var setNumber = 0;
+
 function loadVideo(videoEmbeddedUrl) {
   document.getElementById("content-container").innerHTML='<center><iframe width="960" height="720" src="http://' + videoEmbeddedUrl + '" frameborder="0" allowfullscreen></iframe></center>';
 }
@@ -132,7 +135,6 @@ function insertForms() {
 
 function owlInit() {
   var owl = $("#form-carousel");
-  var setNumber = 0;
 
   owl.owlCarousel({
     navigation: true,
