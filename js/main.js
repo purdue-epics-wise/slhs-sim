@@ -1,4 +1,3 @@
-
 var setNumber = 0;
 
 function loadVideo(videoEmbeddedUrl) {
@@ -6,10 +5,10 @@ function loadVideo(videoEmbeddedUrl) {
 }
 
 function loadLocalVideo(videoFile){
-  document.getElementById("content-container").innerHTML='<center><video id="mainPlayer" class="video-js vjs-default-skin vjs-big-play-centered" controls preload="auto" width="960" height="720"></video></center>'
+  document.getElementById("content-container").innerHTML='<center><video id="mainPlayer" class="video-js vjs-default-skin vjs-big-play-centered" controls autoplay preload="auto" width="960" height="720"></video></center>'
   document.getElementById("mainPlayer").innerHTML='<source src="'+ videoFile + '.mp4" type=\'video/mp4\' > <track label="English" kind="subtitles" srclang="en" src="' + videoFile + '.vtt" default>'
   videojs("mainPlayer", {}, function(){}) // Player (this) is initialized and ready.
-  pauseForSet();
+  pauseSet();
 }
 
 function videoSet(setNum){
@@ -23,14 +22,17 @@ function videoSet(setNum){
     player.play();
 }
 
-function pauseForSet(){
+function pauseSet(){
 	var player = videojs("mainPlayer");
-	var interval = player.duration() / 12;
-	//player.addEventListener("timeupdate", function() {
-	//	if (player.currentTime % interval)
-	//		video.pause();
-	//}, false);
+	document.getElementById("mainPlayer_html5_api").addEventListener('timeupdate', function() {
+		//console.log("Current Time: " + player.currentTime());
+		if (player.currentTime() >= (setNumber + 1) * player.duration() / 12) {
+			player.pause();
+		}
+	});
 }
+
+
 
 function getFormData() {
 
@@ -135,6 +137,7 @@ function insertForms() {
 
 function owlInit() {
   var owl = $("#form-carousel");
+
 
   owl.owlCarousel({
     navigation: true,
