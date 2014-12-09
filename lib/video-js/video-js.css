@@ -907,14 +907,14 @@ body.vjs-full-window {
   left: 1em;
   right: 1em;
 }
-/* Move captions down when controls aren't being shown */
+/* Move captions down when controls aren't being shown 
 .video-js.vjs-user-inactive.vjs-playing .vjs-text-track-display {
   bottom: 1em;
-}
+}*/
 /* Individual tracks */
 .video-js .vjs-text-track {
   display: none;
-  font-size: 1.4em;
+  font-size: 5em;
   text-align: center;
   margin-bottom: 0.1em;
   /* Transparent black background, or fallback to all black (oldIE) */
