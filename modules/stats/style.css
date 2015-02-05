@@ -1,0 +1,77 @@
+body {
+    background: #fcfcfc;
+}
+
+#stdscore {
+    font-family: Lato,Open Sans, Verdana, Helvetica;
+}
+
+#graph {
+    width: 1013px;
+    height: 450px;
+    margin-top: 10px;
+}
+
+#ss {
+    width: 1px;
+    background: black;
+    height: 450px;
+    position: absolute;
+    left: 640px;
+    display: inline-block;
+}
+
+.marker {
+    position: relative;
+    display: in-line;
+    border-radius: 50%;
+    width: 7px;
+    height: 7px;
+    background: black;
+    top: 280px;
+}
+
+.r {
+    background: red;
+}
+
+.mss {
+    margin-bottom: 28px;
+}
+
+.mper {
+    margin-bottom: 22px;
+}
+
+.lsd {
+    display: inline-block;
+    margin-left: -4px;
+}
+
+.rsd {
+    display: inline-block;
+    float: right;
+    margin-right:-4px;
+}
+
+.csd {
+    margin-left: -3px;
+}
+
+#sd {
+    display: inline-block;
+    background: transparent;
+    height: 450px;
+    position: absolute;
+    border-left: 1px solid red;
+    border-right: 1px solid red;
+    width: 58px;
+    left: 611px;
+}
+
+#sgpng {
+    max-width: 100%;
+    max-height: 100%;
+    border: 1px solid #333;
+    margin-left: -6px;
+}

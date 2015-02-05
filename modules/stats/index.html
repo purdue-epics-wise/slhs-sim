@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+    <title>SLHS StatSim</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <script type="text/javascript" src="js/plotScripts.js"></script>
+
+    <!-- jQuery + jQuery template support -->
+    <script type="text/javascript" src="js/jquery-latest.min.js"></script>
+    <script type="text/javascript" src="js/jquery.tmpl.js"></script>
+    
+    <!-- Style -->
+    <link rel="stylesheet" style="text/css" href="style.css" />
+  </head>
+  
+  <body>
+    <form id="stdscore">
+      <input type="text" id="score"  name="score" placeholder="Enter score" />
+      <button type="submit">Plot</button>
+      <br>
+      <input type="radio" name="confint" value="90" checked="checked" />90%
+      <input type="radio" name="confint" value="95" />95%
+    </form>
+
+    <div id="graph">
+      <img id="sgpng" src="img/statgraph.png" />
+      <div id="ss">
+        <div class="marker csd mss"></div>
+        <div class="marker csd mper"></div>
+        <div class="marker csd mnce"></div>
+      </div>
+      <div id="sd">
+        <div class="lsd">
+          <div class="marker mss r"></div>
+          <div class="marker mper r"></div>
+          <div class="marker mnce r"></div>
+        </div>
+        <div class="rsd">
+          <div class="marker mss r"></div>
+          <div class="marker mper r"></div>
+          <div class="marker mnce r"></div>
+        </div>
+      </div>
+    </div>
+  </body>
+</html>
+
