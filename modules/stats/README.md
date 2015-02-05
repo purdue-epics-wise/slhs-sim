@@ -11,3 +11,6 @@ Working test module demonstrating one way to present stats at the end of the exa
 
 ##Technologies
 * [jQuery](http://jquery.com/) - [License](https://jquery.org/license/)
+
+##Usage
+Pearson PPVT-IV Stat Plot - Copyright © 2008 Pearson Education
