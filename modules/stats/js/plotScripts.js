@@ -1,6 +1,8 @@
 function plotScore(score,co,ci) {
-    $("#ss").animate({"left":score},1250);
-    $("#sd").animate({"left":co,"width":ci},1250);
+    $(".marker").fadeOut(300);
+    $("#ss").delay(500).animate({"left":score},1250);
+    $("#sd").delay(500).animate({"left":co,"width":ci},1250);
+    $(".marker").delay(1400).fadeIn(500);
     return false;
 }
 
