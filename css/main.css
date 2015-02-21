@@ -3,25 +3,50 @@
     overflow: hidden;
 }
 
-#simple-menu {
-    position: absolute;
-    top: 200px;
-    right: 0px;
+.jumbotron {
+    background: orange;
+    height: 250px;
+    width: 100%;
+    overflow: hidden;
+}
+
+.jumbotron > div {
+    overflow: hidden;
+}
+
+#content-container {
+    width: 960px;
+    height: 720px;
+    margin: 0 auto;
+    text-align: center;
+    padding: 0px;
+    background: grey;
+}
+
+#content-container > p {
+    font-size: 25px;
+}
+
+#mainPlayer {
+    margin: 0 auto;
 }
 
 #set0 {
-    position: absolute;
-    width = 100%;
-    height = 100%;
     
 }
 
 #studentProgress {
-    position: absolute;
-    top: 60px;
-    left: -220px;
+    float: left;
+    background: blue;
+    width: auto;
+    height: 720px;
+}
+
+#slide {
+    background: cyan;
+    float: right;
     width: 200px;
-    height: 100%;
+    height: 720px;
 }
 
 .setQ {
@@ -54,18 +79,6 @@
 
 .setRewatch {
     background: #2f82a8;
-}
-
-.clab { /* find out how to do this w/out pixel offset*/
-    padding-left: 17px;
-}
-
-#slide {
-    position: absolute;
-    top: 190px;
-    width: 200px;
-    right: -200px;
-    transition: right 0.4s ease-in-out;
 }
 
 #form-carousel {

@@ -29,7 +29,6 @@
     <link rel="stylesheet" href="lib/owl-carousel/owl.theme.css">
     <script src="lib/owl-carousel/owl.carousel.js"></script>
 
-
     <!-- Custom Files -->
     <link rel="stylesheet" href="css/main.css">
     <script type="text/javascript" src="js/main.js"></script>
@@ -37,39 +36,34 @@
   </head>
   <body>
     <div id="wrapper"> <!--fixes overflow problem for slideouts -->
+      
       <div class="navbar navbar-inverse navbar-fixed-top" role="navigation">
         <div class="container">
           <div class="navbar-header">
-            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
-              <span class="sr-only">Toggle navigation</span>
-            </button>
             <a class="navbar-brand" href="#">SLHS Simulations</a>
           </div>
         </div>
       </div>
       
       <!-- Main jumbotron for a primary marketing message or call to action -->
-      <div class="jumbotron">
+      <div class="jumbotron">        
+        
         <div id="studentProgress">
           <div class="setQ setForward"><p>Go Foward a Set</p></div>
           <div class="setQ setBack"><p>Go Back a Set</p></div>
           <div class="setQ setRewatch"><p>Rewatch Segment</p></div>
         </div>
-        <div id="content-container" class="container">
-          <h1>PPVT4 Simulations</h1>
-          <p>Select any of the videos below to begin watching a simulation. Click the button on the right to enter your answers.</p>
-        </div>
+
+        
         <div id="slide">
           
           <div id="set0">
             <p id="currprompt">Based on the subject's age, which form should we use for the pretest?</p>
             <div id="formA">A</div>
             <div id="formB">B</div>
-            
           </div>
           
           <div id="form-carousel">
-            
             <div id="set1"></div>
             <div id="set2"></div>
             <div id="set3"></div>
@@ -84,6 +78,11 @@
             <div id="set12"></div>
           </div>
           
+        </div>        
+        
+        <div id="content-container" class="container">
+          <h1>PPVT-IV Simulations</h1>
+          <p>Select any one of the videos below.<br>You will be prompted to answer questions about the exam throughout your viewing.</p>
         </div>
       </div>
 
@@ -125,17 +124,9 @@
         </div>
         <hr>
         <footer>
-          <p>Purdue Speech, Language and Hearing Sciences Department</p>
+          <p>Developed by EPICS, in coöperation with the Purdue University Speech, Language and Hearing Sciences Department</p>
         </footer>
-      </div> <!-- /container -->
-      <script>
-        $(document).ready(function() {
-        
-        owlInit();
-
-        insertForms();
-        });
-      </script>
+      </div>
     </div>
   </body>
 </html>

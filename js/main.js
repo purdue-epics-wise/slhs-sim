@@ -2,44 +2,53 @@ var setNumber = 0;
 //[(0=a 1=b),(once yes, store startitem here),(number of "not readies")
 var pretestProg = [0,"startitem",0];
 var studentSetProg = [];
+var gplayer = null;
 
 function loadVideo(videoEmbeddedUrl) {
     document.getElementById("content-container").innerHTML='<center><iframe width="960" height="720" src="http://' + videoEmbeddedUrl + '" frameborder="0" allowfullscreen></iframe></center>';
 }
 
 function loadLocalVideo(videoFile){
-    document.getElementById("content-container").innerHTML='<center><video id="mainPlayer" class="video-js vjs-default-skin vjs-big-play-centered" controls preload="auto" width="960" height="720"></video></center>'
-    document.getElementById("mainPlayer").innerHTML='<source src="'+ videoFile + '.mp4" type=\'video/mp4\' > <track label="English" kind="subtitles" srclang="en" src="' + videoFile + '.vtt" default>'
-    videojs("mainPlayer", {
-        bigPlayButton: false,
-        controlBar: {
-            playToggle: false,
-            progressControl: {seekBar: false}
+    //collapses jumbotron to change video, then expands with new content
+    $(".jumbotron").animate({height:"50px"},750,function() {
+        if (gplayer !== null) {
+            videojs("mainPlayer").dispose();
         }
-    }, function(){
+        $("#content-container").html('<video id="mainPlayer" class="video-js vjs-default-skin vjs-big-play-centered" controls preload="auto" width="960" height="720"></video>');
+        $("#mainPlayer").html('<source src="'+ videoFile + '.mp4" type=\'video/mp4\' > <track label="English" kind="subtitles" srclang="en" src="' + videoFile + '.vtt" default>');
         
-    }) // Player (this) is initialized and ready.
-    $("#slide").animate({"right":"20px"},500);
-    pauseSet();
+        gplayer = videojs("mainPlayer", {
+            bigPlayButton: false,
+            controlBar: {
+                playToggle: false,
+                progressControl: {seekBar: false}
+            }
+        }, function() {
+            pauseSet();
+        });
+        $(this).animate({height:"768px"},2000);
+    });
+    //bootstrap is really ****ing stupid
+    $(".navbar").animate({height:"96px"},750,function() {
+        $(this).animate({height:"48px"},1500);
+    });
 }
 
 function videoSet(setNum){
-    var player = videojs("mainPlayer");
-    var duration = player.duration();
+    var duration = gplayer.duration();
     var timeStamp = 0;
     if (setNum > 0) {
         timeStamp = duration / 12 * setNum;
     }
-    player.currentTime(timeStamp);
-    player.play();
+    gplayer.currentTime(timeStamp);
+    gplayer.play();
 }
 
 function pauseSet(){
-    var player = videojs("mainPlayer");
     document.getElementById("mainPlayer_html5_api").addEventListener('timeupdate', function() {
 	//console.log("Current Time: " + player.currentTime());        
-	if (player.currentTime() >= (setNumber + 1) * player.duration() / 12) {
-	    player.pause();
+	if (gplayer.currentTime() >= (setNumber + 1) * gplayer.duration() / 12) {
+	    gplayer.pause();
             //need to insert a handler here to decide which function to call at each pause
             $("#studentProgress").animate({"left":"20px"}, 500);
 	}
@@ -48,7 +57,7 @@ function pauseSet(){
 
 
 
-function getFormData() {
+/*function getFormData() {
 
     var formData = [];
 
@@ -147,7 +156,7 @@ function insertForms() {
         $.template("formTemplateFooter", markupFooter);
         $.tmpl("formTemplateFooter").appendTo(setDiv);
     }
-}
+}*/
 
 function pretestFormSwap() {
     $("#slide").animate({"right":"-220px"},1000,"swing",function() {
@@ -212,3 +221,8 @@ function owlInit() {
 
 }
 
+$(document).ready(function() {
+    owlInit();
+
+// insertForms();
+});
