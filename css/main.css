@@ -11,6 +11,8 @@
 
 #set0 {
     position: absolute;
+    width = 100%;
+    height = 100%;
     
 }
 
@@ -62,19 +64,29 @@
     position: absolute;
     top: 190px;
     width: 200px;
-    right: 20px;
+    right: -200px;
     transition: right 0.4s ease-in-out;
 }
 
+#form-carousel {
+    right: -220px;
+}
 
+#formA, #formB {
+    text-align: center;
+    line-height: 95px;
+    color: #fcfcfc;
+    font-size: 50px;
+    width: 95px;
+    height: 95px;
+    display: inline-block;
+    background: red;
+}
 
+#formA {
+    background: #AA0000;
+}
 
-
-
-
-
-
-
-
-
-
+#formB {
+    background: Green;
+}

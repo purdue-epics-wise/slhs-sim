@@ -1,20 +1,25 @@
 var setNumber = 0;
+//[(0=a 1=b),(once yes, store startitem here),(number of "not readies")
+var pretestProg = [0,"startitem",0];
+var studentSetProg = [];
 
 function loadVideo(videoEmbeddedUrl) {
     document.getElementById("content-container").innerHTML='<center><iframe width="960" height="720" src="http://' + videoEmbeddedUrl + '" frameborder="0" allowfullscreen></iframe></center>';
 }
 
 function loadLocalVideo(videoFile){
-    document.getElementById("content-container").innerHTML='<center><video id="mainPlayer" class="video-js vjs-default-skin vjs-big-play-centered" controls autoplay preload="auto" width="960" height="720"></video></center>'
+    document.getElementById("content-container").innerHTML='<center><video id="mainPlayer" class="video-js vjs-default-skin vjs-big-play-centered" controls preload="auto" width="960" height="720"></video></center>'
     document.getElementById("mainPlayer").innerHTML='<source src="'+ videoFile + '.mp4" type=\'video/mp4\' > <track label="English" kind="subtitles" srclang="en" src="' + videoFile + '.vtt" default>'
     videojs("mainPlayer", {
+        bigPlayButton: false,
         controlBar: {
             playToggle: false,
             progressControl: {seekBar: false}
         }
     }, function(){
-        //this.on("pause", function() {alert("hello");})
+        
     }) // Player (this) is initialized and ready.
+    $("#slide").animate({"right":"20px"},500);
     pauseSet();
 }
 
@@ -35,7 +40,8 @@ function pauseSet(){
 	//console.log("Current Time: " + player.currentTime());        
 	if (player.currentTime() >= (setNumber + 1) * player.duration() / 12) {
 	    player.pause();
-            $("#studentProgress").delay(500).animate({"left":"20px"}, 500);
+            //need to insert a handler here to decide which function to call at each pause
+            $("#studentProgress").animate({"left":"20px"}, 500);
 	}
     });
 }
@@ -143,6 +149,22 @@ function insertForms() {
     }
 }
 
+function pretestFormSwap() {
+    $("#slide").animate({"right":"-220px"},1000,"swing",function() {
+        $("#currprompt").text("Following the pretest, is the subject ready to begin the main exam?");
+        $("#formA").text("Y");
+        $("#formB").text("N");
+        $("#slide").delay(100).animate({"right":"20px"},1000);
+    });
+}
+
+function storePretest(form) {
+    pretestProg[0] = form;
+    videojs("mainPlayer").play()
+    jQuery('#formA , #formB').unbind('click');
+    pretestFormSwap();
+}
+
 function owlInit() {
     var owl = $("#form-carousel");
 
@@ -178,6 +200,14 @@ function owlInit() {
     $(".setRewatch").click(function() {
         $("#studentProgress").animate({"left":"-220px"}, 500);
         videoSet(setNumber);
+    });
+
+    $("#formA").click(function() {
+        storePretest(0);
+    });
+
+    $("#formB").click(function() {
+        storePretest(1);
     });
 
 }

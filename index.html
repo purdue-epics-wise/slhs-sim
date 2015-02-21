@@ -60,13 +60,12 @@
           <p>Select any of the videos below to begin watching a simulation. Click the button on the right to enter your answers.</p>
         </div>
         <div id="slide">
-
+          
           <div id="set0">
-            <p>Based on the results of the pre-test and the subject's age, on which item should the exam begin?</p>
-            <form id="startSetForm">
-              <input type="text" id="startSet" name="startSet" placeholder="Item #..." />
-              <button id="startSetSubmit" type="submit">Start Exam</button>
-            </form>
+            <p id="currprompt">Based on the subject's age, which form should we use for the pretest?</p>
+            <div id="formA">A</div>
+            <div id="formB">B</div>
+            
           </div>
           
           <div id="form-carousel">
@@ -117,7 +116,7 @@
 	  
           <div class="col-md-4">
             <div class="thumbnail">
-              <a id="playVid4" href="#" onclick="loadLocalVideo('vid/speech-therapy')"><img src="https://i.ytimg.com/vi/WyQ8a1nqWJk/mqdefault.jpg"></a>
+              <a id="playVid4" href="#" onclick="loadLocalVideo('vid/speech-therapy2')"><img src="https://i.ytimg.com/vi/WyQ8a1nqWJk/mqdefault.jpg"></a>
               <h3>Simulation 4</h3>
               <p>Simulation of a misbehaving child.</p>
             </div>
