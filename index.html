@@ -46,21 +46,27 @@
       </div>
       
       <!-- Main jumbotron for a primary marketing message or call to action -->
-      <div class="jumbotron">        
+      <div class="jumbotron">
         
         <div id="studentProgress">
+          <div class="setQ setRewatch"><p>Rewatch Segment</p></div>
           <div class="setQ setForward"><p>Go Foward a Set</p></div>
           <div class="setQ setBack"><p>Go Back a Set</p></div>
-          <div class="setQ setRewatch"><p>Rewatch Segment</p></div>
+          <div class="setQ endExam"><p>End the Exam</p></div>
         </div>
-
         
         <div id="slide">
           
-          <div id="set0">
-            <p id="currprompt">Based on the subject's age, which form should we use for the pretest?</p>
+          <div id="formPrompt" class="active">
+            <p id="fptext">Based on the subject's age, which form should we use for the pre-test?</p>
             <div id="formA">A</div>
             <div id="formB">B</div>
+          </div>
+
+          <div id="beginPrompt">
+            <p id="bptext">Has the subject scored well enough on the pre-test to begin the exam?</p>
+            <div id="startY">Y</div>
+            <div id="startN"><span id="swaptext">N</span></div>
           </div>
           
           <div id="form-carousel">
@@ -77,13 +83,23 @@
             <div id="set11"></div>
             <div id="set12"></div>
           </div>
+
+          <div id="infopanel">
+            <div id="infotoggle">expand age information</div>
+            <div id="infocontent">
+              <p>age -> starting form info</p>
+              <p>age -> starting  set info</p>
+              <p>(OTHER CONTENT PLACEHOLDER)</p>
+            </div>
+          </div>
           
-        </div>        
-        
+        </div>
+
         <div id="content-container" class="container">
           <h1>PPVT-IV Simulations</h1>
           <p>Select any one of the videos below.<br>You will be prompted to answer questions about the exam throughout your viewing.</p>
         </div>
+        
       </div>
 
       <div class="container">

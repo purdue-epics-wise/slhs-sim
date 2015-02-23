@@ -4,6 +4,7 @@
 }
 
 .jumbotron {
+    position: relative;
     background: orange;
     height: 250px;
     width: 100%;
@@ -15,6 +16,8 @@
 }
 
 #content-container {
+    position: absolute;
+    left: calc(50% - 480px);
     width: 960px;
     height: 720px;
     margin: 0 auto;
@@ -31,36 +34,35 @@
     margin: 0 auto;
 }
 
-#set0 {
-    
-}
-
 #studentProgress {
+    position: relative;
+    background: grey;
     float: left;
-    background: blue;
-    width: auto;
+    left: -200px;
+    width: 200px;
     height: 720px;
 }
 
 #slide {
     background: cyan;
+    position: relative;
     float: right;
+    right: -200px;
     width: 200px;
     height: 720px;
 }
 
 .setQ {
-    display: block;
-    position: relative;
-    top: 190px;
-    width: 200px;
-    height: 100px;
+    position: absolute;
+    top: 313px;
+    width: 192px;
+    height: 94px;
+    left: 4px;
     background: grey;
     color: white;
     font-size: 25px;
     line-height: 100px;
     text-align: center;
-    margin-bottom: 4px;
 }
 
 .setQ p {
@@ -79,27 +81,82 @@
 
 .setRewatch {
     background: #2f82a8;
+    z-index: 1;
+}
+
+.endExam {
+    background: black;
 }
 
 #form-carousel {
-    right: -220px;
+    display:none;
+}
+
+#formPrompt {
+    display: inline-block;
+}
+
+#beginPrompt {
+    display: none;
+}
+
+#infopanel {
+    position:absolute;
+    bottom: 0px;
+}
+
+#infotoggle {
+    position: absolute;
+    width: 200px;
+    padding-top: 2px;
+    color: white;
+    height: 25px;
+    background: green;
+    font-size: 14px;
+    text-align: center;
+    bottom: 0px;
+}
+
+#infocontent {
+    background: #fcfcfc;
+    position: absolute;
+    bottom: 0px;
+    height: 0px;
+    width: 200px;
+    font-size: 16px;
+    overflow-y: auto;
 }
 
 #formA, #formB {
     text-align: center;
-    line-height: 95px;
+    line-height: 94px;
     color: #fcfcfc;
     font-size: 50px;
-    width: 95px;
-    height: 95px;
+    width: 94px;
+    height: 94px;
     display: inline-block;
     background: red;
+    position: absolute;
 }
 
-#formA {
+#startY, #startN {
+    text-align: center;
+    line-height: 94px;
+    color: #fcfcfc;
+    font-size: 50px;
+    width: 94px;
+    height: 94px;
+    display: inline-block;
+    background: red;
+    position: absolute;
+}
+
+#formA, #startY {
     background: #AA0000;
+    left: 4px;
 }
 
-#formB {
+#formB, #startN {
     background: Green;
+    right: 4px;
 }

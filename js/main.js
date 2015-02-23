@@ -1,4 +1,5 @@
 var setNumber = 0;
+var expandedOptions = 0;
 //[(0=a 1=b),(once yes, store startitem here),(number of "not readies")
 var pretestProg = [0,"startitem",0];
 var studentSetProg = [];
@@ -9,7 +10,9 @@ function loadVideo(videoEmbeddedUrl) {
 }
 
 function loadLocalVideo(videoFile){
+    //TODO: implement all data set resets here (answers, saved form data, etc.)
     //collapses jumbotron to change video, then expands with new content
+    $("#slide").animate({right:"-200px"},750);
     $(".jumbotron").animate({height:"50px"},750,function() {
         if (gplayer !== null) {
             videojs("mainPlayer").dispose();
@@ -30,7 +33,9 @@ function loadLocalVideo(videoFile){
     });
     //bootstrap is really ****ing stupid
     $(".navbar").animate({height:"96px"},750,function() {
-        $(this).animate({height:"48px"},1500);
+        $(this).animate({height:"48px"},1500,function() {
+            formSwap(0);
+        });
     });
 }
 
@@ -50,7 +55,9 @@ function pauseSet(){
 	if (gplayer.currentTime() >= (setNumber + 1) * gplayer.duration() / 12) {
 	    gplayer.pause();
             //need to insert a handler here to decide which function to call at each pause
-            $("#studentProgress").animate({"left":"20px"}, 500);
+            if (expandedOptions == 1) {
+                toggleSetChoices(1);
+            }
 	}
     });
 }
@@ -158,25 +165,74 @@ function insertForms() {
     }
 }*/
 
-function pretestFormSwap() {
-    $("#slide").animate({"right":"-220px"},1000,"swing",function() {
-        $("#currprompt").text("Following the pretest, is the subject ready to begin the main exam?");
-        $("#formA").text("Y");
-        $("#formB").text("N");
-        $("#slide").delay(100).animate({"right":"20px"},1000);
+function formSwap(formnum) {
+    $("#slide").animate({"right":"-200px"},500,function () {
+        if (formnum == 1) {
+            $("#formPrompt").hide();
+            $("#beginPrompt").show(function () {
+//                $("#formPrompt").removeClass("active");
+//                $("#beginPrompt").addClass("active");
+                $("#slide").animate({"right":"0px"},500);
+                $("#studentProgress").animate({"left":"0px"},500);
+            });
+        } else if (formnum == 2) {
+            $("#beginPrompt,#infopanel").hide();
+            $("#form-carousel").show(function () {
+//                $("#form-carousel").addClass("active");
+//                $("#beginPrompt").removeClass("active");
+                $("#slide").animate({"right":"0px"},500);
+            });
+        } else if (formnum == 0) {
+            $("#form-carousel,#beginPrompt").hide();
+            $("#formPrompt,#infopanel").show(function () {
+//                $("#formPrompt").addClass("active");
+//                $("#form-carousel").removeClass("active");
+                $("#slide").animate({"right":"0px"},500);
+                expandedOptions = 0;
+            });
+        }
     });
+}
+
+function delayStartExam () {
+    if (pretestProg[0]) {
+        pretestProg[0] = 0;
+        var tmptext = "Regressing to form A...";
+    } else {var tmptext = "Continue practice...";}
+    
+    $("#startN").css({"z-index":1}).animate({width:"192px"},500,function() {
+        $("#swaptext").fadeOut(500,function() {
+            $("#startN").css({"font-size":"16px"});
+            $(this).text(tmptext);
+        }).fadeIn(500).delay(500).fadeOut(500, function() {
+            $("#swaptext").text("N");
+            $("#startN").css({"font-size":"50px"});
+            $("#swaptext").fadeIn(500, function() {
+                $("#startN").animate({width:"94px"},500);
+            });
+        });
+    });
+    pretestProg[2]++;
+}
+
+function toggleSetChoices(inout) {
+    if (inout == 1) {
+        $(".setForward").animate({"top":"215px"},500);
+        $(".setBack").animate({"top":"411px"},500);
+        $(".endExam").animate({"top":"509px"},500);
+    } else {
+        $(".setForward,.setBack,.endExam").animate({"top":"313px"},500);
+    }
 }
 
 function storePretest(form) {
     pretestProg[0] = form;
-    videojs("mainPlayer").play()
-    jQuery('#formA , #formB').unbind('click');
-    pretestFormSwap();
+    videojs("mainPlayer").play();
+    formSwap(1);
 }
 
 function owlInit() {
     var owl = $("#form-carousel");
-
 
     owl.owlCarousel({
         navigation: true,
@@ -200,14 +256,16 @@ function owlInit() {
         videoSet(setNumber);
     });
 
+    $(owl).toggle();
+
     $(".setForward, .setBack").click(function() {
+        toggleSetChoices(0);
         setNumber++;
-        $("#studentProgress").animate({"left":"-220px"}, 500);
         videoSet(setNumber);
     });
 
     $(".setRewatch").click(function() {
-        $("#studentProgress").animate({"left":"-220px"}, 500);
+        toggleSetChoices(0);
         videoSet(setNumber);
     });
 
@@ -218,6 +276,40 @@ function owlInit() {
     $("#formB").click(function() {
         storePretest(1);
     });
+    //need to make Y/N buttons uninteractive while set is playing
+    //could just use .paused() API of videojs probably
+    $("#startY").click(function() {
+        if (gplayer.paused()) {
+            setNumber++;
+            videoSet(setNumber);
+            expandedOptions = 1;
+            formSwap(2);
+        }
+    });
+    $("#startN").click(function() {
+        if (gplayer.paused()) {
+            setNumber++;
+            delayStartExam();
+            videoSet(setNumber);
+        }
+    });
+    var infotogglestate = 0;
+    $("#infotoggle").click(function() {
+        if (infotogglestate) {
+            $(this).animate({"bottom":"0px"},500);
+            $("#infocontent").animate({"height":"0px"},500,function() {
+                $("#infotoggle").text("expand age info");
+            });
+            infotogglestate = 0;
+        } else {
+            $(this).animate({"bottom":"695px"},500);
+            $("#infocontent").animate({"height":"695px"},500,function() {
+                $("#infotoggle").text("collapse");
+            });
+            infotogglestate = 1;
+        }
+    });
+
 
 }
 
