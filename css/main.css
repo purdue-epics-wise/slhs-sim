@@ -1,3 +1,7 @@
+* {
+    font-family: "Open Sans"!important;
+}
+
 #wrapper {
     position: relative;
     overflow: hidden;
@@ -125,6 +129,7 @@
     width: 200px;
     font-size: 16px;
     overflow-y: auto;
+    z-index: 1000;
 }
 
 #formA, #formB {
@@ -139,11 +144,12 @@
     position: absolute;
 }
 
-#startY, #startN {
+#startYdes, #startN {
     text-align: center;
     line-height: 94px;
     color: #fcfcfc;
     font-size: 50px;
+    border: none;
     width: 94px;
     height: 94px;
     display: inline-block;
@@ -151,7 +157,19 @@
     position: absolute;
 }
 
-#formA, #startY {
+#startYdes::-webkit-input-placeholder {
+    opacity: 1;
+    color: white;
+}
+#startYdes::-moz-placeholder {
+    color: white;
+    opacity: 1;
+}
+#startYdes:hover,#formA:hover,#formB:hover,#startN:hover,.setQ:hover {
+    cursor: pointer;
+}
+
+#formA, #startYdes {
     background: #AA0000;
     left: 4px;
 }

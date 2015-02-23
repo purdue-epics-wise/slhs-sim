@@ -1,7 +1,7 @@
 var setNumber = 0;
 var expandedOptions = 0;
 //[(0=a 1=b),(once yes, store startitem here),(number of "not readies")
-var pretestProg = [0,"startitem",0];
+var pretestProg = [0,0,0];
 var studentSetProg = [];
 var gplayer = null;
 
@@ -35,6 +35,7 @@ function loadLocalVideo(videoFile){
     $(".navbar").animate({height:"96px"},750,function() {
         $(this).animate({height:"48px"},1500,function() {
             formSwap(0);
+            toggleSetChoices(0);
         });
     });
 }
@@ -55,6 +56,7 @@ function pauseSet(){
 	if (gplayer.currentTime() >= (setNumber + 1) * gplayer.duration() / 12) {
 	    gplayer.pause();
             //need to insert a handler here to decide which function to call at each pause
+            $("#startYdes,#startN").animate({"opacity":1},500);
             if (expandedOptions == 1) {
                 toggleSetChoices(1);
             }
@@ -206,9 +208,11 @@ function delayStartExam () {
             $(this).text(tmptext);
         }).fadeIn(500).delay(500).fadeOut(500, function() {
             $("#swaptext").text("N");
-            $("#startN").css({"font-size":"50px"});
+            $("#startN").css({"font-size":"50px","z-index":0});
             $("#swaptext").fadeIn(500, function() {
-                $("#startN").animate({width:"94px"},500);
+                $("#startN").animate({width:"94px"},500,function() {
+                    $("#startYdes,#startN").animate({"opacity":0.75},500);
+                });
             });
         });
     });
@@ -228,6 +232,7 @@ function toggleSetChoices(inout) {
 function storePretest(form) {
     pretestProg[0] = form;
     videojs("mainPlayer").play();
+    $("#startYdes,#startN").css({"opacity":0.75});
     formSwap(1);
 }
 
@@ -278,7 +283,9 @@ function owlInit() {
     });
     //need to make Y/N buttons uninteractive while set is playing
     //could just use .paused() API of videojs probably
-    $("#startY").click(function() {
+    $("#startY").submit(function(event) {
+        event.preventDefault();
+        alert($("#startYdes").val());
         if (gplayer.paused()) {
             setNumber++;
             videoSet(setNumber);
@@ -286,6 +293,23 @@ function owlInit() {
             formSwap(2);
         }
     });
+
+    $("#startYdes").focus(function() {
+        if (gplayer.paused()) {
+            $(this).css({"z-index":1});
+            $(this).animate({"width": "192px"},500,function() {
+                $(this).css({"font-size":"20px"}).attr("placeholder","Enter start item #");
+            });
+        } else {
+            $(this).blur();
+        }
+    }).blur(function() {
+        $(this).val("").attr("placeholder","Y").css({"font-size":"50px"});
+        $(this).animate({"width": "94px"},500,function () {
+            $(this).css({"z-index":0});
+        });
+    });
+    
     $("#startN").click(function() {
         if (gplayer.paused()) {
             setNumber++;
