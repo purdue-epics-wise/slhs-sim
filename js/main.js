@@ -165,7 +165,22 @@ function insertForms() {
         $.template("formTemplateFooter", markupFooter);
         $.tmpl("formTemplateFooter").appendTo(setDiv);
     }
-}*/
+    }*/
+var pages=[];
+function addSet() {
+    var newSet = $("<div/>", {
+        "id": "setQS" + setNumber,
+        "class": "setQS" + setNumber + "style",
+        text: "Click me!"
+    });
+    newSet.appendTo("#setView");
+    pages.push(newSet);
+    var newSetButton = $("<div/>", {
+        "class": "setQS" + setNumber + "style",
+        text: setNumber
+    });
+    newSetButton.appendTo("#setSwapControl");
+}
 
 function formSwap(formnum) {
     $("#slide").animate({"right":"-200px"},500,function () {
@@ -237,7 +252,7 @@ function storePretest(form) {
 }
 
 function owlInit() {
-    var owl = $("#form-carousel");
+   /* var owl = $("#form-carousel");
 
     owl.owlCarousel({
         navigation: true,
@@ -261,7 +276,7 @@ function owlInit() {
         videoSet(setNumber);
     });
 
-    $(owl).toggle();
+    $(owl).toggle();*/
 
     $(".setForward, .setBack").click(function() {
         toggleSetChoices(0);
@@ -291,6 +306,7 @@ function owlInit() {
             videoSet(setNumber);
             expandedOptions = 1;
             formSwap(2);
+            addSet();
         }
     });
 

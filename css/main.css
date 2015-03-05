@@ -93,7 +93,33 @@
 }
 
 #form-carousel {
-    display:none;
+    background: green;
+    width: 200px;
+    height: 600px;
+}
+
+#setView {
+    background: grey;
+    display: block;
+    width: 200px;
+    height: 500px;
+}
+
+#setSwapControl {
+    background: black;
+    display: block;
+    width: 200px;
+    height: 15px;
+}
+
+#setQS1 {
+    color: brown;
+}
+
+.setQS1style {
+    width: 20px;
+    height: 20px;
+    background: pink;
 }
 
 #formPrompt {
