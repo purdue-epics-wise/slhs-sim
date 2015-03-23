@@ -170,33 +170,60 @@ function insertForms() {
     }
     }*/
 
+function getRandomColor() {
+    var letters = '0123456789ABCDEF'.split('');
+    var color = '#';
+    for (var i = 0; i < 6; i++ ) {
+        color += letters[Math.floor(Math.random() * 16)];
+    }
+    return color;
+}
+
 var pages=[];
 function addSet() {
-    var randomColor = Math.floor(Math.random()*16777215);
-    var randomColorStr = randomColor.toString(16).slice(-6);
-    var complement = (('000000' + ('0xffffff' ^ ('0x' + randomColorStr))).toString(16)).slice(-6);
+    var randomColorStr = getRandomColor();
     var newSet = $("<div/>", {
         "id": "setQS" + setNumber,
         "class": "setQSstyle",
-        "style": "background:#" + randomColorStr + ";color:#" + complement,
-        text: "Click me!"
+        "style": "background:" + randomColorStr + ";color:#ffffff",
     });
+    //radio generator
+    for (var i = 0; i < 5; i++) {
+        var letter = (i == 4) ? "Error" : String.fromCharCode(65+i);
+        newSet.append("<span class='letterLabel'>" + letter + "</span>");
+    }
+    /*
+    var radioForm = $("<form/>");
+    for (var i = 0; i < 12; i++) {
+        for (var j = 0; j < 4; j++) {
+            var letter = String.fromCharCode(65 + j);
+            radioForm.append("<input/>", {
+                type:"radio",
+                name: "s" + setNumber + "q" + (i + 1),
+                value: letter
+            });
+            radioForm.append(letter + "<br>");
+        }              
+    }
+    radioForm.appendTo("#setView");*/
     newSet.appendTo("#setView");
     pages.push(newSet);
     //    alert(pages[0].attr("id")); DEBUG
     var newSetButton = $("<a/>", {
         "class": "setQSBstyle",
-        "style": "background:#" + randomColorStr + ";color:#" + complement,
+        "style": "background:" + randomColorStr + ";color:#ffffff",
         text: setNumber
     });
-    newSetButton.appendTo("#setSwapControl");
     var localsn = setNumber - 1;
+    newSetButton.css({"left":localsn * 15});
+    newSetButton.appendTo("#setSwapControl");
     $(newSetButton).click(showPage.bind(null, localsn));
+    showPage(localsn);
 }
 var currPageI = -1;
 function showPage(index) {
     if (index > pages.length) {alert("out of bounds, fix this");}
-    if (index === currPageI) {alert("problema");return;}
+    if (index === currPageI) {return;}
     var currentPage = pages[currPageI];
     if (currentPage) {
         currentPage.stop().animate({left:-200});

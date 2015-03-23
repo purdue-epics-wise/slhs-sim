@@ -95,14 +95,14 @@
 #form-carousel {
     background: green;
     width: 200px;
-    height: 600px;
+    height: 720px;
 }
 
 #setView {
     background: grey;
     display: block;
     width: 200px;
-    height: 585px;
+    height: 704px;
 }
 
 #setSwapControl {
@@ -114,16 +114,24 @@
 
 .setQSstyle {
     position: absolute;
+    padding-top: 20px;
     width: 200px;
-    height: 585px;
+    height: 704px;
     top: 0px;
     right: -200px;
 }
 
 .setQSBstyle {
-    top: 585px;
-    width: 15px;
-    height: 15px;
+    position: absolute;
+    top: 704px;
+    width: 16px;
+    height: 16px;
+    font-size: 10px;
+    text-align: center;
+}
+
+.letterLabel {
+    margin-left: 22px;
 }
 
 #formPrompt {
