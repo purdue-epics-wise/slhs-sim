@@ -180,6 +180,7 @@ function getRandomColor() {
 }
 
 var pages=[];
+var errorCounter = 0;
 function addSet() {
     var randomColorStr = getRandomColor();
     var newSet = $("<div/>", {
@@ -192,20 +193,25 @@ function addSet() {
         var letter = (i == 4) ? "Error" : String.fromCharCode(65+i);
         newSet.append("<span class='letterLabel'>" + letter + "</span>");
     }
-    /*
     var radioForm = $("<form/>");
     for (var i = 0; i < 12; i++) {
         for (var j = 0; j < 4; j++) {
             var letter = String.fromCharCode(65 + j);
-            radioForm.append("<input/>", {
-                type:"radio",
-                name: "s" + setNumber + "q" + (i + 1),
-                value: letter
-            });
-            radioForm.append(letter + "<br>");
-        }              
+            radioForm.append('<input type="radio" name="s' + setNumber + 'q' + i + '" value="' + letter + '" />');
+        }
+        var checkbox = $('<input type="checkbox" name="error" value="" />');
+        $(checkbox).change(function() {
+            if(this.checked) {
+                errorCounter++;
+            } else {
+                errorCounter--;
+            }
+            $("#errorCount").text(errorCounter);
+        });
+        radioForm.append(checkbox);
+        radioForm.append("<br>");
     }
-    radioForm.appendTo("#setView");*/
+    radioForm.appendTo(newSet);
     newSet.appendTo("#setView");
     pages.push(newSet);
     //    alert(pages[0].attr("id")); DEBUG

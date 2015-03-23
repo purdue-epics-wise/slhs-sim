@@ -102,28 +102,61 @@
     background: grey;
     display: block;
     width: 200px;
-    height: 704px;
+    height: 614px;
 }
 
 #setSwapControl {
     background: black;
     display: block;
     width: 200px;
-    height: 15px;
+    height: 16px;
+}
+
+#errorCounter {
+    position: absolute;
+    width: 200px;
+    height: 90px;
+    top: 630px;
+    background: #fcfcfc;
+}
+
+#errorCount {
+    position: absolute;
+    left: 0px;
+    width: 100px;
+    height: 90px;
+    background: #fcfcfc;
+    border: 3px solid grey;
+    font-size: 30px;
+    line-height: 80px;
+    text-align: center;
+    color: #191919;
+}
+
+#errorText {
+    position: absolute;
+    width: 100px;
+    height: 90px;
+    left: 100px;
+    background: grey;
+    font-size: 20px;
+    line-height: 90px;
+    text-align: center;
+    color: #fcfcfc;
 }
 
 .setQSstyle {
     position: absolute;
     padding-top: 20px;
     width: 200px;
-    height: 704px;
+    height: 614px;
     top: 0px;
     right: -200px;
 }
 
 .setQSBstyle {
     position: absolute;
-    top: 704px;
+    top: 614px;
     width: 16px;
     height: 16px;
     font-size: 10px;
@@ -131,7 +164,14 @@
 }
 
 .letterLabel {
-    margin-left: 22px;
+    font-size: 20px;
+    margin-left: 19px;
+}
+
+input[type="radio"],
+input[type="checkbox"] {
+    margin-top: 19px;
+    margin-left: 19px;
 }
 
 #formPrompt {
