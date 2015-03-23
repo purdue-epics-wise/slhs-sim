@@ -102,7 +102,7 @@
     background: grey;
     display: block;
     width: 200px;
-    height: 500px;
+    height: 585px;
 }
 
 #setSwapControl {
@@ -112,14 +112,18 @@
     height: 15px;
 }
 
-#setQS1 {
-    color: brown;
+.setQSstyle {
+    position: absolute;
+    width: 200px;
+    height: 585px;
+    top: 0px;
+    right: -200px;
 }
 
-.setQS1style {
-    width: 20px;
-    height: 20px;
-    background: pink;
+.setQSBstyle {
+    top: 585px;
+    width: 15px;
+    height: 15px;
 }
 
 #formPrompt {

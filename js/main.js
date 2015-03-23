@@ -4,6 +4,7 @@ var expandedOptions = 0;
 var pretestProg = [0,0,0];
 var studentSetProg = [];
 var gplayer = null;
+var currPageI = -1;
 
 function loadVideo(videoEmbeddedUrl) {
     document.getElementById("content-container").innerHTML='<center><iframe width="960" height="720" src="http://' + videoEmbeddedUrl + '" frameborder="0" allowfullscreen></iframe></center>';
@@ -30,6 +31,8 @@ function loadLocalVideo(videoFile){
             pauseSet();
         });
         $(this).animate({height:"768px"},2000);
+        //temp mute volume because loud
+        gplayer.volume(0);
     });
     //bootstrap is really ****ing stupid
     $(".navbar").animate({height:"96px"},750,function() {
@@ -44,7 +47,7 @@ function videoSet(setNum){
     var duration = gplayer.duration();
     var timeStamp = 0;
     if (setNum > 0) {
-        timeStamp = duration / 12 * setNum;
+        timeStamp = duration / 40 * setNum;
     }
     gplayer.currentTime(timeStamp);
     gplayer.play();
@@ -53,7 +56,7 @@ function videoSet(setNum){
 function pauseSet(){
     document.getElementById("mainPlayer_html5_api").addEventListener('timeupdate', function() {
 	//console.log("Current Time: " + player.currentTime());        
-	if (gplayer.currentTime() >= (setNumber + 1) * gplayer.duration() / 12) {
+	if (gplayer.currentTime() >= (setNumber + 1) * gplayer.duration() / 40) {
 	    gplayer.pause();
             //need to insert a handler here to decide which function to call at each pause
             $("#startYdes,#startN").animate({"opacity":1},500);
@@ -166,20 +169,41 @@ function insertForms() {
         $.tmpl("formTemplateFooter").appendTo(setDiv);
     }
     }*/
+
 var pages=[];
 function addSet() {
+    var randomColor = Math.floor(Math.random()*16777215);
+    var randomColorStr = randomColor.toString(16).slice(-6);
+    var complement = (('000000' + ('0xffffff' ^ ('0x' + randomColorStr))).toString(16)).slice(-6);
     var newSet = $("<div/>", {
         "id": "setQS" + setNumber,
-        "class": "setQS" + setNumber + "style",
+        "class": "setQSstyle",
+        "style": "background:#" + randomColorStr + ";color:#" + complement,
         text: "Click me!"
     });
     newSet.appendTo("#setView");
     pages.push(newSet);
-    var newSetButton = $("<div/>", {
-        "class": "setQS" + setNumber + "style",
+    //    alert(pages[0].attr("id")); DEBUG
+    var newSetButton = $("<a/>", {
+        "class": "setQSBstyle",
+        "style": "background:#" + randomColorStr + ";color:#" + complement,
         text: setNumber
     });
     newSetButton.appendTo("#setSwapControl");
+    var localsn = setNumber - 1;
+    $(newSetButton).click(showPage.bind(null, localsn));
+}
+var currPageI = -1;
+function showPage(index) {
+    if (index > pages.length) {alert("out of bounds, fix this");}
+    if (index === currPageI) {alert("problema");return;}
+    var currentPage = pages[currPageI];
+    if (currentPage) {
+        currentPage.stop().animate({left:-200});
+    }
+    var nextPage = pages[index];
+    nextPage.stop().css({left:200}).animate({left:0});
+    currPageI = index;
 }
 
 function formSwap(formnum) {
@@ -281,6 +305,7 @@ function owlInit() {
     $(".setForward, .setBack").click(function() {
         toggleSetChoices(0);
         setNumber++;
+        addSet();
         videoSet(setNumber);
     });
 
