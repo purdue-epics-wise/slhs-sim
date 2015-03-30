@@ -1,3 +1,4 @@
+//set number 
 var setNumber = 0;
 var expandedOptions = 0;
 //[(0=a 1=b),(once yes, store startitem here),(number of "not readies")
@@ -43,6 +44,7 @@ function loadLocalVideo(videoFile){
     });
 }
 
+var currTimeStamp = 0;
 function videoSet(setNum){
     var duration = gplayer.duration();
     var timeStamp = 0;
@@ -56,7 +58,7 @@ function videoSet(setNum){
 function pauseSet(){
     document.getElementById("mainPlayer_html5_api").addEventListener('timeupdate', function() {
 	//console.log("Current Time: " + player.currentTime());        
-	if (gplayer.currentTime() >= (setNumber + 1) * gplayer.duration() / 40) {
+	if (gplayer.currentTime() >= (currTimeStamp + 1) * gplayer.duration() / 40) {
 	    gplayer.pause();
             //need to insert a handler here to decide which function to call at each pause
             $("#startYdes,#startN").animate({"opacity":1},500);
@@ -179,7 +181,9 @@ function getRandomColor() {
     return color;
 }
 
+//keeping track of question-level variables
 var pages=[];
+var startItem = 0;
 var errorCounter = 0;
 function addSet() {
     if (pages.length > 12) {alert("Too many sets - check your work!");return;}
@@ -187,7 +191,7 @@ function addSet() {
     var newSet = $("<div/>", {
         "id": "setQS" + setNumber,
         "class": "setQSstyle",
-        "style": "background:" + randomColorStr + ";color:#ffffff",
+        "style": "background:" + randomColorStr + ";color:#ffffff"
     });
     //radio generator
     for (var i = 0; i < 5; i++) {
@@ -195,9 +199,9 @@ function addSet() {
         newSet.append("<span class='letterLabel'>" + letter + "</span>");
     }
     var radioForm = $("<form/>");
-    for (var i = 0; i < 12; i++) {
+    for (i = 0; i < 12; i++) {
         for (var j = 0; j < 4; j++) {
-            var letter = String.fromCharCode(65 + j);
+            letter = String.fromCharCode(65 + j);
             //should have value s1q1 and fetching value will return A,B,C, or D
             radioForm.append('<input type="radio" name="s' + setNumber + 'q' + i + '" value="' + letter + '" />');
         }
@@ -222,13 +226,12 @@ function addSet() {
     var newSetButton = $("<a/>", {
         "class": "setQSBstyle",
         "style": "background:" + randomColorStr + ";color:#ffffff",
-        text: setNumber
+        text: setNumber + 1
     });
-    var localsn = setNumber - 1;
-    newSetButton.css({"left":localsn * 15});
+    newSetButton.css({"left": setNumber * 15});
     newSetButton.appendTo("#setSwapControl");
-    $(newSetButton).click(showPage.bind(null, localsn));
-    showPage(localsn);
+    $(newSetButton).click(showPage.bind(null, setNumber));
+    showPage(setNumber);
 }
 
 var currPageI = -1;
@@ -247,14 +250,14 @@ function showPage(index) {
 var collected = [];
 function collectResponses() {
     console.log(setNumber);
-    for (var i = 0; i < setNumber; i++) {
+    for (var i = 0; i < setNumber + 1; i++) {
         var currSetResponse = [];
         for (var j = 0; j < 12; j++) {
-            currSetResponse[j] = $("input:radio[name=s"+(i+1)+"q"+j+"]:checked").val();
+            currSetResponse[j] = $("input:radio[name=s"+i+"q"+j+"]:checked").val();
         }
         collected[i] = currSetResponse;
-        alert(collected[i].toString());
     }
+    console.log(collected.toString());
 }
 
 function formSwap(formnum) {
@@ -353,16 +356,29 @@ function owlInit() {
 
     $(owl).toggle();*/
 
-    $(".setForward, .setBack").click(function() {
+    $(".setForward").click(function() {
+        toggleSetChoices(0);
+        //we're adding a new set, so add to max
+        setNumber++;
+        currTimeStamp++;
+        startItem += 12;
+        addSet();
+        videoSet(currTimeStamp);
+    });
+
+    
+    $(".setBack").click(function() {
         toggleSetChoices(0);
         setNumber++;
+        currTimeStamp++;
+        startItem -= 12;
         addSet();
-        videoSet(setNumber);
+        videoSet(currTimeStamp);
     });
 
     $(".setRewatch").click(function() {
         toggleSetChoices(0);
-        videoSet(setNumber);
+        videoSet(currTimeStamp);
     });
 
     $(".endExam").click(function() {
@@ -381,10 +397,10 @@ function owlInit() {
     //could just use .paused() API of videojs probably
     $("#startY").submit(function(event) {
         event.preventDefault();
-        alert($("#startYdes").val());
+        startItem += $("#startYdes").val();
         if (gplayer.paused()) {
-            setNumber++;
-            videoSet(setNumber);
+            currTimeStamp++;
+            videoSet(currTimeStamp);
             expandedOptions = 1;
             formSwap(2);
             addSet();
@@ -409,9 +425,9 @@ function owlInit() {
     
     $("#startN").click(function() {
         if (gplayer.paused()) {
-            setNumber++;
+            currTimeStamp++;
             delayStartExam();
-            videoSet(setNumber);
+            videoSet(currTimeStamp);
         }
     });
     var infotogglestate = 0;
