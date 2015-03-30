@@ -182,6 +182,7 @@ function getRandomColor() {
 var pages=[];
 var errorCounter = 0;
 function addSet() {
+    if (pages.length > 12) {alert("Too many sets - check your work!");return;}
     var randomColorStr = getRandomColor();
     var newSet = $("<div/>", {
         "id": "setQS" + setNumber,
@@ -197,9 +198,12 @@ function addSet() {
     for (var i = 0; i < 12; i++) {
         for (var j = 0; j < 4; j++) {
             var letter = String.fromCharCode(65 + j);
+            //should have value s1q1 and fetching value will return A,B,C, or D
             radioForm.append('<input type="radio" name="s' + setNumber + 'q' + i + '" value="' + letter + '" />');
         }
-        var checkbox = $('<input type="checkbox" name="error" value="" />');
+        //should have example value for set 1 question 1 of: s1q1e
+        //then later check if it's checked or not to see if that question is marked as wrong
+        var checkbox = $('<input type="checkbox" name="s' + setNumber + 'q' + i + 'e" value="" />');
         $(checkbox).change(function() {
             if(this.checked) {
                 errorCounter++;
@@ -226,6 +230,7 @@ function addSet() {
     $(newSetButton).click(showPage.bind(null, localsn));
     showPage(localsn);
 }
+
 var currPageI = -1;
 function showPage(index) {
     if (index > pages.length) {alert("out of bounds, fix this");}
@@ -237,6 +242,19 @@ function showPage(index) {
     var nextPage = pages[index];
     nextPage.stop().css({left:200}).animate({left:0});
     currPageI = index;
+}
+
+var collected = [];
+function collectResponses() {
+    console.log(setNumber);
+    for (var i = 0; i < setNumber; i++) {
+        var currSetResponse = [];
+        for (var j = 0; j < 12; j++) {
+            currSetResponse[j] = $("input:radio[name=s"+(i+1)+"q"+j+"]:checked").val();
+        }
+        collected[i] = currSetResponse;
+        alert(collected[i].toString());
+    }
 }
 
 function formSwap(formnum) {
@@ -347,6 +365,11 @@ function owlInit() {
         videoSet(setNumber);
     });
 
+    $(".endExam").click(function() {
+        toggleSetChoices(0);
+        collectResponses();
+    });
+    
     $("#formA").click(function() {
         storePretest(0);
     });
