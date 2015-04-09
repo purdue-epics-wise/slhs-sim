@@ -39,7 +39,7 @@ function loadLocalVideo(videoFile){
     $(".navbar").animate({height:"96px"},750,function() {
         $(this).animate({height:"48px"},1500,function() {
             formSwap(0);
-            toggleSetChoices(0);
+            toggleSetChoices(expandedOptions);
         });
     });
 }
@@ -62,115 +62,10 @@ function pauseSet(){
 	    gplayer.pause();
             //need to insert a handler here to decide which function to call at each pause
             $("#startYdes,#startN").animate({"opacity":1},500);
-            if (expandedOptions == 1) {
-                toggleSetChoices(1);
-            }
+            toggleSetChoices(expandedOptions);
 	}
     });
 }
-
-
-
-/*function getFormData() {
-
-    var formData = [];
-
-    for (var f = 0; f < 12; f++) {
-
-        var currentFormData = [];
-        var currentF = (f + 1);
-
-        for (var i = 0; i < 12; i++) {
-            var currentI = (i + 1);
-            var questionID = "s" + currentF + "q" + currentI;
-
-            var answer = $('input[name="'+ questionID +'"]:checked').val();
-            var isError = $("#"+ questionID +"-error").is(":checked");
-
-            currentFormData[currentFormData.length] = {
-                Answer: answer,
-                Error: isError
-            }
-        }
-
-        formData[formData.length] = currentFormData;
-    }
-
-    return formData;
-}
-
-function insertForms() {
-
-    for (var f = 0; f < 12; f++) {
-
-        var currentF = (f + 1);
-        var setDiv = "#set" + currentF;
-        var setDivContent = setDiv + "-form-content";
-
-        var markupHeader = "<form class='form-horizontal'>" +
-            "<fieldset>" +
-            "<legend>Set " + currentF + "</legend>" +
-            "<div id='set"+ currentF +"-form-content' class='form-group'>" +
-            "<label class='col-md-1' for='q1'> </label>";
-
-        $.template("formHeader", markupHeader);
-        $.tmpl("formHeader").appendTo(setDiv);
-
-
-        var markupFormHeaderData = [
-            { Label: "1" },
-            { Label: "2" },
-            { Label: "3" },
-            { Label: "4" },
-            { Label: "E" }
-        ];
-        var markupFormHeader = "<label class='col-md-2 clab' for='q1'>${Label}</label>";
-
-        $.template("formTemplateHeader", markupFormHeader);
-        $.tmpl("formTemplateHeader", markupFormHeaderData).appendTo(setDivContent);
-
-
-        var markupFormContentData = [];
-        for (var i = 0; i < 12; i++) {
-            var currentI = (i + 1);
-            markupFormContentData[i] = {
-                questionNumber: currentI,
-                questionId: "s" + currentF + "q" + currentI,
-                questionIdRadio1: "s" + currentF + "q" + currentI + "-1",
-                questionIdRadio2: "s" + currentF + "q" + currentI + "-2",
-                questionIdRadio3: "s" + currentF + "q" + currentI + "-3",
-                questionIdRadio4: "s" + currentF + "q" + currentI + "-4",
-                questionIdError: "s" + currentF + "q" + currentI + "-error"
-            };
-        }
-        var markupFormContent = "<label class='col-md-1' for='${questionID}'>${questionNumber}.</label>" +
-            "<label class='col-md-2' for='${questionIdRadio1}'>" +
-            "<input type='radio' name='${questionId}' id='${questionIdRadio1}' value='1'>" +
-            "</label>" +
-            "<label class='col-md-2' for='${questionIdRadio2}'>" +
-            "<input type='radio' name='${questionId}' id='${questionIdRadio2}' value='2'>" +
-            "</label>" +
-            "<label class='col-md-2' for='${questionIdRadio3}'>" +
-            "<input type='radio' name='${questionId}' id='${questionIdRadio3}' value='3'>" +
-            "</label>" +
-            "<label class='col-md-2' for='${questionIdRadio4}'>" +
-            "<input type='radio' name='${questionId}' id='${questionIdRadio4}' value='4'>" +
-            "</label>" +
-            "<label class='col-md-2' for='${questionIdError}'>" +
-            "<input type='checkbox' name='${questionId}' id='${questionIdError}' value='5'>" +
-            "</label>";
-        $.template("formTemplateContent", markupFormContent);
-        $.tmpl("formTemplateContent", markupFormContentData).appendTo(setDivContent);
-
-
-        var markupFooter = "</div>" +
-            "</fieldset>" +
-            "</form>";
-
-        $.template("formTemplateFooter", markupFooter);
-        $.tmpl("formTemplateFooter").appendTo(setDiv);
-    }
-    }*/
 
 function getRandomColor() {
     var letters = '0123456789ABCDEF'.split('');
@@ -181,12 +76,32 @@ function getRandomColor() {
     return color;
 }
 
+//temporary hard-coded answer key
+var formAkey = [3,1,1,3,3,4,2,4,2,4,4,1, //1
+                2,4,2,1,3,3,1,1,4,3,4,3, //13
+                3,1,1,4,4,3,2,3,1,2,3,4, //25
+                3,1,4,1,2,4,4,3,2,3,1,1, //37
+                3,1,2,4,2,1,4,2,4,1,3,2, //49
+                3,2,4,1,1,3,3,2,1,4,2,4, //61
+                1,3,2,4,1,4,4,2,4,1,2,3, //73
+                4,3,3,1,4,2,4,1,1,3,2,3, //85
+                1,2,4,3,1,2,4,3,2,2,4,1, //97
+                2,2,1,3,2,3,4,3,1,4,1,4, //109
+                1,4,2,3,4,4,1,1,3,1,2,3, //121
+                4,2,3,1,4,1,1,2,3,4,2,4, //133
+                3,1,4,3,2,4,2,3,1,4,1,2, //145
+                4,3,2,3,1,1,2,3,2,2,4,3, //157
+                3,1,1,4,2,4,2,2,1,3,3,4, //169
+                2,4,3,1,3,2,4,3,1,1,4,3, //181
+                4,1,3,4,2,3,1,2,2,1,4,1, //193
+                1,3,3,2,4,4,2,4,1,4,3,2, //205
+                1,4,3,4,3,2,3,3,1,2,2,4]; //217
 //keeping track of question-level variables
 var pages=[];
 var startItem = 0;
+var currItem = 0;
 var errorCounter = 0;
 function addSet() {
-    if (pages.length > 12) {alert("Too many sets - check your work!");return;}
     var randomColorStr = getRandomColor();
     var newSet = $("<div/>", {
         "id": "setQS" + setNumber,
@@ -195,11 +110,11 @@ function addSet() {
     });
     //radio generator
     for (var i = 0; i < 5; i++) {
-        var letter = (i == 4) ? "Error" : String.fromCharCode(65+i);
+        var letter = (i == 4) ? "E" : (i+1);
         newSet.append("<span class='letterLabel'>" + letter + "</span>");
     }
     var radioForm = $("<form/>");
-    for (i = 0; i < 12; i++) {
+    for (i = 0; i < 12; i++) { 
         for (var j = 0; j < 4; j++) {
             letter = String.fromCharCode(65 + j);
             //should have value s1q1 and fetching value will return A,B,C, or D
@@ -217,8 +132,13 @@ function addSet() {
             $("#errorCount").text(errorCounter);
         });
         radioForm.append(checkbox);
-        radioForm.append("<br>");
+        radioForm.append("<span class='qNum'>(<b>" +
+            formAkey[currItem-1] + "</b>) " +
+            currItem++ + "</span><br>");
     }
+    radioForm.append("<p id='instructions'>Use this form to keep track of the subject's\
+        responses and errors they may make.<br>The bolded number in parenths is the\
+        correct answer to the question.</p>");
     radioForm.appendTo(newSet);
     newSet.appendTo("#setView");
     pages.push(newSet);
@@ -317,7 +237,10 @@ function toggleSetChoices(inout) {
         $(".setForward").animate({"top":"215px"},500);
         $(".setBack").animate({"top":"411px"},500);
         $(".endExam").animate({"top":"509px"},500);
-    } else {
+    } else if (inout == 2) {
+        $(".setForward").animate({"top":"215px"},500);
+        $(".endExam").animate({"top":"411px"},500);
+    }else {
         $(".setForward,.setBack,.endExam").animate({"top":"313px"},500);
     }
 }
@@ -330,40 +253,21 @@ function storePretest(form) {
 }
 
 function owlInit() {
-   /* var owl = $("#form-carousel");
-
-    owl.owlCarousel({
-        navigation: true,
-        navigationText: ["Previous Set","Next Set"],
-        pagination: false,
-        slideSpeed: 300,
-        paginationSpeed: 400,
-        afterAction: afterAction,
-        singleItem: true
-    });
-
-    function afterAction() {
-        setNumber = this.owl.currentItem;
-    }
-
-    $(".owl-next").click(function(){
-        videoSet(setNumber);
-    });
-
-    $(".owl-prev").click(function(){
-        videoSet(setNumber);
-    });
-
-    $(owl).toggle();*/
-
     $(".setForward").click(function() {
+        expandedOptions = 2;
         toggleSetChoices(0);
         //we're adding a new set, so add to max
         setNumber++;
         currTimeStamp++;
-        startItem += 12;
-        addSet();
-        videoSet(currTimeStamp);
+        if (currItem <= startItem) {
+            currItem = startItem + 12;
+            }
+        if (pages.length > 12 || currItem >= 229) {
+            alert("Too many sets - check your work!");
+        } else {
+            addSet();
+            videoSet(currTimeStamp);
+        }
     });
 
     
@@ -371,9 +275,13 @@ function owlInit() {
         toggleSetChoices(0);
         setNumber++;
         currTimeStamp++;
-        startItem -= 12;
-        addSet();
-        videoSet(currTimeStamp);
+        currItem -= 24;
+        if (pages.length > 12) {
+            alert("Too many sets - check your work!");
+        } else {
+            addSet();
+            videoSet(currTimeStamp);
+        }
     });
 
     $(".setRewatch").click(function() {
@@ -397,7 +305,7 @@ function owlInit() {
     //could just use .paused() API of videojs probably
     $("#startY").submit(function(event) {
         event.preventDefault();
-        startItem += $("#startYdes").val();
+        currItem = startItem += parseInt($("#startYdes").val());
         if (gplayer.paused()) {
             currTimeStamp++;
             videoSet(currTimeStamp);
@@ -452,6 +360,4 @@ function owlInit() {
 
 $(document).ready(function() {
     owlInit();
-
-// insertForms();
 });
