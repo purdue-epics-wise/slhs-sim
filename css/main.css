@@ -165,23 +165,13 @@
 
 .letterLabel {
     font-size: 20px;
-    margin-left: 20px;
-}
-
-#instructions {
-    font-size: 13px;
-    margin: 3px;
-}
-
-.qNum {
-    margin-left: 3px;
-    font-size: 11px;
+    margin-left: 19px;
 }
 
 input[type="radio"],
 input[type="checkbox"] {
     margin-top: 19px;
-    margin-left: 18px;
+    margin-left: 19px;
 }
 
 #formPrompt {
@@ -215,12 +205,9 @@ input[type="checkbox"] {
     bottom: 0px;
     height: 0px;
     width: 200px;
+    font-size: 16px;
     overflow-y: auto;
     z-index: 1000;
-}
-
-#infocontent p {
-    font-size: 13px;
 }
 
 #formA, #formB {
