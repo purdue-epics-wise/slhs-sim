@@ -169,7 +169,7 @@ function showPage(index) {
 
 var collected = [];
 function collectResponses() {
-    console.log(setNumber);
+    console.log(setNumber); //remember, 0 index so always one less
     for (var i = 0; i < setNumber + 1; i++) {
         var currSetResponse = [];
         for (var j = 0; j < 12; j++) {
@@ -178,6 +178,10 @@ function collectResponses() {
         collected[i] = currSetResponse;
     }
     console.log(collected.toString());
+}
+
+function scoreHandler() {
+    document.getElementById("content-container").innerHTML='<object type="text/html" data="modules/stats/index.html"></object>';
 }
 
 function formSwap(formnum) {
@@ -292,6 +296,7 @@ function owlInit() {
     $(".endExam").click(function() {
         toggleSetChoices(0);
         collectResponses();
+        scoreHandler();
     });
     
     $("#formA").click(function() {

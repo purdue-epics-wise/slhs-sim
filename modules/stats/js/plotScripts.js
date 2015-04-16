@@ -9,7 +9,7 @@ function plotScore(score,co,ci) {
 window.onload=function() {
     document.getElementById('stdscore').onsubmit=function() {
         var score = document.getElementById('score').value;
-        var ss = 640 - (100 - (((score >= 20) && (score <= 160)) ? score : 100)) * 6;
+        var ss = 604 - (100 - (((score >= 20) && (score <= 160)) ? score : 100)) * 5.67;
         var crb = document.getElementsByName('confint');
         var conf;
         var confint;
@@ -17,8 +17,8 @@ window.onload=function() {
         for (var i = 0, length = crb.length; i < length; i++) {
             if (crb[i].checked) {
                 conf = crb[i].value;
-                confoffset = (conf == 90) ? (ss - 5 * 6) : (ss - 6 * 6);
-                confint = (conf == 90) ? (11 * 6) : (13 * 6);
+                confoffset = (conf == 90) ? (ss - 5 * 5.67) : (ss - 6 * 5.67);
+                confint = (conf == 90) ? (11 * 5.67) : (13 * 5.67);
                 break;
             }
         }
