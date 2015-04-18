@@ -21,8 +21,8 @@
 
 #content-container {
     position: absolute;
-    left: calc(50% - 480px);
-    width: 960px;
+    left: 20%;
+    width: 60%;
     height: 720px;
     margin: 0 auto;
     text-align: center;

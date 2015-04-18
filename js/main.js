@@ -1,27 +1,26 @@
 //set number 
 var setNumber = 0;
 var expandedOptions = 0;
-//[(0=a 1=b),(once yes, store startitem here),(number of "not readies")
-var pretestProg = [0,0,0];
-var studentSetProg = [];
+//First number is form A(0) or B(1), second is number of training failures/attempts
+var pretestProg = [0,0];
+//player object stored here - used to determine if need wipe data or not on video change
 var gplayer = null;
-var currPageI = -1;
-
-function loadVideo(videoEmbeddedUrl) {
-    document.getElementById("content-container").innerHTML='<center><iframe width="960" height="720" src="http://' + videoEmbeddedUrl + '" frameborder="0" allowfullscreen></iframe></center>';
-}
 
 function loadLocalVideo(videoFile){
-    //TODO: implement all data set resets here (answers, saved form data, etc.)
     //collapses jumbotron to change video, then expands with new content
     $("#slide").animate({right:"-200px"},750);
     $(".jumbotron").animate({height:"50px"},750,function() {
         if (gplayer !== null) {
+            //reset everything
             videojs("mainPlayer").dispose();
+            currTimeStamp = 0;
+            setNumber = 0;
+            expandedOptions = 0;
+            pretestProg = [0,0,0];
         }
-        $("#content-container").html('<video id="mainPlayer" class="video-js vjs-default-skin vjs-big-play-centered" controls preload="auto" width="960" height="720"></video>');
+        $("#content-container").html('<video id="mainPlayer" class="video-js vjs-default-skin vjs-big-play-centered" controls preload="auto" width="100%" height="100%"></video>');
         $("#mainPlayer").html('<source src="'+ videoFile + '.mp4" type=\'video/mp4\' > <track label="English" kind="subtitles" srclang="en" src="' + videoFile + '.vtt" default>');
-        
+        //customize video controls, make new player
         gplayer = videojs("mainPlayer", {
             bigPlayButton: false,
             controlBar: {
@@ -32,10 +31,10 @@ function loadLocalVideo(videoFile){
             pauseSet();
         });
         $(this).animate({height:"768px"},2000);
-        //temp mute volume because loud
+        //temp mute volume because gets annoying while working
         gplayer.volume(0);
     });
-    //bootstrap is really ****ing stupid
+    //bootstrap is really F*cking stupid so we're doing a hack-ish fix
     $(".navbar").animate({height:"96px"},750,function() {
         $(this).animate({height:"48px"},1500,function() {
             formSwap(0);
@@ -44,6 +43,7 @@ function loadLocalVideo(videoFile){
     });
 }
 
+//calling this function determines how the video pauses and resumes
 var currTimeStamp = 0;
 function videoSet(setNum){
     var duration = gplayer.duration();
@@ -55,18 +55,20 @@ function videoSet(setNum){
     gplayer.play();
 }
 
+//pauses every X seconds or @ each timestamp
 function pauseSet(){
     document.getElementById("mainPlayer_html5_api").addEventListener('timeupdate', function() {
 	//console.log("Current Time: " + player.currentTime());        
-	if (gplayer.currentTime() >= (currTimeStamp + 1) * gplayer.duration() / 40) {
-	    gplayer.pause();
-            //need to insert a handler here to decide which function to call at each pause
-            $("#startYdes,#startN").animate({"opacity":1},500);
-            toggleSetChoices(expandedOptions);
-	}
+    	if (gplayer.currentTime() >= (currTimeStamp + 1) * gplayer.duration() / 40) {
+    	    gplayer.pause();
+                //need to insert a handler here to decide which function to call at each pause
+                $("#startYdes,#startN").animate({"opacity":1},500);
+                toggleSetChoices(expandedOptions);
+    	}
     });
 }
 
+//generates a random color
 function getRandomColor() {
     var letters = '0123456789ABCDEF'.split('');
     var color = '#';
@@ -96,33 +98,41 @@ var formAkey = [3,1,1,3,3,4,2,4,2,4,4,1, //1
                 4,1,3,4,2,3,1,2,2,1,4,1, //193
                 1,3,3,2,4,4,2,4,1,4,3,2, //205
                 1,4,3,4,3,2,3,3,1,2,2,4]; //217
+
 //keeping track of question-level variables
+var startItem = 0; //number of item we start on
+var currItem = 0; //number of current item
+var errorCounter = 0; //number of questions with error box checked
+
+//control and generation of set pages (radio buttons and checkboxes, add to index for switching)
 var pages=[];
-var startItem = 0;
-var currItem = 0;
-var errorCounter = 0;
 function addSet() {
     var randomColorStr = getRandomColor();
+    //make a new div for each set. This keeps it organized. Set style here because
+    //otherwise too many css selectors.
     var newSet = $("<div/>", {
         "id": "setQS" + setNumber,
         "class": "setQSstyle",
         "style": "background:" + randomColorStr + ";color:#ffffff"
     });
-    //radio generator
+    //radio label generator (i.e. 1 2 3 4 E)
     for (var i = 0; i < 5; i++) {
         var letter = (i == 4) ? "E" : (i+1);
         newSet.append("<span class='letterLabel'>" + letter + "</span>");
     }
+    //radio form/button generator
     var radioForm = $("<form/>");
+    //generate twelve questions with 4 radio buttons each, and one error checkbox
     for (i = 0; i < 12; i++) { 
         for (var j = 0; j < 4; j++) {
-            letter = String.fromCharCode(65 + j);
+            letter = j+1;
             //should have value s1q1 and fetching value will return A,B,C, or D
             radioForm.append('<input type="radio" name="s' + setNumber + 'q' + i + '" value="' + letter + '" />');
         }
         //should have example value for set 1 question 1 of: s1q1e
         //then later check if it's checked or not to see if that question is marked as wrong
         var checkbox = $('<input type="checkbox" name="s' + setNumber + 'q' + i + 'e" value="" />');
+        //monitors checkbox state to adjust error counter
         $(checkbox).change(function() {
             if(this.checked) {
                 errorCounter++;
@@ -136,54 +146,78 @@ function addSet() {
             formAkey[currItem-1] + "</b>) " +
             currItem++ + "</span><br>");
     }
+    //add instructions to each slide after all the radio buttons
     radioForm.append("<p id='instructions'>Use this form to keep track of the subject's\
         responses and errors they may make.<br>The bolded number in parenths is the\
         correct answer to the question.</p>");
+    //put radio button form in that div we made earlier
     radioForm.appendTo(newSet);
+    //put new div into outer div containing all sets
     newSet.appendTo("#setView");
+    //add to index of all sets for swapping
     pages.push(newSet);
     //    alert(pages[0].attr("id")); DEBUG
+    //generate button that lets you swap to set page
     var newSetButton = $("<a/>", {
         "class": "setQSBstyle",
         "style": "background:" + randomColorStr + ";color:#ffffff",
         text: setNumber + 1
     });
+    //offset based on set number
     newSetButton.css({"left": setNumber * 15});
     newSetButton.appendTo("#setSwapControl");
     $(newSetButton).click(showPage.bind(null, setNumber));
+    //automatically show newly generated page
     showPage(setNumber);
 }
 
+//set up variable for swap function
 var currPageI = -1;
 function showPage(index) {
+    //this shouldn't ever happen but if it does it alerts
     if (index > pages.length) {alert("out of bounds, fix this");}
+    //if we're on the page of the button being clicked do nothing
     if (index === currPageI) {return;}
+    //checks to see if there is a page being shown right now
     var currentPage = pages[currPageI];
+    //if (there is a page being shown) then push it out of frame to the left
     if (currentPage) {
         currentPage.stop().animate({left:-200});
     }
+    //sets next page to the page corresponding to the button that was clicked
+    //If you click the button labelled "2", sets to that page
     var nextPage = pages[index];
+    //page spawns offscreen to the right, then replaces old page
     nextPage.stop().css({left:200}).animate({left:0});
+    //sets the current page to the page now showing
     currPageI = index;
 }
 
+//blank array to store value of checked radio buttons
 var collected = [];
 function collectResponses() {
-    console.log(setNumber); //remember, 0 index so always one less
+    //setNumber + 1 to collect from all pages
     for (var i = 0; i < setNumber + 1; i++) {
+        //temp array of answers specific to current set
         var currSetResponse = [];
         for (var j = 0; j < 12; j++) {
+            //collect all the answers using the names we assigned earlier in the
+            //generator function
             currSetResponse[j] = $("input:radio[name=s"+i+"q"+j+"]:checked").val();
         }
+        //will show each set + collected answers in the JS console for debugging
+        console.log("Set" + (i+1) + ":" + currSetResponse.toString());
+        //add to array of all responses
         collected[i] = currSetResponse;
     }
-    console.log(collected.toString());
 }
 
 function scoreHandler() {
+    //shows graphing page
     document.getElementById("content-container").innerHTML='<object type="text/html" data="modules/stats/index.html"></object>';
 }
 
+//function to help show forms at proper times
 function formSwap(formnum) {
     $("#slide").animate({"right":"-200px"},500,function () {
         if (formnum == 1) {
@@ -213,6 +247,7 @@ function formSwap(formnum) {
     });
 }
 
+//does fancy animation thingies if you press no
 function delayStartExam () {
     if (pretestProg[0]) {
         pretestProg[0] = 0;
@@ -233,22 +268,28 @@ function delayStartExam () {
             });
         });
     });
+    //increment # of times attempted training questions
     pretestProg[2]++;
 }
 
+//changes how the buttons for set progression/regression appear
 function toggleSetChoices(inout) {
+    //show all options on pause
     if (inout == 1) {
         $(".setForward").animate({"top":"215px"},500);
         $(".setBack").animate({"top":"411px"},500);
         $(".endExam").animate({"top":"509px"},500);
     } else if (inout == 2) {
+        //show forward/rewatch on pause
         $(".setForward").animate({"top":"215px"},500);
         $(".endExam").animate({"top":"411px"},500);
-    }else {
+    } else {
+        //collapse options
         $(".setForward,.setBack,.endExam").animate({"top":"313px"},500);
     }
 }
 
+//idk if ill even end up needing this
 function storePretest(form) {
     pretestProg[0] = form;
     videojs("mainPlayer").play();
@@ -256,6 +297,8 @@ function storePretest(form) {
     formSwap(1);
 }
 
+//pretty much just assigns all the onclick functions for various buttons
+//some jquery stuff but not really that obscure
 function owlInit() {
     $(".setForward").click(function() {
         expandedOptions = 2;
@@ -343,6 +386,7 @@ function owlInit() {
             videoSet(currTimeStamp);
         }
     });
+
     var infotogglestate = 0;
     $("#infotoggle").click(function() {
         if (infotogglestate) {
