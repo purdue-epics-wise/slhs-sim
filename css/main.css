@@ -1,5 +1,5 @@
 * {
-    font-family: "Open Sans"!important;
+    font-family: "Open Sans","Verdana"!important;
 }
 
 #wrapper {
@@ -129,11 +129,11 @@ object {
     position: absolute;
     left: 0px;
     width: 100px;
-    height: 90px;
+    height: 65px;
     background: #fcfcfc;
     border: 3px solid grey;
     font-size: 30px;
-    line-height: 80px;
+    line-height: 65px;
     text-align: center;
     color: #191919;
 }
@@ -215,6 +215,17 @@ input[type="checkbox"] {
 }
 
 #infocontent {
+    background: #fcfcfc;
+    position: absolute;
+    bottom: 0px;
+    height: 0px;
+    width: 200px;
+    overflow-y: auto;
+    z-index: 1000;
+}
+
+#infocontentscores {
+    display: none;
     background: #fcfcfc;
     position: absolute;
     bottom: 0px;

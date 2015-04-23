@@ -1,4 +1,7 @@
-//set number 
+//set number
+// TODO - create map of values in external  document that can be loaded into side info panel
+// detailing how raw score -> standard score
+// might contact barb to see if we should just use one for reinforcement of concept (then corrected in actual administration)
 var setNumber = 0;
 var expandedOptions = 0;
 //First number is form A(0) or B(1), second is number of training failures/attempts
@@ -12,6 +15,7 @@ function loadLocalVideo(videoFile){
     $(".jumbotron").animate({height:"50px"},750,function() {
         if (gplayer !== null) {
             //reset everything
+            $("#infocontentscores").hide();
             videojs("mainPlayer").dispose();
             currTimeStamp = 0;
             setNumber = 0;
@@ -32,7 +36,7 @@ function loadLocalVideo(videoFile){
         });
         $(this).animate({height:"768px"},2000);
         //temp mute volume because gets annoying while working
-        gplayer.volume(0);
+        gplayer.volume(0.5);
     });
     //bootstrap is really F*cking stupid so we're doing a hack-ish fix
     $(".navbar").animate({height:"96px"},750,function() {
@@ -46,10 +50,9 @@ function loadLocalVideo(videoFile){
 //calling this function determines how the video pauses and resumes
 var currTimeStamp = 0;
 function videoSet(setNum){
-    var duration = gplayer.duration();
     var timeStamp = 0;
     if (setNum > 0) {
-        timeStamp = duration / 40 * setNum;
+        timeStamp = timestampsList[currTimeStamp-1];
     }
     gplayer.currentTime(timeStamp);
     gplayer.play();
@@ -58,12 +61,12 @@ function videoSet(setNum){
 //pauses every X seconds or @ each timestamp
 function pauseSet(){
     document.getElementById("mainPlayer_html5_api").addEventListener('timeupdate', function() {
-	//console.log("Current Time: " + player.currentTime());        
-    	if (gplayer.currentTime() >= (currTimeStamp + 1) * gplayer.duration() / 40) {
-    	    gplayer.pause();
+	//console.log("Current Time: " + player.currentTime());
+    	  if (gplayer.currentTime() >= timestampsList[currTimeStamp] || gplayer.currentTime() >= gplayer.duration()) {
+    	      gplayer.pause();
                 //need to insert a handler here to decide which function to call at each pause
-                $("#startYdes,#startN").animate({"opacity":1},500);
-                toggleSetChoices(expandedOptions);
+            $("#startYdes,#startN").animate({"opacity":1},500);
+            toggleSetChoices(expandedOptions);
     	}
     });
 }
@@ -78,26 +81,6 @@ function getRandomColor() {
     return color;
 }
 
-//temporary hard-coded answer key
-var formAkey = [3,1,1,3,3,4,2,4,2,4,4,1, //1
-                2,4,2,1,3,3,1,1,4,3,4,3, //13
-                3,1,1,4,4,3,2,3,1,2,3,4, //25
-                3,1,4,1,2,4,4,3,2,3,1,1, //37
-                3,1,2,4,2,1,4,2,4,1,3,2, //49
-                3,2,4,1,1,3,3,2,1,4,2,4, //61
-                1,3,2,4,1,4,4,2,4,1,2,3, //73
-                4,3,3,1,4,2,4,1,1,3,2,3, //85
-                1,2,4,3,1,2,4,3,2,2,4,1, //97
-                2,2,1,3,2,3,4,3,1,4,1,4, //109
-                1,4,2,3,4,4,1,1,3,1,2,3, //121
-                4,2,3,1,4,1,1,2,3,4,2,4, //133
-                3,1,4,3,2,4,2,3,1,4,1,2, //145
-                4,3,2,3,1,1,2,3,2,2,4,3, //157
-                3,1,1,4,2,4,2,2,1,3,3,4, //169
-                2,4,3,1,3,2,4,3,1,1,4,3, //181
-                4,1,3,4,2,3,1,2,2,1,4,1, //193
-                1,3,3,2,4,4,2,4,1,4,3,2, //205
-                1,4,3,4,3,2,3,3,1,2,2,4]; //217
 
 //keeping track of question-level variables
 var startItem = 0; //number of item we start on
@@ -123,7 +106,7 @@ function addSet() {
     //radio form/button generator
     var radioForm = $("<form/>");
     //generate twelve questions with 4 radio buttons each, and one error checkbox
-    for (i = 0; i < 12; i++) { 
+    for (i = 0; i < 12; i++) {
         for (var j = 0; j < 4; j++) {
             letter = j+1;
             //should have value s1q1 and fetching value will return A,B,C, or D
@@ -229,7 +212,7 @@ function formSwap(formnum) {
                 $("#studentProgress").animate({"left":"0px"},500);
             });
         } else if (formnum == 2) {
-            $("#beginPrompt,#infopanel").hide();
+            $("#beginPrompt").hide();
             $("#form-carousel").show(function () {
 //                $("#form-carousel").addClass("active");
 //                $("#beginPrompt").removeClass("active");
@@ -253,7 +236,7 @@ function delayStartExam () {
         pretestProg[0] = 0;
         var tmptext = "Regressing to form A...";
     } else {var tmptext = "Continue practice...";}
-    
+
     $("#startN").css({"z-index":1}).animate({width:"192px"},500,function() {
         $("#swaptext").fadeOut(500,function() {
             $("#startN").css({"font-size":"16px"});
@@ -317,7 +300,7 @@ function owlInit() {
         }
     });
 
-    
+
     $(".setBack").click(function() {
         toggleSetChoices(0);
         setNumber++;
@@ -339,9 +322,15 @@ function owlInit() {
     $(".endExam").click(function() {
         toggleSetChoices(0);
         collectResponses();
+        var scoreString = "";
+        for (var i = 0; i < rawToStandard18.length; i++) {
+            scoreString += rawToStandard18[i++] + " --> " + rawToStandard18[i]+"<br>";
+        }
+        $("#infocontentscores").empty().append(scoreString).show();
+        $("#infocontent").hide();
         scoreHandler();
     });
-    
+
     $("#formA").click(function() {
         storePretest(0);
     });
@@ -353,13 +342,17 @@ function owlInit() {
     //could just use .paused() API of videojs probably
     $("#startY").submit(function(event) {
         event.preventDefault();
-        currItem = startItem += parseInt($("#startYdes").val());
-        if (gplayer.paused()) {
-            currTimeStamp++;
-            videoSet(currTimeStamp);
-            expandedOptions = 1;
-            formSwap(2);
-            addSet();
+        if (parseInt($("#startYdes").val()) % 12 == 1) {
+            currItem = startItem += parseInt($("#startYdes").val());
+            if (gplayer.paused()) {
+                currTimeStamp++;
+                videoSet(currTimeStamp);
+                expandedOptions = 1;
+                formSwap(2);
+                addSet();
+            }
+        } else {
+            alert("Enter a valid start number. See info panel for details.");
         }
     });
 
@@ -391,13 +384,13 @@ function owlInit() {
     $("#infotoggle").click(function() {
         if (infotogglestate) {
             $(this).animate({"bottom":"0px"},500);
-            $("#infocontent").animate({"height":"0px"},500,function() {
+            $("#infocontent,#infocontentscores").animate({"height":"0px"},500,function() {
                 $("#infotoggle").text("expand age info");
             });
             infotogglestate = 0;
         } else {
             $(this).animate({"bottom":"695px"},500);
-            $("#infocontent").animate({"height":"695px"},500,function() {
+            $("#infocontent,#infocontentscores").animate({"height":"695px"},500,function() {
                 $("#infotoggle").text("collapse");
             });
             infotogglestate = 1;
