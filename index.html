@@ -24,11 +24,6 @@
     <link type="text/css" href="lib/video-js/video-js.css" rel="stylesheet">
     <script src="lib/video-js/video.js"></script>
 
-    <!-- Owl Carousel 
-    <link rel="stylesheet" href="lib/owl-carousel/owl.carousel.css">
-    <link rel="stylesheet" href="lib/owl-carousel/owl.theme.css">
-    <script src="lib/owl-carousel/owl.carousel.js"></script> -->
-
     <!-- Custom Files -->
     <link rel="stylesheet" href="css/main.css">
     <script type="text/javascript" src="js/main.js"></script>
@@ -46,9 +41,10 @@
         </div>
       </div>
       
-      <!-- Main jumbotron for a primary marketing message or call to action -->
+      <!-- jumbotron contains all divs in center of page (below header and above video list) -->
       <div class="jumbotron">
         
+        <!-- set progression buttons -->
         <div id="studentProgress">
           <div class="setQ setRewatch"><p>Rewatch Segment</p></div>
           <div class="setQ setForward"><p>Go Foward a Set</p></div>
@@ -57,6 +53,7 @@
 
         </div>
         
+        <!-- this slide div is the 'shell' for several inner divs that are swapped according to the simulation's state -->
         <div id="slide">
           
           <div id="formPrompt" class="active">
@@ -83,7 +80,8 @@
               <div id="errorText">Errors</div>
             </div>
           </div>
-
+          
+          <!-- slide up information panel; hardcoded -->
           <div id="infopanel">
             <div id="infotoggle">expand age information</div>
             <div id="infocontent">
