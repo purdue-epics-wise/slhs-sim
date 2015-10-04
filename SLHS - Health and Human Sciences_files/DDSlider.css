@@ -1,0 +1,205 @@
+@charset "utf-8";
+
+/* resets all styles */
+/*@import url("reset.css");*/
+
+/*------------------------
+---------------- CONTENT
+------------------------*/
+  
+/* You might want to change these options for the main container */
+#slider, #slider li {
+  height:257px;
+  width:960px;
+}
+  
+/* images container - This is the most important container - Don't change important properties */
+#slider {
+  list-style:none !important;
+  float:left;
+  margin:0 !important;
+  padding:0 !important;
+  overflow:hidden !important;
+  position:relative !important;
+}
+
+/* each slider item - Nothing to change here */
+#slider li {
+  display:none;
+  float:left;
+  margin:0;
+  position:absolute;
+  width:100%;
+}
+    
+/* Don't edit this part */
+#slider li.current {
+  display:block;
+  z-index:2 !important;
+}
+    
+/* Don't edit this part */
+#slider li.next {
+  display:block;
+  z-index:1 !important;
+}
+    
+/* Don't edit this part - prevents inline lists from being hidden */
+#slider li ul li {
+  display:block !important;
+  position:relative !important;
+}
+    
+.strip {
+  bottom:0px;
+  cursor:pointer !important;
+  float:left;
+  height:40px;
+  left: 0px;
+  position:absolute;
+  width:960px;
+  z-index:0;
+  background:url(images/strip.png) no-repeat top left;
+}
+    
+.strip p {
+  position:absolute;
+  top:4px;
+  left:100px;
+  font-family:Lucida Grande, Lucida Sans Unicode, Lucida Sans, Geneva, Arial, Helvetica, Tahoma, sans-serif;
+}
+    
+/*------------------------
+---------------- NAVS
+------------------------*/
+
+/*------------------------
+--------------- LEFT ARROW
+------------------------*/
+    
+/* Sets position and main configs */
+.slider_arrow_left {
+  cursor:pointer !important;
+  height:22px;
+  width:22px;
+  float: right;
+  position:relative;
+  top: 10px;
+  margin-right: 5px;
+  z-index:5;
+}
+    
+/* left arrow image */
+.slider_arrow_left {
+  background:url(images/left_arrow.png) no-repeat top left;     
+}
+
+/*------------------------
+-------------- RIGHT ARROW
+------------------------*/
+    
+/* Sets position and main configs */
+.slider_arrow_right {
+  cursor:pointer !important;
+  height:22px;
+  width:22px;
+  float: right;
+  position: relative;
+  top: 10px;
+  margin-right: 27px;
+  z-index:5;
+}
+    
+/* Right arrow Background */
+.slider_arrow_right {
+  background:url(images/right_arrow.png) no-repeat top left;
+}
+
+/*------------------------
+---------------- SELECTORS
+------------------------*/
+  
+/* Sets configs for selectors containers : absolute positioned in relation to #slider */
+.slider_selector, .slider_selector_dis {
+  list-style:none;
+  float: right;
+  position: relative;
+  top: 15px;
+  margin-right: 25px;
+}
+  
+/* Sets image of selectors */
+.slider_selector li, .slider_selector_dis li {
+  display:block !important;
+  background:url(images/slider_selector.png) no-repeat top left;
+  cursor:pointer;
+  float:left;
+  margin:0 3px !important;
+  height:10px !important;
+  position:relative !important;
+  width:10px !important;
+}
+    
+/* Sets the current selector */
+.slider_selector li.current, .slider_selector_dis li.current {
+  background:url(images/slider_selector_current.png) no-repeat top left;
+}
+  
+/* Disables the selectors */
+.slider_selector_dis li {
+  cursor:default !important;
+  z-index:5;
+}
+  
+.container {
+  /* float:left;
+  position:relative;
+  width:100%;
+  z-index:15;*/ 
+}
+
+
+/*** Banner slider customizations for the Purdue home page ***/
+
+#banner-container .container {
+  position: absolute;
+  bottom: 0px;
+  right: 0px;
+  width: 801px;
+  height: 39px;
+  z-index: 10015;
+ /* background: url('images/strip_shorter_blue.png') bottom right no-repeat;*/
+}
+
+#banner-container .caption {
+  position: absolute;
+  bottom: 0px;
+  left: 0px;
+  width: 801px;
+  height: 39px;
+  z-index: 10025;
+  background: url('images/strip_full_blue_left.png') bottom left no-repeat;
+}
+
+#banner-container .caption p {
+  position: absolute;
+  top: -8px;
+  left: 20px;
+	color: #fff;
+	font-size: .85em;
+	font-weight: bold;
+	text-shadow: 0px 0px 3px rgba(0,0,0,0.6);
+}
+
+#banner-container .slider_arrow_left {
+  z-index: 10020;
+}
+
+#banner-container .slider_arrow_right {
+  z-index: 10020;
+}
+    
+#banner-container .slider_selector, 
+#banner-container .slider_selector_dis {
+  z-index: 10010;
+}
