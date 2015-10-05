@@ -1,3 +1,15 @@
+$(document).ready(function(){
+                  var birth_day = $('#birth_day').val();
+                  var birth_month = $('#birth_month').val();
+                  var birth_year = $('#birth_year').val();
+                  var test_day = $('#test_day').val();
+                  var test_month = $('#test_month').val();
+                  var test_year = $('#test_year').val();
+                  var start_num = $('#start_num').val();
+                  
+                  ageCheck(birth_day,birth_month,birth_year,test_day,test_month,test_year,start_num);
+});
+
 function ageCheck(birth_day, birth_month, birth_year, test_day,  test_month, test_year, start_num)
 { 
   //READ THROUGH FAQ PAGE FOR WEBSITE IF YOU DO NOT UNDERSTAND THIS FUNCTIONALITY
@@ -7,7 +19,7 @@ function ageCheck(birth_day, birth_month, birth_year, test_day,  test_month, tes
   var start_calc; //where test should start
   var month_diff = test_month - birth_month;
   var year_diff = test_year - birth_year;
-  var day_diff = test_day - birth_month;
+  var day_diff = test_day - birth_day;
   
   if(month_diff < 0) //in case test taker has not completed a full year
   {
