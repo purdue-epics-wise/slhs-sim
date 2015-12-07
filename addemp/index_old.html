@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+    <title>SLHS Simulations</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <!-- jQuery + jQuery template support -->
+    <script type="text/javascript" src="lib/jquery-latest.min.js"></script>
+    <script type="text/javascript" src="lib/jquery.tmpl.js"></script>
+
+    <!-- Bootstrap -->
+    <link href="lib/bootstrap/css/bootstrap.css" rel="stylesheet" media="screen">
+    <link type="text/css" href="lib/bootstrap/css/bootstrap-theme.css" rel="stylesheet" />
+    <script type="text/javascript" src="lib/bootstrap/js/bootstrap.js"></script>
+
+
+    <!-- HTML5 Compatibility-->
+    <script type="text/javascript">
+      document.createElement('video');document.createElement('audio');document.createElement('track');
+    </script>
+    
+    <!-- Video.JS -->
+    <link type="text/css" href="lib/video-js/video-js.css" rel="stylesheet">
+    <script src="lib/video-js/video.js"></script>
+
+    <!-- Custom Files -->
+    <link rel="stylesheet" href="css/main.css">
+    <script type="text/javascript" src="js/main.js"></script>
+    <script type="text/javascript" src="js/fakedb.js"></script>
+
+  </head>
+  <body>
+    <div id="wrapper"> <!--fixes overflow problem for slideouts -->
+      
+      <div class="navbar navbar-inverse navbar-fixed-top" role="navigation">
+        <div class="container">
+          <div class="navbar-header">
+            <a class="navbar-brand" href="#">SLHS PPVT-IV Simulation</a>
+          </div>
+        </div>
+      </div>
+      
+      <!-- jumbotron contains all divs in center of page (below header and above video list) -->
+      <div class="jumbotron">
+        
+        <!-- set progression buttons -->
+        <div id="studentProgress">
+          <div class="setQ setRewatch"><p>Rewatch Segment</p></div>
+          <div class="setQ setForward"><p>Go Foward a Set</p></div>
+          <div class="setQ setBack"><p>Go Back a Set</p></div>
+          <div class="setQ endExam"><p>End the Exam</p></div>
+
+        </div>
+        
+        <!-- this slide div is the 'shell' for several inner divs that are swapped according to the simulation's state -->
+        <div id="slide">
+          
+
+          <div id="beginPrompt">
+            <p id="bptext">Has the subject scored well enough in training to begin the exam?</p>
+            <form id="startY"><input id="startYdes" type="text" placeholder="Y"></form>
+            <div id="startN"><span id="swaptext">N</span></div>
+          </div>
+          
+          <div id="form-carousel">
+            <div id="setView">
+              <!--window to show current set-->
+            </div>
+            <div id="setSwapControl">
+              <!-- this will only have link 'boxes' inside to swap sets-->
+            </div>
+            <div id="errorCounter">
+              <div id="errorCount">0</div>
+              <div id="errorText">Errors</div>
+            </div>
+          </div>
+          
+          <!-- slide up information panel; hardcoded -->
+          <div id="infopanel">
+            <div id="infotoggle">expand age information</div>
+            <div id="infocontent">
+              <p>Chronological Age</p>
+              <p>To find chronological age, take test date minus birth date. For a child born on September 9, 2002, and being tested on January 8, 2007, their chronological age is 4 years, 3 months. Do NOT round up days to months.
+              <p>Example: (Year, Month, Date)</p>
+              <p>Tested:<br>2007 01 08</p>
+              <p>Born on:<br>2002 09 12</p>
+              <p>age:<br>04y 03m 26d</p>
+              <p>Administer training page A for those younger than 4, or with developmental/language delays.</p>
+              <p>Administer training page B for those older than 4. If examinee age 4(+) doesn't get <i>at least</i> 2 training items correct, attempt with training page A until examinee understands process.</p>
+              <br>
+              <p>Age (years) : Starting Item</p>
+              <p>4:#13</p>
+              <p>5:#37</p>
+              <p>6:#49</p>
+              <p>7:#61</p>
+              <p>8:#73</p>
+              <p>9:#85</p>
+              <p>10:#97</p>
+              <p>11-12:#109</p>
+              <p>13:#121</p>
+              <p>14-16:#133</p>
+              <p>17-18:#145</p>
+              <p>19+:#157</p>
+            </div>
+            <div id="infocontentscores">
+            </div>
+          </div>
+          
+        </div>
+        <div id="content-container" class="container">
+          	<h1>PPVT-IV Simulations</h1>
+          	<p>Select any one of the videos below.<br>You will be prompted to answer questions about the exam throughout your viewing.</p>
+        </div>
+        
+      </div>
+
+      <div class="container">
+        <!-- Example row of columns -->
+        <div class="row">
+          <div class="col-md-4">
+            <div class="thumbnail">
+              <a id="playVid1" href="#" onclick="loadLocalVideo('vid/barb')"><img src="https://i.ytimg.com/vi/WyQ8a1nqWJk/mqdefault.jpg"></a>
+              <h3>Simulation 1</h3>
+              <p>Simulation of a misbehaving child.</p>
+            </div>
+          </div>
+
+          <!--<div class="col-md-4">
+            <div class="thumbnail">
+              <a id="playVid2" href="#" onclick="loadLocalVideo('vid/barb')"><img src="https://i.ytimg.com/vi/YoptLoEj_tk/mqdefault.jpg"></a>
+              <h3>Simulation 2</h3>
+              <p>Simulation of Bart Simpson.</p>
+            </div>
+          </div>
+
+          <div class="col-md-4">
+            <div class="thumbnail">
+              <a id="playVid3" href="#" onclick="loadLocalVideo('vid/barb')"><img src="https://i.ytimg.com/vi/cNkp4QF3we8/mqdefault.jpg"></a>
+              <h3>Simulation 3</h3>
+              <p>Simulation of Stewie Griffin.</p>
+            </div>
+          </div>
+	  
+          <div class="col-md-4">
+            <div class="thumbnail">
+              <a id="playVid4" href="#" onclick="loadLocalVideo('vid/speech-therapy')"><img src="https://i.ytimg.com/vi/WyQ8a1nqWJk/mqdefault.jpg"></a>
+              <h3>Simulation 4</h3>
+              <p>Simulation of a </p>
+        </div>-->
+        <hr>
+        <footer>
+          <p>Developed by EPICS, in cooperation with the Purdue University Speech, Language and Hearing Sciences Department</p>
+        </footer>
+      </div>
+    </div>
+  </body>
+</html>
+

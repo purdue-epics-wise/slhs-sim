@@ -1,0 +1,292 @@
+* {
+    font-family: "Open Sans","Verdana"!important;
+}
+
+#wrapper {
+    position: left;
+    overflow: hidden;
+}
+
+.jumbotron {
+    position: relative;
+    background: white;
+    height: 50px;
+    width: 100%;
+    overflow: hidden;
+}
+
+.jumbotron > div {
+    overflow: hidden;
+}
+
+#video-container {
+    position: absolute;
+    left: 20%;
+    width: 60%;
+    height: 720px;
+    margin: 0 auto;
+    text-align: center;
+    padding: 0px;
+    background: grey;
+}
+
+#video-container > p {
+    font-size: 25px;
+}
+
+object {
+    width: 100%;
+    height: 100%;
+}
+
+#mainPlayer {
+    margin: 0 auto;
+}
+
+#studentProgress {
+    position: relative;
+	background: grey;
+    float: left;
+    left: -200px;
+    width: 200px;
+    height: 720px;
+}
+
+#slide {
+    background: cyan;
+    position: relative;
+	float: right;
+    right: -200px;
+    width: 200px;
+    height: 720px;
+}
+
+.setQ {
+    position: absolute;
+    top: 313px;
+    width: 192px;
+    height: 94px;
+    left: 4px;
+    background: grey;
+    color: white;
+    font-size: 25px;
+    line-height: 100px;
+    text-align: center;
+}
+
+.setQ p {
+    display: inline-block;
+    vertical-align: middle;
+    line-height: normal;
+}
+
+.setForward {
+    background: Green;
+}
+
+.setBack {
+    background: #AA0000;
+}
+
+.setRewatch {
+    background: #2f82a8;
+    z-index: 1;
+}
+
+.endExam {
+    background: black;
+}
+
+#form-carousel {
+    background: green;
+    width: 200px;
+    height: 720px;
+}
+
+#setView {
+    background: grey;
+    display: block;
+    width: 200px;
+    height: 614px;
+}
+
+#setSwapControl {
+    background: grey;
+    display: block;
+    width: 200px;
+    height: 16px;
+}
+
+#errorCounter {
+    position: absolute;
+    width: 200px;
+    height: 90px;
+    top: 630px;
+    background: #fcfcfc;
+}
+
+#errorCount {
+    position: absolute;
+    left: 0px;
+    width: 100px;
+    height: 65px;
+    background: #fcfcfc;
+    border: 3px solid grey;
+    font-size: 30px;
+    line-height: 65px;
+    text-align: center;
+    color: #191919;
+}
+
+#errorText {
+    position: absolute;
+    width: 100px;
+    height: 90px;
+    left: 100px;
+    background: grey;
+    font-size: 20px;
+    line-height: 90px;
+    text-align: center;
+    color: #fcfcfc;
+}
+
+.setQSstyle {
+    position: absolute;
+    padding-top: 20px;
+    width: 200px;
+    height: 614px;
+    top: 0px;
+    right: -200px;
+}
+
+.setQSBstyle {
+    position: absolute;
+    top: 614px;
+    width: 16px;
+    height: 16px;
+    font-size: 10px;
+    text-align: center;
+}
+
+.letterLabel {
+    font-size: 20px;
+    margin-left: 20px;
+}
+
+#instructions {
+    font-size: 13px;
+    margin: 3px;
+}
+
+.qNum {
+    margin-left: 3px;
+    font-size: 11px;
+}
+
+input[type="radio"],
+input[type="checkbox"] {
+    margin-top: 19px;
+    margin-left: 18px;
+}
+
+#formPrompt {
+    display: inline-block;
+}
+
+#beginPrompt {
+    display: none;
+}
+
+#infopanel {
+    position:absolute;
+    bottom: 0px;
+}
+
+#infotoggle {
+    position: absolute;
+    width: 200px;
+    padding-top: 2px;
+    color: white;
+    height: 25px;
+    background: green;
+    font-size: 14px;
+    text-align: center;
+    bottom: 0px;
+}
+
+#infocontent {
+    background: #fcfcfc;
+    position: absolute;
+    bottom: 0px;
+    height: 0px;
+    width: 200px;
+    overflow-y: auto;
+    z-index: 1000;
+}
+
+#infocontentscores {
+    display: none;
+    background: #fcfcfc;
+    position: absolute;
+    bottom: 0px;
+    height: 0px;
+    width: 200px;
+    overflow-y: auto;
+    z-index: 1000;
+}
+
+#infocontent p {
+    font-size: 13px;
+}
+
+#formA, #formB {
+    text-align: center;
+    line-height: 94px;
+    color: #fcfcfc;
+    font-size: 50px;
+    width: 94px;
+    height: 94px;
+    display: inline-block;
+    background: red;
+    position: absolute;
+}
+
+#startYdes, #startN {
+    text-align: center;
+    line-height: 94px;
+    color: #fcfcfc;
+    font-size: 50px;
+    border: none;
+    width: 94px;
+    height: 94px;
+    display: inline-block;
+    background: red;
+    position: absolute;
+}
+
+#startYdes::-webkit-input-placeholder {
+    opacity: 1;
+    color: white;
+}
+#startYdes::-moz-placeholder {
+    color: white;
+    opacity: 1;
+}
+#startYdes:hover,#formA:hover,#formB:hover,#startN:hover,.setQ:hover {
+    cursor: pointer;
+}
+
+#formA, #startYdes {
+    background: #AA0000;
+    left: 4px;
+}
+
+#formB, #startN {
+    background: Green;
+    right: 4px;
+}
+
+#reviewQuestions {
+	height: 150px;
+	width: 100%;
+}
