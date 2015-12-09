@@ -21,7 +21,7 @@
 
 #video-container {
     position: absolute;
-    left: 20%;
+    left: 18%;
     width: 60%;
     height: 720px;
     margin: 0 auto;
@@ -45,30 +45,31 @@ object {
 
 #studentProgress {
     position: relative;
-	background: grey;
+	background: white;
     float: left;
     left: -200px;
-    width: 200px;
+    width: 170px;
     height: 720px;
 }
 
 #slide {
-    background: cyan;
+    background: white;
     position: relative;
-	float: right;
-    right: -200px;
+	float: left;
+	left: 540px;
     width: 200px;
-    height: 720px;
+    height: 750px;
 }
 
 .setQ {
     position: absolute;
     top: 313px;
-    width: 192px;
+    width: 162px;
     height: 94px;
-    left: 4px;
-    background: grey;
-    color: white;
+    left: 0px;
+    background: white;
+    color: black;
+	border: 3px solid black;
     font-size: 25px;
     line-height: 100px;
     text-align: center;
@@ -81,20 +82,20 @@ object {
 }
 
 .setForward {
-    background: Green;
+    background: white;
 }
 
 .setBack {
-    background: #AA0000;
+    background: white;
 }
 
 .setRewatch {
-    background: #2f82a8;
+    background: white;
     z-index: 1;
 }
 
 .endExam {
-    background: black;
+    background: white;
 }
 
 #form-carousel {
@@ -104,14 +105,14 @@ object {
 }
 
 #setView {
-    background: grey;
+    background: white;
     display: block;
     width: 200px;
     height: 614px;
 }
 
 #setSwapControl {
-    background: grey;
+    background: white;
     display: block;
     width: 200px;
     height: 16px;
@@ -131,7 +132,7 @@ object {
     width: 100px;
     height: 65px;
     background: #fcfcfc;
-    border: 3px solid grey;
+    border: 3px solid black;
     font-size: 30px;
     line-height: 65px;
     text-align: center;
@@ -141,13 +142,13 @@ object {
 #errorText {
     position: absolute;
     width: 100px;
-    height: 90px;
+    height: 65px;
     left: 100px;
-    background: grey;
+    background: white;
     font-size: 20px;
     line-height: 90px;
     text-align: center;
-    color: #fcfcfc;
+    color: black;
 }
 
 .setQSstyle {
@@ -242,47 +243,47 @@ input[type="checkbox"] {
 #formA, #formB {
     text-align: center;
     line-height: 94px;
-    color: #fcfcfc;
-    font-size: 50px;
-    width: 94px;
+    color: black;
+    font-size: 40px;
+    width: 192px;
     height: 94px;
     display: inline-block;
-    background: red;
     position: absolute;
 }
 
 #startYdes, #startN {
     text-align: center;
     line-height: 94px;
-    color: #fcfcfc;
+    color: black;
     font-size: 50px;
     border: none;
     width: 94px;
     height: 94px;
     display: inline-block;
-    background: red;
     position: absolute;
 }
 
 #startYdes::-webkit-input-placeholder {
     opacity: 1;
-    color: white;
+    color: black;
 }
 #startYdes::-moz-placeholder {
-    color: white;
+    color: black;
     opacity: 1;
 }
-#startYdes:hover,#formA:hover,#formB:hover,#startN:hover,.setQ:hover {
+#video-header:hover,#startYdes:hover,#formA:hover,#formB:hover,#startN:hover,.setQ:hover {
     cursor: pointer;
 }
 
 #formA, #startYdes {
-    background: #AA0000;
+    background: white;
+	border: 3px solid black;
     left: 4px;
 }
 
 #formB, #startN {
-    background: Green;
+    background: white;
+	border: 3px solid black;
     right: 4px;
 }
 
