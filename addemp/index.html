@@ -178,20 +178,28 @@ $j.ajaxSetup({async: true});
       	
 <div id="header-top-strip"></div>
 
+    
+        
+<div id="purdue-signature-container"> 
+          
+<a href="https://www.purdue.edu/">        
+</div> 
         
         
 <!-- PAGE TITLE -->
 <div id="purdue-signature-container">
     <a href="https://www.purdue.edu/"><img src="./PU_signature_white_bg_215x80.png" alt="Purdue signature" width="202" height="75" border="0" id="purdue-signature"></a>
 </div>
-
+       
 <!-- PAGE TITLE -->
-<div id="page-title" style="width:430px;"><a href="http://www.purdue.edu/hhs/slhs/index.php" style="top:0px;"><img src="./header.png" alt="Speech, Language, and Hearing Sciences"   width="339" height="41"></a><br><span style="font-size:14px;"><a href="https://www.purdue.edu/hhs/"></a></span>
+<div id="page-title" style="width:430px;"><a href="http://www.purdue.edu/hhs/slhs/index.php" style="top:0px;"><img src="./header.png" alt="Speech, Language, and Hearing Sciences"   width="339" height="41"></a><br><span style="font-size:14px;"><a href="https://www.purdue.edu/hhs/"></a>
+PPVT-IV
+    
 </div>
-
-
+          
+        
 <!-- START SOCIAL MEDIA LINKS -->
-
+        
         
 <div id="social-media-container">
 
@@ -212,18 +220,20 @@ $j.ajaxSetup({async: true});
    
 <div id="inner-page-container" class="round-bottom10 shadow10">
 <!-- START NAV BARS -->       
-<div id="nav-bars">
-  <div id="upper-nav-bar">
-    <ul class="tabs" style="margin-bottom: 0">
-        <li><a href="SIM_Landing_Page.php">Home Page</a>
-        </li>
-      <li class="first"><a href="SIM_FAQ_Page.html">FAQ</a>
-      </li>
-      <li><a href="index.html">Simulations</a>
-      </li>
-    </ul>
-  </div>
-</div>    
+<div id="inner-page-container" class="round-bottom10 shadow10">
+    <!-- START NAV BARS -->
+    <div id="nav-bars">
+        <div id="upper-nav-bar">
+            <ul class="tabs" style="margin-bottom: 0">
+                <li><a href="SIM_Landing_Page.php">Home Page</a>
+                </li>
+                <li class="first"><a href="SIM_FAQ_Page.html">FAQ</a>
+                </li>
+                <li><a href="index.html">Simulations</a>
+                </li>
+            </ul>
+        </div>
+    </div>
 <!-- END NAV BARS -->
    
 <!--Copy till here for each webpage -->
@@ -248,9 +258,8 @@ $j.ajaxSetup({async: true});
         <div id="slide">
           
           <div id="formPrompt" class="active">
-            <p id="fptext">Based on the subject's age, which training page should be used?</p>
-            <div id="formA">A</div>
-            <div id="formB">B</div>
+            <h2>Click the Button below to start the video.</h2>
+            <div id="formA">Start</div>
           </div>
 
           <div id="beginPrompt">
@@ -266,7 +275,7 @@ $j.ajaxSetup({async: true});
             <div id="setSwapControl">
               <!-- this will only have link 'boxes' inside to swap sets-->
             </div>
-            <div id="errorCounter">
+            <div id="errorCounter" style="display:none;">
               <div id="errorCount">0</div>
               <div id="errorText">Errors</div>
             </div>
@@ -313,7 +322,7 @@ $j.ajaxSetup({async: true});
         <div class="row">
           <div class="col-md-4">
             <div class="thumbnail">
-              <a><h3 onclick="loadLocalVideo('vid/barb')">Simulation 1</h3></a>
+              <a><h3 id="video-header" onclick="loadLocalVideo('vid/barb')">Simulation 1</h3></a>
               <p>Simulation of Professor Cicholski Administering Test.</p>
             </div>
           </div>
