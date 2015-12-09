@@ -36,7 +36,7 @@ function loadLocalVideo(videoFile){
         }, function() {
             pauseSet();
         });
-        $(this).animate({height:"768px"},2000);
+        $(this).animate({height:"796px"},2000);
         //temp mute volume because gets annoying while working
         gplayer.volume(0.5);
     });
@@ -74,17 +74,6 @@ function pauseSet(){
     });
 }
 
-//generates a random color
-function getRandomColor() {
-    var letters = '0123456789ABCDEF'.split('');
-    var color = '#';
-    for (var i = 0; i < 6; i++ ) {
-        color += letters[Math.floor(Math.random() * 16)];
-    }
-    return color;
-}
-
-
 //keeping track of question-level variables
 var startItem = 0; //number of item we start on
 var currItem = 0; //number of current item
@@ -93,13 +82,13 @@ var errorCounter = 0; //number of questions with error box checked
 //control and generation of set pages (radio buttons and checkboxes, add to index for switching)
 var pages=[];
 function addSet() {
-    var randomColorStr = getRandomColor();
+	document.getElementById('errorCounter').style.display='block';
     //make a new div for each set. This keeps it organized. Set style here because
     //otherwise too many css selectors.
     var newSet = $("<div/>", {
         "id": "setQS" + setNumber,
         "class": "setQSstyle",
-        "style": "background:" + randomColorStr + ";color:#ffffff"
+        "style": "background:#ffffff" + ";color:black"
     });
     //radio label generator (i.e. 1 2 3 4 E)
     for (var i = 0; i < 5; i++) {
@@ -146,7 +135,7 @@ function addSet() {
     //generate button that lets you swap to set page
     var newSetButton = $("<a/>", {
         "class": "setQSBstyle",
-        "style": "background:" + randomColorStr + ";color:#ffffff",
+        "style": "background:#ffffff" + ";color:black",
         text: setNumber + 1
     });
     //offset based on set number
@@ -363,7 +352,7 @@ function owlInit() {
         if (gplayer.paused()) {
             $(this).css({"z-index":1});
             $(this).animate({"width": "192px"},500,function() {
-                $(this).css({"font-size":"20px"}).attr("placeholder","Enter start item #");
+                $(this).css({"font-size":"20px","color":"black"}).attr("placeholder","Enter start item #");
             });
         } else {
             $(this).blur();
