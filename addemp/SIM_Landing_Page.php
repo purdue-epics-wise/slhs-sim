@@ -95,7 +95,7 @@
         
         <!-- PAGE TITLE -->
        <div id="page-title" style="width:430px;"><a href="http://www.purdue.edu/hhs/slhs/index.php" style="top:0px;"><img src="./header.png" alt="Speech, Language, and Hearing Sciences"   width="339" height="41"></a><br><span style="font-size:14px;"><a href="https://www.purdue.edu/hhs/"></a></span>
-           PPVT-IV
+PPVT-IV
       </div>
 
           
