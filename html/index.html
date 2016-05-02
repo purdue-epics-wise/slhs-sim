@@ -1,98 +1,378 @@
 <html>
-	<head>
-		<title>SLHS - Health and Human Sciences</title>
+
+<head>
+    <title>SLHS - Health and Human Sciences</title>
     <!-- Javscript source code -->
     <script src="/slhs-sim/javascript/jquery-2.2.0.js"></script>
     <script src="/slhs-sim/javascript/slhs-sim-video.js"></script>
 
-		<link rel="stylesheet" href="https://www.purdue.edu/assets/globals/css/v4_purdue/reset.css">
-		<link rel="stylesheet" href="https://www.purdue.edu/assets/globals/css/v4_purdue/template.css">
-		<link rel="stylesheet" href="https://www.purdue.edu/assets/globals/css/v4_purdue/menus.css">
-		<link rel="stylesheet" href="/slhs-sim/css/main.css">
-		<link rel="stylesheet" href="/slhs-sim/css/slhs-sim.css">
 
-	</head>
-	<body>
-		<a id="jump-to-banners" class="accessible-text" href="http://www.purdue.edu/hhs/slhs/#slider">Jump to featured news</a>
-    	<a id="jump-to-news" class="accessible-text" href="http://www.purdue.edu/hhs/slhs/#main-content-container">Jump to other news and events</a>
-    	<!-- END ACCESSIBILITY LINKS -->
-		<div id="top-background-strip"></div>
-    
-    
-		<div id="background-strip" style="height:393px;"></div>
-  		<div id="page-container">
-  		<div id="header-container">
-      
-      	
-		<div id="header-top-strip"></div>
-		<div id="purdue-signature-container"> 
-         <a href="https://www.purdue.edu/">        
-		</div> 
-        
-        
-		<!-- PAGE TITLE -->
-		<div id="purdue-signature-container">
-    		<a href="https://www.purdue.edu/"><img src="/slhs-sim/images/PU_signature_white_bg_215x80.png" alt="Purdue signature" width="202" height="75" border="0" id="purdue-signature"></a></div>
-       
-		<!-- PAGE TITLE -->
-		<div id="page-title" style="width:430px;"><a href="http://www.purdue.edu/hhs/slhs/index.php" style="top:0px;"><img src="/slhs-sim/images/header.png" alt="Speech, Language, and Hearing Sciences"   width="339" height="41"></a><br><span style="font-size:14px;"><a href="https://www.purdue.edu/hhs/"></a>PPVT-IV</div>
-		
-		<!-- START SOCIAL MEDIA LINKS -->
-		<div id="social-media-container">
-			<a id="facebook-link" title="Purdue HHS Facebook page" href="https://www.facebook.com/pages/Purdue-University-College-of-Health-and-Human-Sciences/162069027193497" target="_blank">
-				<span class="accessible-text">Purdue College of Health and Human Sciences  Facebook page</span>
-			</a>
-			</div>
-		</div>
-        
-		<!-- END SOCIAL MEDIA LINKS -->
-         
-		<div id="inner-page-container" class="round-bottom10 shadow10">
-    	<!-- START NAV BARS -->
-    	<div id="nav-bars">
-        	<div id="upper-nav-bar">
-            	<ul class="tabs" style="margin-bottom: 0">
-                	<li><a href="">Home Page</a></li>
-                  <li><a href="/slhs-sim/html/instructions.html">Instructions</a></li>
-                	<li><a href="/slhs-sim/html/SIM.html">FAQ</a></li>
-                	<li><a href="/slhs-sim/html/index.html">Simulations</a></li>
-					<li><a href="/slhs-sim/html/admin.html">Administrator</a></li>
-            	</ul>
-        	</div>
-    	</div>
-		<!-- END NAV BARS -->
+    <!-- Purdue Template Style references -->
+    <link rel="stylesheet" href="https://www.purdue.edu/assets/globals/css/v4_purdue/reset.css">
+    <link rel="stylesheet" href="https://www.purdue.edu/assets/globals/css/v4_purdue/template.css">
+    <link rel="stylesheet" href="https://www.purdue.edu/assets/globals/css/v4_purdue/menus.css">
+    <link rel="stylesheet" href="/slhs-sim/css/main.css">
+    <link rel="stylesheet" href="/slhs-sim/css/slhs-sim.css">
 
-		<!-- START MAIN CONTENT -->
-		<div class="content-container">
-        <h1>Simulations</h1>
-      	<video id="slhsVideo" width="640" height="480" controls>
-      		<source src ="http://jaesi.no-ip.biz/Media/Anime/Epics/barb.mp4"></source>
-      	</video>
+    <!-- Admin Components References -->
+    <link rel="stylesheet" type="text/css" href="/css/admin/layout.css" media="screen" />
+    <script type="text/javascript" src="/javascript/admin/jquery-1.5.2.min.js"></script>
+    <script type="text/javascript" src="/javascript/admin/hideshow.js"></script>
+    <script type="text/javascript" src="/javascript/admin/jquery.tablesorter.min.js"></script>
+    <script type="text/javascript" src="/javascript/admin/jquery.equalHeight.js"></script>
+    <script type="text/javascript" src="/javascript/admin/ready.js"></script>
 
-        <div id="svs">
-        <table>
-          <tr><td><select id="slhsVideoSelect"></select></td><td><button onclick="loadVideo()">Load Video</button></td>
-          </tr>
-        </table>
-		</div>
-		</div>
+</head>
+
+<body>
+    <a id="jump-to-banners" class="accessible-text" href="http://www.purdue.edu/hhs/slhs/#slider">
+        Jump to featured news
+    </a>
+
+    <a id="jump-to-news" class="accessible-text" href="http://www.purdue.edu/hhs/slhs/#main-content-container">
+        Jump to other news and events
+    </a>
+    <!-- END ACCESSIBILITY LINKS -->
 
 
-		<div id="footer-container" class="float-group round-bottom10">
+    <!--    The black bg-->
+    <div id="background-strip" style="height:393px;"></div>
 
-        <div id="left-foot"> Developed by EPICS, in cooperation with the Purdue University Speech, Language and Hearing Sciences Department<br>
-            Speech, Language, &amp; Hearing Sciences, Lyles-Porter Hall, 715 Clinic Drive, West Lafayette, 47907-2122, <span class="phone">PH: (765) 494-3789</span><br>
-              
-            <a href="http://www.purdue.edu/purdue/disclaimer.html">2014 Purdue University</a> | <a href="http://www.purdue.edu/purdue/ea_eou_statement.html">An equal access/equal opportunity university</a> | <a href="http://www.purdue.edu/securepurdue/DMCAAgent.cfm">Copyright Complaints</a><br>
+    <div id="page-container">
+        <div id="top-background-strip"></div>
+        <div id="header-container">
 
-            If you have trouble accessing this page because of a disability, please contact the webmaster at <a href="mailto:slhs@purdue.edu">slhs@purdue.edu</a>.
-          </div>
+            <div id="header-top-strip"></div>
+            <div id="purdue-signature-container" href="https://www.purdue.edu/">
+            </div>
+
+
+            <!-- PAGE TITLE -->
+            <div id="purdue-signature-container">
+                <a href="https://www.purdue.edu/"><img src="/images/PU_signature_white_bg_215x80.png" alt="Purdue signature" width="202" height="75" border="0" id="purdue-signature">
+                </a>
+            </div>
+
+            <!-- PAGE TITLE -->
+            <div id="page-title" style="width:430px;">
+                <a href="http://www.purdue.edu/hhs/slhs/index.php" style="top:0px;"><img src="/images/header.png" alt="Speech, Language, and Hearing Sciences" width="339" height="41">
+                </a>
+                <br>
+                <span style="font-size:14px;">
+                <a href="https://www.purdue.edu/hhs/">PPVT-IV</a>
+                </span>
+            </div>
+
+            <!-- START SOCIAL MEDIA LINKS -->
+            <div id="social-media-container">
+                <a id="facebook-link" title="Purdue HHS Facebook page" href="https://www.facebook.com/pages/Purdue-University-College-of-Health-and-Human-Sciences/162069027193497" target="_blank">
+                    <span class="accessible-text">
+                        Purdue College of Health and Human Sciences  Facebook page
+                    </span>
+                </a>
+            </div>
+        </div>
     </div>
-    <script>
-    	getVideosFromDB();
-    </script>
-	</body>
+    <!-- END SOCIAL MEDIA LINKS -->
+
+    <div id="inner-page-container" class="round-bottom10 shadow10" style="width: 960px; margin-left: auto; margin-right: auto;">
+
+        <!-- START NAV BARS -->
+        <div id="nav-bars">
+            <div id="upper-nav-bar">
+                <ul class="tabs" style="margin-bottom: 0">
+                    <li><a href="">Home Page</a>
+                    </li>
+                    <li><a href="/slhs-sim/html/instructions.html">Instructions</a>
+                    </li>
+                    <li><a href="/slhs-sim/html/SIM.html">FAQ</a>
+                    </li>
+                    <li><a href="/slhs-sim/html/index.html">Simulations</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+        <!-- END NAV BARS -->
+        
+        <aside id="sidebar" class="column" style="margin-top: 10%; margin-left: 5px;border-radius: 10px; border-style: solid;border-width: 1px;">
+                <form class="quick_search">
+                    <input type="text" value="Quick Search" onfocus="if(!this._haschanged){this.value=''};this._haschanged=true;">
+                </form>
+                <hr/>
+                <h3>Content</h3>
+                <ul class="toggle">
+                    <li class="icn_new_article"><a href="#">New Article</a>
+                    </li>
+                    <li class="icn_edit_article"><a href="#">Edit Articles</a>
+                    </li>
+                    <li class="icn_categories"><a href="#">Categories</a>
+                    </li>
+                    <li class="icn_tags"><a href="#">Tags</a>
+                    </li>
+                </ul>
+                <h3>Users</h3>
+                <ul class="toggle">
+                    <li class="icn_add_user"><a href="#">Add New User</a>
+                    </li>
+                    <li class="icn_view_users"><a href="#">View Users</a>
+                    </li>
+                    <li class="icn_profile"><a href="#">Your Profile</a>
+                    </li>
+                </ul>
+                <h3>Media</h3>
+                <ul class="toggle">
+                    <li class="icn_folder"><a href="#">File Manager</a>
+                    </li>
+                    <li class="icn_photo"><a href="#">Gallery</a>
+                    </li>
+                    <li class="icn_audio"><a href="#">Audio</a>
+                    </li>
+                    <li class="icn_video"><a href="#">Video</a>
+                    </li>
+                </ul>
+                <h3>Admin</h3>
+                <ul class="toggle">
+                    <li class="icn_settings"><a href="#">Options</a>
+                    </li>
+                    <li class="icn_security"><a href="#">Security</a>
+                    </li>
+                    <li class="icn_jump_back"><a href="#">Logout</a>
+                    </li>
+                </ul>
+            </aside>
+        
+        <!-- START MAIN CONTENT -->
+        <div class="content-container" style="width: 70%; float:left">
+
+
+            <!-- start of content manager article -->
+            <article class="module width_full">
+                <header>
+                    <h2 class="tabs_involved">Content Manager</h3>
+                              <ul class="tabs">
+                                  <li><a href="#tab1">Posts</a>
+                                  </li>
+                                  <li><a href="#tab2">Comments</a>
+                                  </li>
+                              </ul>
+                        </header>
+                        <div class="tab_container">
+                              <div id="tab1" class="tab_content">
+                                  <table class="tablesorter" cellspacing="0">
+                                      <thead>
+                                          <tr>
+                                              <th></th>
+                                              <th>Entry Name</th>
+                                              <th>Category</th>
+                                              <th>Created On</th>
+                                              <th>Actions</th>
+                                          </tr>
+                                      </thead>
+                                      <tbody>
+                                          <tr>
+                                              <td>
+                                                  <input type="checkbox">
+                                              </td>
+                                              <td>Lorem Ipsum Dolor Sit Amet</td>
+                                              <td>Articles</td>
+                                              <td>5th April 2011</td>
+                                              <td>
+                                                  <input type="image" src="/images/admin/icn_edit.png" title="Edit">
+                                                  <input type="image" src="/images/admin/icn_trash.png" title="Trash">
+                                              </td>
+                                          </tr>
+                                          <tr>
+                                              <td>
+                                                  <input type="checkbox">
+                                              </td>
+                                              <td>Ipsum Lorem Dolor Sit Amet</td>
+                                              <td>Freebies</td>
+                                              <td>6th April 2011</td>
+                                              <td>
+                                                  <input type="image" src="/images/admin/icn_edit.png" title="Edit">
+                                                  <input type="image" src="/images/admin/icn_trash.png" title="Trash">
+                                              </td>
+                                          </tr>
+                                          <tr>
+                                              <td>
+                                                  <input type="checkbox">
+                                              </td>
+                                              <td>Sit Amet Dolor Ipsum</td>
+                                              <td>Tutorials</td>
+                                              <td>10th April 2011</td>
+                                              <td>
+                                                  <input type="image" src="/images/admin/icn_edit.png" title="Edit">
+                                                  <input type="image" src="/images/admin/icn_trash.png" title="Trash">
+                                              </td>
+                                          </tr>
+                                          <tr>
+                                              <td>
+                                                  <input type="checkbox">
+                                              </td>
+                                              <td>Dolor Lorem Amet</td>
+                                              <td>Articles</td>
+                                              <td>16th April 2011</td>
+                                              <td>
+                                                  <input type="image" src="/images/admin/icn_edit.png" title="Edit">
+                                                  <input type="image" src="/images/admin/icn_trash.png" title="Trash">
+                                              </td>
+                                          </tr>
+                                          <tr>
+                                              <td>
+                                                  <input type="checkbox">
+                                              </td>
+                                              <td>Dolor Lorem Amet</td>
+                                              <td>Articles</td>
+                                              <td>16th April 2011</td>
+                                              <td>
+                                                  <input type="image" src="/images/admin/icn_edit.png" title="Edit">
+                                                  <input type="image" src="/images/admin/icn_trash.png" title="Trash">
+                                              </td>
+                                          </tr>
+                                      </tbody>
+                                  </table>
+                              </div>
+                              <div id="tab2" class="tab_content">
+                                  <table class="tablesorter" cellspacing="0">
+                                      <thead>
+                                          <tr>
+                                              <th></th>
+                                              <th>Comment</th>
+                                              <th>Posted by</th>
+                                              <th>Posted On</th>
+                                              <th>Actions</th>
+                                          </tr>
+                                      </thead>
+                                      <tbody>
+                                          <tr>
+                                              <td>
+                                                  <input type="checkbox">
+                                              </td>
+                                              <td>Lorem Ipsum Dolor Sit Amet</td>
+                                              <td>Mark Corrigan</td>
+                                              <td>5th April 2011</td>
+                                              <td>
+                                                  <input type="image" src="images/icn_edit.png" title="Edit">
+                                                  <input type="image" src="images/icn_trash.png" title="Trash">
+                                              </td>
+                                          </tr>
+                                          <tr>
+                                              <td>
+                                                  <input type="checkbox">
+                                              </td>
+                                              <td>Ipsum Lorem Dolor Sit Amet</td>
+                                              <td>Jeremy Usbourne</td>
+                                              <td>6th April 2011</td>
+                                              <td>
+                                                  <input type="image" src="images/icn_edit.png" title="Edit">
+                                                  <input type="image" src="images/icn_trash.png" title="Trash">
+                                              </td>
+                                          </tr>
+                                          <tr>
+                                              <td>
+                                                  <input type="checkbox">
+                                              </td>
+                                              <td>Sit Amet Dolor Ipsum</td>
+                                              <td>Super Hans</td>
+                                              <td>10th April 2011</td>
+                                              <td>
+                                                  <input type="image" src="images/icn_edit.png" title="Edit">
+                                                  <input type="image" src="images/icn_trash.png" title="Trash">
+                                              </td>
+                                          </tr>
+                                          <tr>
+                                              <td>
+                                                  <input type="checkbox">
+                                              </td>
+                                              <td>Dolor Lorem Amet</td>
+                                              <td>Alan Johnson</td>
+                                              <td>16th April 2011</td>
+                                              <td>
+                                                  <input type="image" src="images/icn_edit.png" title="Edit">
+                                                  <input type="image" src="images/icn_trash.png" title="Trash">
+                                              </td>
+                                          </tr>
+                                          <tr>
+                                              <td>
+                                                  <input type="checkbox">
+                                              </td>
+                                              <td>Dolor Lorem Amet</td>
+                                              <td>Dobby</td>
+                                              <td>16th April 2011</td>
+                                              <td>
+                                                  <input type="image" src="images/icn_edit.png" title="Edit">
+                                                  <input type="image" src="images/icn_trash.png" title="Trash">
+                                              </td>
+                                          </tr>
+                                      </tbody>
+                                  </table>
+                              </div>
+                          </div>
+                          <!-- end of .tab_container -->
+                </article>
+                <!-- end of content manager article -->
+
+            <!-- start of post new article -->
+            <article class="module width_full">
+                        <header>
+                                <h2>Post New Article</h2>
+                </header>
+                <div class="module_content">
+                    <fieldset>
+                        <label>Post Title</label>
+                        <input type="text">
+                    </fieldset>
+                    <fieldset>
+                        <label>Content</label>
+                        <textarea rows="12"></textarea>
+                    </fieldset>
+                    <fieldset style="width:48%; float:left; margin-right: 3%;">
+                        <!-- to make two field float next to one another, adjust values accordingly -->
+                        <label>Category</label>
+                        <select style="width:92%;">
+                            <option>Articles</option>
+                            <option>Tutorials</option>
+                            <option>Freebies</option>
+                        </select>
+                    </fieldset>
+                    <fieldset style="width:48%; float:left;">
+                        <!-- to make two field float next to one another, adjust values accordingly -->
+                        <label>Tags</label>
+                        <input type="text" style="width:92%;">
+                    </fieldset>
+                    <div class="clear"></div>
+                </div>
+                <footer>
+                    <div class="submit_link">
+                        <select>
+                            <option>Draft</option>
+                            <option>Published</option>
+                        </select>
+                        <input type="submit" value="Publish" class="alt_btn">
+                        <input type="submit" value="Reset">
+                    </div>
+                </footer>
+            </article>
+            <!-- end of post new article -->
+
+
+        </div>
+
+
+        <div id="footer-container" class="float-group round-bottom10">
+
+            <div id="left-foot"> Developed by EPICS, in cooperation with the Purdue University Speech, Language and Hearing Sciences Department
+                <br> Speech, Language, &amp; Hearing Sciences, Lyles-Porter Hall, 715 Clinic Drive, West Lafayette, 47907-2122, <span class="phone">PH: (765) 494-3789</span>
+                <br>
+                <a href="http://www.purdue.edu/purdue/disclaimer.html">2014 Purdue University</a> |
+                <a href="http://www.purdue.edu/purdue/ea_eou_statement.html">An equal access/equal opportunity university</a> |
+                <a href="http://www.purdue.edu/securepurdue/DMCAAgent.cfm">Copyright Complaints</a>
+                <br> If you have trouble accessing this page because of a disability, please contact the webmaster at
+                <a href="mailto:slhs@purdue.edu">slhs@purdue.edu</a>
+            </div>
+        </div>
+    </div>
+
+</body>
+
 </html>
-
-
-

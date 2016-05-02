@@ -5,6 +5,7 @@
 #wrapper {
     position: relative;
     overflow: hidden;
+    width: 960px;
 }
 
 .jumbotron {
@@ -285,3 +286,7 @@ input[type="checkbox"] {
     background: Green;
     right: 4px;
 }
+
+
+
+
