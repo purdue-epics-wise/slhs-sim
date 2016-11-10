@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html>
+<title>Simulation Page</title>
 <head>
     <title>SLHS - Health and Human Sciences</title>
     <!-- Javscript source code -->
@@ -11,33 +12,78 @@
     <link rel="stylesheet" href="https://www.purdue.edu/assets/globals/css/v4_purdue/reset.css">
     <link rel="stylesheet" href="https://www.purdue.edu/assets/globals/css/v4_purdue/template.css">
     <link rel="stylesheet" href="https://www.purdue.edu/assets/globals/css/v4_purdue/menus.css">
-    <link rel="stylesheet" href="/slhs-sim/css/main.css">
+	<link rel="stylesheet" href="http://www.w3schools.com/lib/w3.css">
+    <!--link rel="stylesheet" href="/slhs-sim/css/main.css"-->
     <link rel="stylesheet" href="/slhs-sim/css/slhs-sim.css">
-
-    <!-- Admin Components References -->
-    <link rel="stylesheet" type="text/css" href="/slhs-sim/css/admin/layout.css" media="screen" />
-	<link rel="stylesheet" type="text/css" href="/slhs-sim/css/simulation.css">
-    <script type="text/javascript" src="/slhs-sim/javascript/admin/jquery-1.5.2.min.js"></script>
-    <script type="text/javascript" src="/slhs-sim/javascript/admin/hideshow.js"></script>
-    <script type="text/javascript" src="/slhs-sim/javascript/admin/jquery.tablesorter.min.js"></script>
-    <script type="text/javascript" src="/slhs-sim/javascript/admin/jquery.equalHeight.js"></script>
-    <script type="text/javascript" src="/slhs-sim/javascript/admin/ready.js"></script>
 
 </head>
 <body>
+	<nav class="w3-sidenav w3-white w3-card-2" style="display:none" id="mySidenav">
+		<a href="javascript:void(0)" onclick="w3_close()"
+		class="w3-closenav w3-large">Close &times;</a>
+		<a href="#">Link 1</a>
+		<a href="#">Link 2</a>
+		<a href="#">Link 3</a>
+		<a href="#">Link 4</a>
+		<a href="#">Link 5</a>
+	</nav>
 	
-	<div style="text-align:center">
-		
+	<header class="header1">
+		<span class="w3-opennav w3-xlarge" onclick="w3_open()">&#9776;</span>
+		<h3><center>Simulation Video Title</center></h3>
+	</header>
+	<h3>Simulation Video Title</h3>
+	<div class="video">
 		<video width="700" height="500" controls>
 		<source src="/slhs-sim/html/honeydew.mp4" type="video/mp4">
-		<!--source src="movie.ogg" type="video/ogg"-->
 		Your browser does not support the video tag.
 		</video>
-		<div>
-			<input id="segbutton" type="submit" value="Previous" />
-			<input id="segbutton" type="submit" value="Next" />
+	</div>
+	
+	<div class="card">
+	
+		<div class="question">
+			<h2>Question</h2>
+			<h3>This is where the question goes!</h3>
+		</div>
+		<div class="answers">
+			<div class="but1">
+				<button class="w3-btn w3-green">Answer A</button>
+			</div>
+			<div class="but2">
+				<button class="w3-btn w3-red">Answer B</button>
+			</div>
+			<div class="but3">
+				<button class="w3-btn w3-blue">Answer C</button>
+			</div>
+			<div class="but4">
+				<button class="w3-btn w3-yellow">Answer D</button>
+			</div>
 		</div>
 	</div>
+		<!--div>
+			<input id="segbutton" type="submit" value="Previous" />
+			<input id="segbutton" type="submit" value="Next" />
+		</div-->
+		
+		<!--div  style="text-align:center">
+			<form>
+				<input type="radio" name="gender" value="male" checked> Male<br>
+				<input type="radio" name="gender" value="female"> Female<br>
+				<input type="radio" name="gender" value="other"> Other
+			</form>
+		</div-->
+	<script>
+		function w3_open() {
+			document.getElementById("mySidenav").style.display = "block";
+		}
+		function w3_close() {
+			document.getElementById("mySidenav").style.display = "none";
+		}
+	</script>
+	<footer class="footer1">
+		<h5>Created by Purdue Epics Wise team Spring 2016</h5>
+	</footer>	
 	
 </body>
 </html>
