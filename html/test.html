@@ -6,6 +6,7 @@
     <!-- Javscript source code -->
     <script src="/slhs-sim/javascript/jquery-2.2.0.js"></script>
     <script src="/slhs-sim/javascript/slhs-sim-video.js"></script>
+	<script src="/slhs-sim/javascript/video.js"></script>
 
 
     <!-- Purdue Template Style references -->
@@ -34,10 +35,21 @@
 	</header>
 	<h3>Simulation Video Title</h3>
 	<div class="video">
-		<video width="700" height="500" controls>
+		<video id="simu" width="700" height="500" controls>
 		<source src="/slhs-sim/html/honeydew.mp4" type="video/mp4">
 		Your browser does not support the video tag.
 		</video>
+		<nav>
+			
+			<button class= "sect" onclick="mediaFragOne()" data-start="0">Section One</button>
+			<button class= "sect" onclick="mediaFragOne()" data-start="6">Section Two</button>
+			<button class= "sect" onclick="mediaFragOne()" data-start="17">Section Three</button>
+			<button class= "sect" onclick="mediaFragOne()" data-start="25">Section Four</button>
+			<button class= "sect" onclick="mediaFragOne()" data-start="32">Section Five</button>
+			<button class= "sect" onclick="mediaFragOne()" data-start="40">Section Six</button>
+		</nav>
+  </div>
+  <script src="/slhs-sim/javascript/video.js"></script>
 	</div>
 	
 	<div class="card">
@@ -73,14 +85,7 @@
 				<input type="radio" name="gender" value="other"> Other
 			</form>
 		</div-->
-	<script>
-		function w3_open() {
-			document.getElementById("mySidenav").style.display = "block";
-		}
-		function w3_close() {
-			document.getElementById("mySidenav").style.display = "none";
-		}
-	</script>
+	
 	<footer class="footer1">
 		<h5>Created by Purdue Epics Wise team Spring 2016</h5>
 	</footer>	
