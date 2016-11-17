@@ -24,29 +24,8 @@ body{
 .but1 {
 	position: absolute;
 	padding: 5px 5px 5px 50px;
-	left: -25px;
-	bottom: 100px;
-	border-radius: 50px;
-}
-.but2 {
-	position: absolute;
-	padding: 5px 5px 5px 50px;
-	left: 125px;
-	bottom: 100px;
-	border-radius: 50px;
-}
-.but3 {
-	position: absolute;
-	padding: 5px 5px 5px 50px;
-	left: -25px;
-	bottom: 25px;
-	border-radius: 50px;
-}
-.but4 {
-	position: absolute;
-	padding: 5px 5px 5px 50px;
-	left: 125px;
-	bottom: 25px;
+	left: 100px;
+	bottom: 10px;
 	border-radius: 50px;
 }
 
@@ -56,7 +35,7 @@ body{
 }
 
 .question {
-	padding: 5px 5px 5px 25px;
+	padding: 5px 30px 5px 25px;
 }
 
 .video {
@@ -69,6 +48,18 @@ body{
 }
 
 .card {
+	position: absolute;
+	top: 150px;
+	right: 65px;
+	background-color: gray;
+	color: white;
+	width: 300px;
+	height: 350px;
+	border-radius: 10px;
+	text-align: center;
+}
+
+.card1 {
 	position: absolute;
 	top: 150px;
 	right: 65px;
