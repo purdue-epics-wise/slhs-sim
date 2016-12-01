@@ -41,7 +41,7 @@ body{
 .video {
 	position: absolute;
 	top: 70px;
-	left: 370px;
+	left: 400px;
     margin: auto;
 	width: 50%;
     padding: 10px;
@@ -59,10 +59,10 @@ body{
 	text-align: center;
 }
 
-.card1 {
+.card2 {
 	position: absolute;
 	top: 150px;
-	right: 65px;
+	left: 65px;
 	background-color: gray;
 	color: white;
 	width: 300px;
