@@ -1,0 +1,21 @@
+.leftbar {
+	background-color: #A78A09;
+	color: #fff;
+	cursor: pointer;
+	text-align: center;
+	font-size: 24px;
+	height: 100px;
+}
+input#segbutton {
+	background-color:#000000;
+	color: #ffffff;
+	width: 350px;
+	height: 64px;
+	font-size: 40px;
+	padding: 8px 14px 10px;
+}
+
+div {
+	float: right;
+}
+

@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html>
+<title>Simulation Page</title>
+<head>
+	<meta charset="utf-8"/>
+    <title>SLHS - Health and Human Sciences</title>
+    <!-- Javscript source code -->
+    <script src="/slhs-sim/javascript/jquery-2.2.0.js"></script>
+    <script src="/slhs-sim/javascript/slhs-sim-video.js"></script>
+	<!--script src="/slhs-sim/javascript/video.js"></script-->
+
+
+    <!-- Purdue Template Style references -->
+    <link rel="stylesheet" href="https://www.purdue.edu/assets/globals/css/v4_purdue/reset.css">
+    <link rel="stylesheet" href="https://www.purdue.edu/assets/globals/css/v4_purdue/template.css">
+    <link rel="stylesheet" href="https://www.purdue.edu/assets/globals/css/v4_purdue/menus.css">
+	<link rel="stylesheet" href="http://www.w3schools.com/lib/w3.css">
+    <link rel="stylesheet" href="/slhs-sim/css/slhs-sim.css">
+
+</head>
+<body>
+	<!--nav class="w3-sidenav w3-white w3-card-2" style="display:none" id="mySidenav">
+		<a href="javascript:void(0)" onclick="w3_close()"
+		class="w3-closenav w3-large">Close &times;</a>
+		<a href="#">Link 1</a>
+		<a href="#">Link 2</a>
+		<a href="#">Link 3</a>
+		<a href="#">Link 4</a>
+		<a href="#">Link 5</a>
+	</nav-->
+	
+	<header class="header1">
+		<button class="w3-btn w3-yellow">Back</button>
+		<h3><center>Simulation Video Title</center></h3>
+	</header>
+	<h3>Simulation Video Title</h3>
+	
+	
+	<div class="video">
+		<video width="700" height="500" controls>
+			<source src="/slhs-sim/html/test.mp4"  type="video/mp4">
+			Your browser does not support the video tag.
+		</video>
+    </div>
+  <!--script src="/slhs-sim/javascript/video.js"></script-->
+	
+	<div class="card">
+		<div class="question">
+			<h2>INSTRUCTIONS</h2>
+			<p>Watch the video on the right. After you are finished watching the video and are ready
+			to take the test, click the button below to take the test!</p>
+			<form action="/slhs-sim/php/slhstest.php">
+				<button type="submit" class="w3-btn w3-yellow">Take Test</button>
+			</form>
+		</div>
+	</div>
+	
+	
+	<div class="card2">
+		<div class="question">
+			<h2>Video Desciption</h2>
+			<p>This video is about...</p>
+		</div>
+	</div>
+	
+		
+	<footer class="footer1">
+		<h5>Created by Purdue Epics Wise team Spring 2016</h5>
+	</footer>	
+	
+</body>
+</html>

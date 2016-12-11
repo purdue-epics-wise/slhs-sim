@@ -1,6 +1,87 @@
 #slhsVideoSelect {
 }
 #svs {
-	top: 10%;
+	top: 20%;
 	position: absolute;
+	background-color: #000000;
+	color:#ffffff
+}
+.header1 {
+	position: absolute;
+	right: 0;
+	top: 0;
+	left: 0;
+	padding: 1rem;
+	background-color: black;
+	color: white;
+	position: fixed;
+}
+
+body{
+	background-color: 	#DAA520;
+}
+
+.but1 {
+	position: absolute;
+	padding: 5px 5px 5px 50px;
+	left: 100px;
+	bottom: 10px;
+	border-radius: 50px;
+}
+
+.answers{
+	padding: 1rem;
+	bottom: 100px;
+}
+
+.question {
+	padding: 5px 30px 5px 25px;
+}
+
+.video {
+	position: absolute;
+	top: 70px;
+	left: 400px;
+    margin: auto;
+	width: 50%;
+    padding: 10px;
+}
+
+.card {
+	position: absolute;
+	top: 150px;
+	right: 65px;
+	background-color: gray;
+	color: white;
+	width: 300px;
+	height: 350px;
+	border-radius: 10px;
+	text-align: center;
+}
+
+.card2 {
+	position: absolute;
+	top: 150px;
+	left: 65px;
+	background-color: gray;
+	color: white;
+	width: 300px;
+	height: 350px;
+	border-radius: 10px;
+	text-align: center;
+}
+
+.card:hover {
+    box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2);
+}
+
+.footer1 {
+	position: absolute;
+	right: 0;
+	bottom: 0;
+	left: 0;
+	padding: 1rem;
+	background-color: black;
+	color: white;
+	text-align: center;
 }
