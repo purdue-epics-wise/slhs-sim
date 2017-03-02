@@ -1,0 +1,154 @@
+﻿<%@ Master Language="C#" AutoEventWireup="true" CodeBehind="SLHS.master.cs" Inherits="SLHS.Web.Shared.SLHS" %>
+
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head runat="server">
+    <title>SLHS at Purdue</title>
+    <meta charset="utf-8" />
+	<meta name="viewport" content="width=device-width, initial-scale=1" />
+	<!--[if lte IE 8]><script src="/assets/js/ie/html5shiv.js"></script><![endif]-->
+	<link rel="stylesheet" href="/assets/css/Arcana.css" />
+    <link rel="stylesheet" href="/assets/css/font-awesome-4.7.0/css/font-awesome.min.css" />
+	<!--[if lte IE 8]><link rel="stylesheet" href="/assets/css/ie8.css" /><![endif]-->
+	<!--[if lte IE 9]><link rel="stylesheet" href="/assets/css/ie9.css" /><![endif]-->
+    <asp:ContentPlaceHolder ID="head" runat="server">
+    </asp:ContentPlaceHolder>
+</head>
+<body>
+<form id="form1" runat="server">
+    
+<div class="page-wrapper">   
+        <!-- Header -->
+				<div id="header">
+					<!-- Logo -->
+                        
+						<h1>                          
+                            <%--<a href="/Forms/Public/Default.aspx" class="image left"><img src="/assets/images/logo.png" alt="Purdue logo" style="height: 100px; width:auto" /></a>--%>
+                            <a href="/Forms/Public/Default.aspx" id="logo">Speech, Language and Hearing Sciences</a>
+						</h1>
+					<!-- Nav -->
+						<nav id="nav">
+							<ul>
+								<li class="current"><a href="/Forms/Public/Default.aspx"><i class="fa fa-home" aria-hidden="true"></i>
+ Home</a></li>
+                                <li>
+                                    <a href="#"><i class="fa fa-folder" aria-hidden="true"></i>
+ Information <i class="fa fa-caret-down" aria-hidden="true"></i>
+</a>
+                                    <ul>
+                                        <li><a href="/Forms/Public/About.aspx">About</a></li>
+                                        <li><a href="/Forms/Public/FAQ.aspx">FAQ</a></li>
+                                        
+                                    </ul>
+                                </li>
+                                 <% if (Session["UserRole"] == null)  { %>          
+                                 <li><a href="/Forms/Account/Login.aspx"><i class="fa fa-sign-in" aria-hidden="true"></i> Log in</a></li>
+                                 <%  } %>
+
+
+                                 <% if ((string) Session["UserRole"] == "Student")  { %>          
+                                 <li>
+                                    <a href="#">Simulation <i class="fa fa-caret-down" aria-hidden="true"></i></a>
+                                    <ul>
+                                        <li><a href="/Forms/Student/Training.aspx">Training</a></li>
+                                        <li><a href="/Forms/Public/ViewResult.aspx">Result</a></li>
+                                        
+                                    </ul>
+                                </li>
+                                 <%  } %>
+                                            
+                                 <% if ((string) Session["UserRole"] == "Professor")  { %>          
+                                 <li>
+                                    <a href="#">Data <i class="fa fa-caret-down" aria-hidden="true"></i></a>
+                                    <ul>
+                                        <li><a href="/Forms/Professor/ViewData.aspx">View Data</a></li>
+                                        <li><a href="/Forms/Professor/RegisterStudent.aspx">Register Students</a></li> 
+                                    </ul>
+                                </li>
+                                 <%  } %>      
+                                 
+                                <% if (Session["UserRole"] != null) { %>
+                       
+                                <li>
+                                    <a href="#">Welcome, <%=Session["UserRole"] %><i class="fa fa-caret-down" aria-hidden="true"></i>
+</a>
+                                    <ul>
+                                        <li><a href="/Forms/Account/Logout.aspx"><i class="fa fa-power-off" aria-hidden="true"></i> Log out</a></li>
+                                        
+                                    </ul>
+                                </li>
+                                <% } %>
+							</ul>
+						</nav>
+				</div>
+
+<asp:ContentPlaceHolder ID="BodyContentPlaceHolder1" runat="server">
+        
+</asp:ContentPlaceHolder>   
+
+</div>
+
+
+
+<!-- Footer -->
+<div id="footer">
+    <div class="container">
+        <div class="row">
+            <section class="3u 6u(narrower) 12u$(mobilep)">
+				<h3>Contact</h3>
+				<ul class="links">
+					<li><a href="#">SLHS help center</a></li>
+					<li><a href="#">Web Master</a></li>					
+				</ul>
+			</section>
+            <section class="3u 6u$(narrower) 12u$(mobilep)">
+				<h3>Contribute to SLHS_SIM</h3>
+				<ul class="links">
+					<li><a href="#">Github</a></li>
+					<li><a href="#">Developers</a></li>					
+				</ul>
+			</section>
+            <section class="6u 12u(narrower)">
+				<h3>Get In Touch</h3>
+				<%--<form>--%>
+					<div class="row 50%">
+						<div class="6u 12u(mobilep)">
+							<input type="text" name="name" id="name" placeholder="Name" />
+						</div>
+						<div class="6u 12u(mobilep)">
+							<input type="email" name="email" id="email" placeholder="Email" />
+						</div>
+					</div>
+					<div class="row 50%">
+						<div class="12u">
+							<textarea name="message" id="message" placeholder="Message" rows="5"></textarea>
+						</div>
+					</div>
+					<div class="row 50%">
+						<div class="12u">
+							<ul class="actions">
+								<li><input type="submit" class="button alt" value="Send Message" /></li>
+							</ul>
+						</div>
+					</div>
+				<%--</form>--%>
+			</section>
+        </div>
+
+        
+    </div>
+</div>
+
+    
+</form>
+<!-- Scripts -->
+<script src="/assets/js/jquery.min.js"></script>
+<script src="/assets/js/jquery.dropotron.min.js"></script>
+<script src="/assets/js/skel.min.js"></script>
+<script src="/assets/js/util.js"></script>
+<!--[if lte IE 8]><script src="assets/js/ie/respond.min.js"></script><![endif]-->
+<script src="/assets/js/main.js"></script>
+
+</body>
+</html>

@@ -1,0 +1,84 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ordesignerObjectsDiagram dslVersion="1.0.0.0" absoluteBounds="0, 0, 11, 8.5" name="SLHS">
+  <DataContextMoniker Name="/SLHSDataContext" />
+  <nestedChildShapes>
+    <classShape Id="431435af-0304-4b95-b59f-09c8cc2fb5d3" absoluteBounds="0.75, 0.5, 2, 1.1939925130208333">
+      <DataClassMoniker Name="/SLHSDataContext/Role" />
+      <nestedChildShapes>
+        <elementListCompartment Id="8ff7f7fd-2420-424f-8afc-09e3cd0c5491" absoluteBounds="0.76500000000000012, 0.96, 1.9700000000000002, 0.63399251302083326" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <classShape Id="4d5c1d47-f1cd-4e1a-9147-839a7228a29d" absoluteBounds="0.75, 2.25, 2, 2.1554996744791666">
+      <DataClassMoniker Name="/SLHSDataContext/Member" />
+      <nestedChildShapes>
+        <elementListCompartment Id="86b249b1-4f38-48aa-8199-ee733904991f" absoluteBounds="0.765, 2.71, 1.9700000000000002, 1.5954996744791665" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <associationConnector edgePoints="[(1.75 : 1.69399251302083); (1.75 : 2.25)]" fixedFrom="Algorithm" fixedTo="Algorithm">
+      <AssociationMoniker Name="/SLHSDataContext/Role/Role_Member" />
+      <nodes>
+        <classShapeMoniker Id="431435af-0304-4b95-b59f-09c8cc2fb5d3" />
+        <classShapeMoniker Id="4d5c1d47-f1cd-4e1a-9147-839a7228a29d" />
+      </nodes>
+    </associationConnector>
+    <classShape Id="e6af6941-82aa-4abd-ab12-e4e886a21c3e" absoluteBounds="3.625, 0.625, 2, 1.1939925130208333">
+      <DataClassMoniker Name="/SLHSDataContext/ChoiceSet" />
+      <nestedChildShapes>
+        <elementListCompartment Id="ab7c6393-166a-4e5b-a66a-48f294b327cf" absoluteBounds="3.64, 1.085, 1.9700000000000002, 0.63399251302083326" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <classShape Id="c6a0c9f1-b5bc-47ba-a4ef-a8835fa74dd6" absoluteBounds="3.5, 2.625, 2, 1.3862939453125">
+      <DataClassMoniker Name="/SLHSDataContext/Choice" />
+      <nestedChildShapes>
+        <elementListCompartment Id="3bb733d9-56b8-4c41-90b4-b1119756bd82" absoluteBounds="3.5150000000000006, 3.085, 1.9700000000000002, 0.8262939453125" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <associationConnector edgePoints="[(4.5625 : 1.81899251302083); (4.5625 : 2.625)]" fixedFrom="Algorithm" fixedTo="Algorithm">
+      <AssociationMoniker Name="/SLHSDataContext/ChoiceSet/ChoiceSet_Choice" />
+      <nodes>
+        <classShapeMoniker Id="e6af6941-82aa-4abd-ab12-e4e886a21c3e" />
+        <classShapeMoniker Id="c6a0c9f1-b5bc-47ba-a4ef-a8835fa74dd6" />
+      </nodes>
+    </associationConnector>
+    <classShape Id="332ee097-5b3a-4807-9bc6-5080b3762b85" absoluteBounds="6.25, 0.625, 2, 1.5785953776041666">
+      <DataClassMoniker Name="/SLHSDataContext/Question" />
+      <nestedChildShapes>
+        <elementListCompartment Id="61a819b1-6cd6-47f9-bb71-29708ac11bde" absoluteBounds="6.265, 1.085, 1.9700000000000002, 1.0185953776041665" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <associationConnector edgePoints="[(5.625 : 1.22199625651042); (6.25 : 1.22199625651042)]" fixedFrom="Algorithm" fixedTo="Algorithm">
+      <AssociationMoniker Name="/SLHSDataContext/ChoiceSet/ChoiceSet_Question" />
+      <nodes>
+        <classShapeMoniker Id="e6af6941-82aa-4abd-ab12-e4e886a21c3e" />
+        <classShapeMoniker Id="332ee097-5b3a-4807-9bc6-5080b3762b85" />
+      </nodes>
+    </associationConnector>
+    <classShape Id="d4e6eb77-3cd1-4981-a7b4-fcaa85406c73" absoluteBounds="3.5, 4.75, 2, 1.5785953776041666">
+      <DataClassMoniker Name="/SLHSDataContext/QuestionResult" />
+      <nestedChildShapes>
+        <elementListCompartment Id="107042b6-2768-4ed7-8be7-afb3b4db6e82" absoluteBounds="3.515, 5.21, 1.9700000000000002, 1.0185953776041665" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <associationConnector edgePoints="[(4.5 : 4.0112939453125); (4.5 : 4.75)]" fixedFrom="Algorithm" fixedTo="Algorithm">
+      <AssociationMoniker Name="/SLHSDataContext/Choice/Choice_QuestionResult" />
+      <nodes>
+        <classShapeMoniker Id="c6a0c9f1-b5bc-47ba-a4ef-a8835fa74dd6" />
+        <classShapeMoniker Id="d4e6eb77-3cd1-4981-a7b4-fcaa85406c73" />
+      </nodes>
+    </associationConnector>
+    <associationConnector edgePoints="[(1.75 : 4.40549967447917); (1.75 : 5.53929768880208); (3.5 : 5.53929768880208)]" fixedFrom="Algorithm" fixedTo="Algorithm">
+      <AssociationMoniker Name="/SLHSDataContext/Member/Member_QuestionResult" />
+      <nodes>
+        <classShapeMoniker Id="4d5c1d47-f1cd-4e1a-9147-839a7228a29d" />
+        <classShapeMoniker Id="d4e6eb77-3cd1-4981-a7b4-fcaa85406c73" />
+      </nodes>
+    </associationConnector>
+    <associationConnector edgePoints="[(7.25 : 2.20359537760417); (7.25 : 5.53929768880208); (5.5 : 5.53929768880208)]" fixedFrom="Algorithm" fixedTo="Algorithm">
+      <AssociationMoniker Name="/SLHSDataContext/Question/Question_QuestionResult" />
+      <nodes>
+        <classShapeMoniker Id="332ee097-5b3a-4807-9bc6-5080b3762b85" />
+        <classShapeMoniker Id="d4e6eb77-3cd1-4981-a7b4-fcaa85406c73" />
+      </nodes>
+    </associationConnector>
+  </nestedChildShapes>
+</ordesignerObjectsDiagram>
