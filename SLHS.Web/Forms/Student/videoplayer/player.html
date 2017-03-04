@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title>videoplayer</title>
+        <script type="text/css">
+            // css goes here
+        </script>
+    </head>
+    <body>
+        <video id="video" width="640" height="480" controls>
+            <source src="video1.mp4" type="video/mp4">
+            Your browser does not support.
+        </video>
+        <div id="quiz" style="display:none">
+            <h3>quizzes</h3>
+            <br>
+            <p>1. This is an example quiz question</p>
+            <form action="">
+                <input type="radio" name="gender" value="male"> Male<br>
+                <input type="radio" name="gender" value="female"> Female<br>
+                <input type="radio" name="gender" value="other"> Other
+            </form>
+            <br>
+            <p>2. This is an example quiz question</p>
+            <form action="">
+                <input type="radio" name="gender" value="male"> Male<br>
+                <input type="radio" name="gender" value="female"> Female<br>
+                <input type="radio" name="gender" value="other"> Other
+            </form>
+            <br>
+            <p>3. This is an example quiz question</p>
+            <form action="">
+                <input type="radio" name="gender" value="male"> Male<br>
+                <input type="radio" name="gender" value="female"> Female<br>
+                <input type="radio" name="gender" value="other"> Other
+            </form>
+        </div>
+    </body>
+
+    <script type='text/javascript'>
+        document.getElementById('video').addEventListener('ended',videoHandler,false);
+        function videoHandler(e) {
+            document.getElementById('quiz').style.display = "block";
+        }
+    </script>
+</html>
