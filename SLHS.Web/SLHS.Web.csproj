@@ -103,6 +103,7 @@
     <Content Include="assets\css\font-awesome-4.7.0\css\font-awesome.min.css" />
     <Content Include="assets\css\font-awesome-4.7.0\fonts\fontawesome-webfont.svg" />
     <Content Include="assets\css\font-awesome-4.7.0\HELP-US-OUT.txt" />
+    <Content Include="assets\video\video1.mp4" />
     <Content Include="Default.aspx" />
     <Content Include="Forms\Account\Login.aspx" />
     <Content Include="Forms\Account\Logout.aspx" />

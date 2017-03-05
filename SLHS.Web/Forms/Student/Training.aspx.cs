@@ -11,7 +11,12 @@ namespace SLHS.Web.Forms.Student
     {
         protected void Page_Load(object sender, EventArgs e)
         {
+            LoadQuestion();
+        }
 
+        private void LoadQuestion()
+        {
+            
         }
     }
 }
