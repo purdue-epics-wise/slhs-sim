@@ -6,6 +6,7 @@ using System.Web.Security;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 using SLHS.Web.Utils;
+using SLHS.Web.Helpers;
 
 namespace SLHS.Web.Forms.Account
 {
@@ -18,9 +19,11 @@ namespace SLHS.Web.Forms.Account
 
         protected void Login1_Authenticate(object sender, AuthenticateEventArgs e)
         {
+            //get username, password
             string username = Login1.UserName;
             string password = Login1.Password;
 
+            //check if username 
             Member member = Credentials.Login(username, password);
             if (member == null)
             {
@@ -28,7 +31,8 @@ namespace SLHS.Web.Forms.Account
                 return;
             }
             e.Authenticated = true;
-            Session["UserRole"] = member.getRole().Content;
+            Session[WebConstant.UserRole] = member.Role.Content;
+            Session[WebConstant.User] = member;
             Response.Redirect("/Forms/Public/");
         }
     }

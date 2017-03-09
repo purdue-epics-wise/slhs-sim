@@ -5,6 +5,7 @@ using System.Web;
 
 namespace SLHS.Web.Utils
 {
+   
     public class Credentials
     {
         public static SLHSDataContext SlHS_DB = new SLHSDataContext();
@@ -24,6 +25,7 @@ namespace SLHS.Web.Utils
             memberQuery = from mem in SlHS_DB.Members
                           where (mem.Username == username && mem.Password == password)
                           select mem;  
+            
 
             if (memberQuery.Count<Member>() > 0)
             {
