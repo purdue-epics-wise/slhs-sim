@@ -36,15 +36,18 @@ namespace SLHS.Web
     partial void InsertMember(Member instance);
     partial void UpdateMember(Member instance);
     partial void DeleteMember(Member instance);
-    partial void InsertChoiceSet(ChoiceSet instance);
-    partial void UpdateChoiceSet(ChoiceSet instance);
-    partial void DeleteChoiceSet(ChoiceSet instance);
     partial void InsertChoice(Choice instance);
     partial void UpdateChoice(Choice instance);
     partial void DeleteChoice(Choice instance);
     partial void InsertQuestion(Question instance);
     partial void UpdateQuestion(Question instance);
     partial void DeleteQuestion(Question instance);
+    partial void InsertChoiceSet(ChoiceSet instance);
+    partial void UpdateChoiceSet(ChoiceSet instance);
+    partial void DeleteChoiceSet(ChoiceSet instance);
+    partial void InsertQuestionResult(QuestionResult instance);
+    partial void UpdateQuestionResult(QuestionResult instance);
+    partial void DeleteQuestionResult(QuestionResult instance);
     #endregion
 		
 		public SLHSDataContext() : 
@@ -93,14 +96,6 @@ namespace SLHS.Web
 			}
 		}
 		
-		public System.Data.Linq.Table<ChoiceSet> ChoiceSets
-		{
-			get
-			{
-				return this.GetTable<ChoiceSet>();
-			}
-		}
-		
 		public System.Data.Linq.Table<Choice> Choices
 		{
 			get
@@ -114,6 +109,14 @@ namespace SLHS.Web
 			get
 			{
 				return this.GetTable<Question>();
+			}
+		}
+		
+		public System.Data.Linq.Table<ChoiceSet> ChoiceSets
+		{
+			get
+			{
+				return this.GetTable<ChoiceSet>();
 			}
 		}
 		
@@ -260,6 +263,8 @@ namespace SLHS.Web
 		
 		private System.Nullable<System.DateTime> _LastLoginDate;
 		
+		private EntitySet<QuestionResult> _QuestionResults;
+		
 		private EntityRef<Role> _Role;
 		
     #region Extensibility Method Definitions
@@ -284,20 +289,10 @@ namespace SLHS.Web
 		
 		public Member()
 		{
+			this._QuestionResults = new EntitySet<QuestionResult>(new Action<QuestionResult>(this.attach_QuestionResults), new Action<QuestionResult>(this.detach_QuestionResults));
 			this._Role = default(EntityRef<Role>);
 			OnCreated();
 		}
-
-        public Role getRole()
-        {
-            SLHSDataContext SLHS_DB = new SLHSDataContext();
-            IQueryable<Role> roleQuery = from r in SLHS_DB.Roles
-                                    where this.RoleId == r.Id
-                                    select r;
-
-            Role role = roleQuery.First<Role>();
-            return role;
-        }
 		
 		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Id", AutoSync=AutoSync.OnInsert, DbType="Int NOT NULL IDENTITY", IsPrimaryKey=true, IsDbGenerated=true)]
 		public int Id
@@ -443,6 +438,19 @@ namespace SLHS.Web
 			}
 		}
 		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Member_QuestionResult", Storage="_QuestionResults", ThisKey="Id", OtherKey="StudentId")]
+		public EntitySet<QuestionResult> QuestionResults
+		{
+			get
+			{
+				return this._QuestionResults;
+			}
+			set
+			{
+				this._QuestionResults.Assign(value);
+			}
+		}
+		
 		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Role_Member", Storage="_Role", ThisKey="RoleId", OtherKey="Id", IsForeignKey=true)]
 		public Role Role
 		{
@@ -496,147 +504,17 @@ namespace SLHS.Web
 				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
 			}
 		}
-	}
-	
-	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.ChoiceSets")]
-	public partial class ChoiceSet : INotifyPropertyChanging, INotifyPropertyChanged
-	{
 		
-		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
-		
-		private int _Id;
-		
-		private string _Type;
-		
-		private EntitySet<Choice> _Choices;
-		
-		private EntitySet<Question> _Questions;
-		
-    #region Extensibility Method Definitions
-    partial void OnLoaded();
-    partial void OnValidate(System.Data.Linq.ChangeAction action);
-    partial void OnCreated();
-    partial void OnIdChanging(int value);
-    partial void OnIdChanged();
-    partial void OnTypeChanging(string value);
-    partial void OnTypeChanged();
-    #endregion
-		
-		public ChoiceSet()
-		{
-			this._Choices = new EntitySet<Choice>(new Action<Choice>(this.attach_Choices), new Action<Choice>(this.detach_Choices));
-			this._Questions = new EntitySet<Question>(new Action<Question>(this.attach_Questions), new Action<Question>(this.detach_Questions));
-			OnCreated();
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Id", AutoSync=AutoSync.OnInsert, DbType="Int NOT NULL IDENTITY", IsPrimaryKey=true, IsDbGenerated=true)]
-		public int Id
-		{
-			get
-			{
-				return this._Id;
-			}
-			set
-			{
-				if ((this._Id != value))
-				{
-					this.OnIdChanging(value);
-					this.SendPropertyChanging();
-					this._Id = value;
-					this.SendPropertyChanged("Id");
-					this.OnIdChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Type", DbType="NVarChar(50)")]
-		public string Type
-		{
-			get
-			{
-				return this._Type;
-			}
-			set
-			{
-				if ((this._Type != value))
-				{
-					this.OnTypeChanging(value);
-					this.SendPropertyChanging();
-					this._Type = value;
-					this.SendPropertyChanged("Type");
-					this.OnTypeChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="ChoiceSet_Choice", Storage="_Choices", ThisKey="Id", OtherKey="ChoiceSetId")]
-		public EntitySet<Choice> Choices
-		{
-			get
-			{
-				return this._Choices;
-			}
-			set
-			{
-				this._Choices.Assign(value);
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="ChoiceSet_Question", Storage="_Questions", ThisKey="Id", OtherKey="ChoiceSetId")]
-		public EntitySet<Question> Questions
-		{
-			get
-			{
-				return this._Questions;
-			}
-			set
-			{
-				this._Questions.Assign(value);
-			}
-		}
-		
-		public event PropertyChangingEventHandler PropertyChanging;
-		
-		public event PropertyChangedEventHandler PropertyChanged;
-		
-		protected virtual void SendPropertyChanging()
-		{
-			if ((this.PropertyChanging != null))
-			{
-				this.PropertyChanging(this, emptyChangingEventArgs);
-			}
-		}
-		
-		protected virtual void SendPropertyChanged(String propertyName)
-		{
-			if ((this.PropertyChanged != null))
-			{
-				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
-			}
-		}
-		
-		private void attach_Choices(Choice entity)
+		private void attach_QuestionResults(QuestionResult entity)
 		{
 			this.SendPropertyChanging();
-			entity.ChoiceSet = this;
+			entity.Member = this;
 		}
 		
-		private void detach_Choices(Choice entity)
+		private void detach_QuestionResults(QuestionResult entity)
 		{
 			this.SendPropertyChanging();
-			entity.ChoiceSet = null;
-		}
-		
-		private void attach_Questions(Question entity)
-		{
-			this.SendPropertyChanging();
-			entity.ChoiceSet = this;
-		}
-		
-		private void detach_Questions(Question entity)
-		{
-			this.SendPropertyChanging();
-			entity.ChoiceSet = null;
+			entity.Member = null;
 		}
 	}
 	
@@ -651,6 +529,8 @@ namespace SLHS.Web
 		private System.Nullable<int> _ChoiceSetId;
 		
 		private string _Content;
+		
+		private EntitySet<QuestionResult> _QuestionResults;
 		
 		private EntityRef<ChoiceSet> _ChoiceSet;
 		
@@ -668,6 +548,7 @@ namespace SLHS.Web
 		
 		public Choice()
 		{
+			this._QuestionResults = new EntitySet<QuestionResult>(new Action<QuestionResult>(this.attach_QuestionResults), new Action<QuestionResult>(this.detach_QuestionResults));
 			this._ChoiceSet = default(EntityRef<ChoiceSet>);
 			OnCreated();
 		}
@@ -736,6 +617,19 @@ namespace SLHS.Web
 			}
 		}
 		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Choice_QuestionResult", Storage="_QuestionResults", ThisKey="Id", OtherKey="ChoiceId")]
+		public EntitySet<QuestionResult> QuestionResults
+		{
+			get
+			{
+				return this._QuestionResults;
+			}
+			set
+			{
+				this._QuestionResults.Assign(value);
+			}
+		}
+		
 		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="ChoiceSet_Choice", Storage="_ChoiceSet", ThisKey="ChoiceSetId", OtherKey="Id", IsForeignKey=true)]
 		public ChoiceSet ChoiceSet
 		{
@@ -789,6 +683,18 @@ namespace SLHS.Web
 				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
 			}
 		}
+		
+		private void attach_QuestionResults(QuestionResult entity)
+		{
+			this.SendPropertyChanging();
+			entity.Choice = this;
+		}
+		
+		private void detach_QuestionResults(QuestionResult entity)
+		{
+			this.SendPropertyChanging();
+			entity.Choice = null;
+		}
 	}
 	
 	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.Questions")]
@@ -804,6 +710,8 @@ namespace SLHS.Web
 		private int _ChoiceSetId;
 		
 		private int _ChoiceCorrectId;
+		
+		private EntitySet<QuestionResult> _QuestionResults;
 		
 		private EntityRef<ChoiceSet> _ChoiceSet;
 		
@@ -823,6 +731,7 @@ namespace SLHS.Web
 		
 		public Question()
 		{
+			this._QuestionResults = new EntitySet<QuestionResult>(new Action<QuestionResult>(this.attach_QuestionResults), new Action<QuestionResult>(this.detach_QuestionResults));
 			this._ChoiceSet = default(EntityRef<ChoiceSet>);
 			OnCreated();
 		}
@@ -911,6 +820,19 @@ namespace SLHS.Web
 			}
 		}
 		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Question_QuestionResult", Storage="_QuestionResults", ThisKey="Id", OtherKey="QuestionId")]
+		public EntitySet<QuestionResult> QuestionResults
+		{
+			get
+			{
+				return this._QuestionResults;
+			}
+			set
+			{
+				this._QuestionResults.Assign(value);
+			}
+		}
+		
 		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="ChoiceSet_Question", Storage="_ChoiceSet", ThisKey="ChoiceSetId", OtherKey="Id", IsForeignKey=true)]
 		public ChoiceSet ChoiceSet
 		{
@@ -964,22 +886,222 @@ namespace SLHS.Web
 				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
 			}
 		}
+		
+		private void attach_QuestionResults(QuestionResult entity)
+		{
+			this.SendPropertyChanging();
+			entity.Question = this;
+		}
+		
+		private void detach_QuestionResults(QuestionResult entity)
+		{
+			this.SendPropertyChanging();
+			entity.Question = null;
+		}
+	}
+	
+	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.ChoiceSets")]
+	public partial class ChoiceSet : INotifyPropertyChanging, INotifyPropertyChanged
+	{
+		
+		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
+		
+		private int _Id;
+		
+		private string _Content;
+		
+		private EntitySet<Choice> _Choices;
+		
+		private EntitySet<Question> _Questions;
+		
+    #region Extensibility Method Definitions
+    partial void OnLoaded();
+    partial void OnValidate(System.Data.Linq.ChangeAction action);
+    partial void OnCreated();
+    partial void OnIdChanging(int value);
+    partial void OnIdChanged();
+    partial void OnContentChanging(string value);
+    partial void OnContentChanged();
+    #endregion
+		
+		public ChoiceSet()
+		{
+			this._Choices = new EntitySet<Choice>(new Action<Choice>(this.attach_Choices), new Action<Choice>(this.detach_Choices));
+			this._Questions = new EntitySet<Question>(new Action<Question>(this.attach_Questions), new Action<Question>(this.detach_Questions));
+			OnCreated();
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Id", AutoSync=AutoSync.OnInsert, DbType="Int NOT NULL IDENTITY", IsPrimaryKey=true, IsDbGenerated=true)]
+		public int Id
+		{
+			get
+			{
+				return this._Id;
+			}
+			set
+			{
+				if ((this._Id != value))
+				{
+					this.OnIdChanging(value);
+					this.SendPropertyChanging();
+					this._Id = value;
+					this.SendPropertyChanged("Id");
+					this.OnIdChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Content", DbType="NVarChar(50)")]
+		public string Content
+		{
+			get
+			{
+				return this._Content;
+			}
+			set
+			{
+				if ((this._Content != value))
+				{
+					this.OnContentChanging(value);
+					this.SendPropertyChanging();
+					this._Content = value;
+					this.SendPropertyChanged("Content");
+					this.OnContentChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="ChoiceSet_Choice", Storage="_Choices", ThisKey="Id", OtherKey="ChoiceSetId")]
+		public EntitySet<Choice> Choices
+		{
+			get
+			{
+				return this._Choices;
+			}
+			set
+			{
+				this._Choices.Assign(value);
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="ChoiceSet_Question", Storage="_Questions", ThisKey="Id", OtherKey="ChoiceSetId")]
+		public EntitySet<Question> Questions
+		{
+			get
+			{
+				return this._Questions;
+			}
+			set
+			{
+				this._Questions.Assign(value);
+			}
+		}
+		
+		public event PropertyChangingEventHandler PropertyChanging;
+		
+		public event PropertyChangedEventHandler PropertyChanged;
+		
+		protected virtual void SendPropertyChanging()
+		{
+			if ((this.PropertyChanging != null))
+			{
+				this.PropertyChanging(this, emptyChangingEventArgs);
+			}
+		}
+		
+		protected virtual void SendPropertyChanged(String propertyName)
+		{
+			if ((this.PropertyChanged != null))
+			{
+				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
+			}
+		}
+		
+		private void attach_Choices(Choice entity)
+		{
+			this.SendPropertyChanging();
+			entity.ChoiceSet = this;
+		}
+		
+		private void detach_Choices(Choice entity)
+		{
+			this.SendPropertyChanging();
+			entity.ChoiceSet = null;
+		}
+		
+		private void attach_Questions(Question entity)
+		{
+			this.SendPropertyChanging();
+			entity.ChoiceSet = this;
+		}
+		
+		private void detach_Questions(Question entity)
+		{
+			this.SendPropertyChanging();
+			entity.ChoiceSet = null;
+		}
 	}
 	
 	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.QuestionResults")]
-	public partial class QuestionResult
+	public partial class QuestionResult : INotifyPropertyChanging, INotifyPropertyChanged
 	{
+		
+		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
+		
+		private int _Id;
 		
 		private int _StudentId;
 		
-		private System.Nullable<int> _QuestionId;
+		private int _QuestionId;
 		
-		private System.Nullable<int> _ChoiceId;
+		private int _ChoiceId;
 		
-		private System.Nullable<bool> _IsCorrect;
+		private EntityRef<Choice> _Choice;
+		
+		private EntityRef<Member> _Member;
+		
+		private EntityRef<Question> _Question;
+		
+    #region Extensibility Method Definitions
+    partial void OnLoaded();
+    partial void OnValidate(System.Data.Linq.ChangeAction action);
+    partial void OnCreated();
+    partial void OnIdChanging(int value);
+    partial void OnIdChanged();
+    partial void OnStudentIdChanging(int value);
+    partial void OnStudentIdChanged();
+    partial void OnQuestionIdChanging(int value);
+    partial void OnQuestionIdChanged();
+    partial void OnChoiceIdChanging(int value);
+    partial void OnChoiceIdChanged();
+    #endregion
 		
 		public QuestionResult()
 		{
+			this._Choice = default(EntityRef<Choice>);
+			this._Member = default(EntityRef<Member>);
+			this._Question = default(EntityRef<Question>);
+			OnCreated();
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Id", AutoSync=AutoSync.OnInsert, DbType="Int NOT NULL IDENTITY", IsPrimaryKey=true, IsDbGenerated=true)]
+		public int Id
+		{
+			get
+			{
+				return this._Id;
+			}
+			set
+			{
+				if ((this._Id != value))
+				{
+					this.OnIdChanging(value);
+					this.SendPropertyChanging();
+					this._Id = value;
+					this.SendPropertyChanged("Id");
+					this.OnIdChanged();
+				}
+			}
 		}
 		
 		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_StudentId", DbType="Int NOT NULL")]
@@ -993,13 +1115,21 @@ namespace SLHS.Web
 			{
 				if ((this._StudentId != value))
 				{
+					if (this._Member.HasLoadedOrAssignedValue)
+					{
+						throw new System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException();
+					}
+					this.OnStudentIdChanging(value);
+					this.SendPropertyChanging();
 					this._StudentId = value;
+					this.SendPropertyChanged("StudentId");
+					this.OnStudentIdChanged();
 				}
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_QuestionId", DbType="Int")]
-		public System.Nullable<int> QuestionId
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_QuestionId", DbType="Int NOT NULL")]
+		public int QuestionId
 		{
 			get
 			{
@@ -1009,13 +1139,21 @@ namespace SLHS.Web
 			{
 				if ((this._QuestionId != value))
 				{
+					if (this._Question.HasLoadedOrAssignedValue)
+					{
+						throw new System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException();
+					}
+					this.OnQuestionIdChanging(value);
+					this.SendPropertyChanging();
 					this._QuestionId = value;
+					this.SendPropertyChanged("QuestionId");
+					this.OnQuestionIdChanged();
 				}
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_ChoiceId", DbType="Int")]
-		public System.Nullable<int> ChoiceId
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_ChoiceId", DbType="Int NOT NULL")]
+		public int ChoiceId
 		{
 			get
 			{
@@ -1025,24 +1163,138 @@ namespace SLHS.Web
 			{
 				if ((this._ChoiceId != value))
 				{
+					if (this._Choice.HasLoadedOrAssignedValue)
+					{
+						throw new System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException();
+					}
+					this.OnChoiceIdChanging(value);
+					this.SendPropertyChanging();
 					this._ChoiceId = value;
+					this.SendPropertyChanged("ChoiceId");
+					this.OnChoiceIdChanged();
 				}
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_IsCorrect", DbType="Bit")]
-		public System.Nullable<bool> IsCorrect
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Choice_QuestionResult", Storage="_Choice", ThisKey="ChoiceId", OtherKey="Id", IsForeignKey=true)]
+		public Choice Choice
 		{
 			get
 			{
-				return this._IsCorrect;
+				return this._Choice.Entity;
 			}
 			set
 			{
-				if ((this._IsCorrect != value))
+				Choice previousValue = this._Choice.Entity;
+				if (((previousValue != value) 
+							|| (this._Choice.HasLoadedOrAssignedValue == false)))
 				{
-					this._IsCorrect = value;
+					this.SendPropertyChanging();
+					if ((previousValue != null))
+					{
+						this._Choice.Entity = null;
+						previousValue.QuestionResults.Remove(this);
+					}
+					this._Choice.Entity = value;
+					if ((value != null))
+					{
+						value.QuestionResults.Add(this);
+						this._ChoiceId = value.Id;
+					}
+					else
+					{
+						this._ChoiceId = default(int);
+					}
+					this.SendPropertyChanged("Choice");
 				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Member_QuestionResult", Storage="_Member", ThisKey="StudentId", OtherKey="Id", IsForeignKey=true)]
+		public Member Member
+		{
+			get
+			{
+				return this._Member.Entity;
+			}
+			set
+			{
+				Member previousValue = this._Member.Entity;
+				if (((previousValue != value) 
+							|| (this._Member.HasLoadedOrAssignedValue == false)))
+				{
+					this.SendPropertyChanging();
+					if ((previousValue != null))
+					{
+						this._Member.Entity = null;
+						previousValue.QuestionResults.Remove(this);
+					}
+					this._Member.Entity = value;
+					if ((value != null))
+					{
+						value.QuestionResults.Add(this);
+						this._StudentId = value.Id;
+					}
+					else
+					{
+						this._StudentId = default(int);
+					}
+					this.SendPropertyChanged("Member");
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Question_QuestionResult", Storage="_Question", ThisKey="QuestionId", OtherKey="Id", IsForeignKey=true)]
+		public Question Question
+		{
+			get
+			{
+				return this._Question.Entity;
+			}
+			set
+			{
+				Question previousValue = this._Question.Entity;
+				if (((previousValue != value) 
+							|| (this._Question.HasLoadedOrAssignedValue == false)))
+				{
+					this.SendPropertyChanging();
+					if ((previousValue != null))
+					{
+						this._Question.Entity = null;
+						previousValue.QuestionResults.Remove(this);
+					}
+					this._Question.Entity = value;
+					if ((value != null))
+					{
+						value.QuestionResults.Add(this);
+						this._QuestionId = value.Id;
+					}
+					else
+					{
+						this._QuestionId = default(int);
+					}
+					this.SendPropertyChanged("Question");
+				}
+			}
+		}
+		
+		public event PropertyChangingEventHandler PropertyChanging;
+		
+		public event PropertyChangedEventHandler PropertyChanged;
+		
+		protected virtual void SendPropertyChanging()
+		{
+			if ((this.PropertyChanging != null))
+			{
+				this.PropertyChanging(this, emptyChangingEventArgs);
+			}
+		}
+		
+		protected virtual void SendPropertyChanged(String propertyName)
+		{
+			if ((this.PropertyChanged != null))
+			{
+				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
 			}
 		}
 	}

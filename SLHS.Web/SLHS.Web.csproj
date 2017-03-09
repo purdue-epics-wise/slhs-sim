@@ -103,10 +103,14 @@
     <Content Include="assets\css\font-awesome-4.7.0\css\font-awesome.min.css" />
     <Content Include="assets\css\font-awesome-4.7.0\fonts\fontawesome-webfont.svg" />
     <Content Include="assets\css\font-awesome-4.7.0\HELP-US-OUT.txt" />
+    <Content Include="assets\images\pic01.jpg" />
+    <Content Include="assets\images\pic02.jpg" />
     <Content Include="assets\video\video1.mp4" />
     <Content Include="Default.aspx" />
     <Content Include="Forms\Account\Login.aspx" />
     <Content Include="Forms\Account\Logout.aspx" />
+    <Content Include="Forms\Content\js\Training.js" />
+    <Content Include="Forms\Content\css\Training.css" />
     <Content Include="Forms\Professor\RegisterStudent.aspx" />
     <Content Include="Forms\Professor\ViewData.aspx" />
     <Content Include="Forms\Public\FAQ.aspx" />
@@ -241,6 +245,7 @@
     <Compile Include="Forms\Student\Training.aspx.designer.cs">
       <DependentUpon>Training.aspx</DependentUpon>
     </Compile>
+    <Compile Include="Helpers\WebConstant.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Shared\SLHS.Master.cs">
       <DependentUpon>SLHS.Master</DependentUpon>
@@ -255,6 +260,8 @@
       <DependentUpon>SLHS.dbml</DependentUpon>
     </Compile>
     <Compile Include="Utils\Credentials.cs" />
+    <Compile Include="Utils\Database.cs" />
+    <Compile Include="Utils\ExtensionMethods.cs" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Code\" />

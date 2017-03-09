@@ -1,5 +1,6 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Shared/SLHS.Master" AutoEventWireup="true" CodeBehind="Training.aspx.cs" Inherits="SLHS.Web.Forms.Student.Training" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
+   <link rel="stylesheet" href="/Forms/Content/css/Training.css" />
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="BodyContentPlaceHolder1" runat="server">
 
@@ -23,35 +24,24 @@
             <div class="8u  12u(narrower) important(narrower)">
                 <!-- Main stuff -->
                 <div id="content">
-                   <video id="video" width="640" height="480" controls>
+                   <video id="video" width="640" height="480" controls="controls">
                         <source src="/assets/video/video1.mp4" type="video/mp4"/>
                         Your browser does not support.
                     </video>
-                    <div id="quiz">
-                        <h3>quizzes</h3>
-                        <br/>
-                        <p>1. This is an example quiz question</p>
-            
-                            <input type="radio" name="gender" value="male"/> Male<br/>
-                            <input type="radio" name="gender" value="female"/> Female<br/>
-                            <input type="radio" name="gender" value="other"/> Other
-           
-                        <br/>
-                        <p>2. This is an example quiz question</p>
-           
-                            <input type="radio" name="gender" value="male"/> Male<br/>
-                            <input type="radio" name="gender" value="female"/> Female<br/>
-                            <input type="radio" name="gender" value="other"/> Other
-           
-                        <br/>
-                        <p>3. This is an example quiz question</p>
-           
-                            <input type="radio" name="gender" value="male"/> Male<br/>
-                            <input type="radio" name="gender" value="female"/> Female<br/>
-                            <input type="radio" name="gender" value="other"/> Other
-           
-           
+
+                    <!-- Quiz section -->
+                    <div id="quiz" runat="server">
+                        
                     </div>
+                   
+                    <asp:Button ID="Button1" runat="server" Text="Button" OnClick="ButtonSubmit_Click" />
+                    <!-- END Quiz section -->
+
+                    <!--Error/Result section-->
+                    <div id="result" runat="server">
+                       
+                    </div>
+                    <!-- END Error/Result section-->
 
                 </div>
                 <!-- END main stuff -->

@@ -1,4 +1,4 @@
-@import url("font-awesome.min.css");
+@import url("font-awesome-4.7.0/css/font-awesome.css");
 @import url("https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,300italic,600,600italic");
 
 /*
@@ -1792,7 +1792,7 @@
 /* Basic */
 
 	body {
-		background: #f7f7f7 url("images/bg01.png");
+		background: #f7f7f7 ;
 	}
 
 		body.is-loading * {
@@ -2335,7 +2335,7 @@
 		text-align: center;
 		padding: 3em 0 0 0;
 		background-color: #fff;
-		background-image: url("images/bg02.png"), url("images/bg02.png"), url("images/bg01.png");
+		
 		background-position: top left,					top left,					top left;
 		background-size: 100% 6em,					100% 6em,					auto;
 		background-repeat: no-repeat,					no-repeat,					repeat;
@@ -2530,7 +2530,7 @@
 
 		.wrapper.style2 {
 			background-color: #fff;
-			background-image: url("images/bg02.png"), url("images/bg03.png"), url("images/bg01.png");
+			
 			background-position: top left,						bottom left,					top left;
 			background-size: 100% 6em,						100% 6em,						auto;
 			background-repeat: no-repeat,						no-repeat,						repeat;
