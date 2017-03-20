@@ -1,10 +1,20 @@
 ﻿<?xml version="1.0" encoding="utf-8"?><Database Name="SLHS_DB" Class="SLHSDataContext" xmlns="http://schemas.microsoft.com/linqtosql/dbml/2007">
   <Connection Mode="WebSettings" ConnectionString="Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=|DataDirectory|\SLHS_DB.mdf;Integrated Security=True" SettingsObjectName="System.Configuration.ConfigurationManager.ConnectionStrings" SettingsPropertyName="SLHS_DBConnectionString" Provider="System.Data.SqlClient" />
-  <Table Name="dbo.Roles" Member="Roles">
-    <Type Name="Role">
+  <Table Name="dbo.Choices" Member="Choices">
+    <Type Name="Choice">
+      <Column Name="Id" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="ChoiceSetId" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="Content" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Association Name="Choice_QuestionResult" Member="QuestionResults" ThisKey="Id" OtherKey="ChoiceId" Type="QuestionResult" />
+      <Association Name="ChoiceSet_Choice" Member="ChoiceSet" ThisKey="ChoiceSetId" OtherKey="Id" Type="ChoiceSet" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.ChoiceSets" Member="ChoiceSets">
+    <Type Name="ChoiceSet">
       <Column Name="Id" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
       <Column Name="Content" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
-      <Association Name="Role_Member" Member="Members" ThisKey="Id" OtherKey="RoleId" Type="Member" />
+      <Association Name="ChoiceSet_Choice" Member="Choices" ThisKey="Id" OtherKey="ChoiceSetId" Type="Choice" />
+      <Association Name="ChoiceSet_Question" Member="Questions" ThisKey="Id" OtherKey="ChoiceSetId" Type="Question" />
     </Type>
   </Table>
   <Table Name="dbo.Members" Member="Members">
@@ -20,33 +30,6 @@
       <Association Name="Role_Member" Member="Role" ThisKey="RoleId" OtherKey="Id" Type="Role" IsForeignKey="true" />
     </Type>
   </Table>
-  <Table Name="dbo.Choices" Member="Choices">
-    <Type Name="Choice">
-      <Column Name="Id" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
-      <Column Name="ChoiceSetId" Type="System.Int32" DbType="Int" CanBeNull="true" />
-      <Column Name="Content" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
-      <Association Name="Choice_QuestionResult" Member="QuestionResults" ThisKey="Id" OtherKey="ChoiceId" Type="QuestionResult" />
-      <Association Name="ChoiceSet_Choice" Member="ChoiceSet" ThisKey="ChoiceSetId" OtherKey="Id" Type="ChoiceSet" IsForeignKey="true" />
-    </Type>
-  </Table>
-  <Table Name="dbo.Questions" Member="Questions">
-    <Type Name="Question">
-      <Column Name="Id" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
-      <Column Name="Content" Type="System.String" DbType="NVarChar(50) NOT NULL" CanBeNull="false" />
-      <Column Name="ChoiceSetId" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
-      <Column Name="ChoiceCorrectId" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
-      <Association Name="Question_QuestionResult" Member="QuestionResults" ThisKey="Id" OtherKey="QuestionId" Type="QuestionResult" />
-      <Association Name="ChoiceSet_Question" Member="ChoiceSet" ThisKey="ChoiceSetId" OtherKey="Id" Type="ChoiceSet" IsForeignKey="true" />
-    </Type>
-  </Table>
-  <Table Name="dbo.ChoiceSets" Member="ChoiceSets">
-    <Type Name="ChoiceSet">
-      <Column Name="Id" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
-      <Column Name="Content" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
-      <Association Name="ChoiceSet_Choice" Member="Choices" ThisKey="Id" OtherKey="ChoiceSetId" Type="Choice" />
-      <Association Name="ChoiceSet_Question" Member="Questions" ThisKey="Id" OtherKey="ChoiceSetId" Type="Question" />
-    </Type>
-  </Table>
   <Table Name="dbo.QuestionResults" Member="QuestionResults">
     <Type Name="QuestionResult">
       <Column Name="Id" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
@@ -56,6 +39,32 @@
       <Association Name="Choice_QuestionResult" Member="Choice" ThisKey="ChoiceId" OtherKey="Id" Type="Choice" IsForeignKey="true" />
       <Association Name="Member_QuestionResult" Member="Member" ThisKey="StudentId" OtherKey="Id" Type="Member" IsForeignKey="true" />
       <Association Name="Question_QuestionResult" Member="Question" ThisKey="QuestionId" OtherKey="Id" Type="Question" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.Roles" Member="Roles">
+    <Type Name="Role">
+      <Column Name="Id" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="Content" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Association Name="Role_Member" Member="Members" ThisKey="Id" OtherKey="RoleId" Type="Member" />
+    </Type>
+  </Table>
+  <Table Name="dbo.Questions" Member="Questions">
+    <Type Name="Question">
+      <Column Name="Id" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="Content" Type="System.String" DbType="NVarChar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="ChoiceSetId" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="ChoiceCorrectId" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="TrainingId" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Association Name="Question_QuestionResult" Member="QuestionResults" ThisKey="Id" OtherKey="QuestionId" Type="QuestionResult" />
+      <Association Name="ChoiceSet_Question" Member="ChoiceSet" ThisKey="ChoiceSetId" OtherKey="Id" Type="ChoiceSet" IsForeignKey="true" />
+      <Association Name="Train_Question" Member="Train" ThisKey="TrainingId" OtherKey="Id" Type="Train" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.Trains" Member="Trains">
+    <Type Name="Train">
+      <Column Name="Id" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="Name" Type="System.String" DbType="NVarChar(50) NOT NULL" CanBeNull="false" />
+      <Association Name="Train_Question" Member="Questions" ThisKey="Id" OtherKey="TrainingId" Type="Question" />
     </Type>
   </Table>
 </Database>

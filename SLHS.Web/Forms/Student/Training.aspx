@@ -26,6 +26,7 @@
                 <div id="content">
                    <video id="video" width="640" height="480" controls="controls">
                         <source src="/assets/video/video1.mp4" type="video/mp4"/>
+                      
                         Your browser does not support.
                     </video>
 
@@ -34,7 +35,7 @@
                         
                     </div>
                    
-                    <asp:Button ID="Button1" runat="server" Text="Button" OnClick="ButtonSubmit_Click" />
+                    <asp:Button ID="Button1" runat="server" Text="Submit Answers" OnClick="ButtonSubmit_Click" />
                     <!-- END Quiz section -->
 
                     <!--Error/Result section-->

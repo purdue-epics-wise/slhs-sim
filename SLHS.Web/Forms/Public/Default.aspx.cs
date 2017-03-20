@@ -11,7 +11,7 @@ namespace SLHS.Web.Forms.Public
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-            Label1.Text = DateTime.Now.ToString();
+           
         }
     }
 }

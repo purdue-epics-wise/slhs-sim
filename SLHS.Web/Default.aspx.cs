@@ -4,6 +4,7 @@ using System.Linq;
 using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
+using SLHS.Web.Helpers;
 
 namespace SLHS.Web
 {
@@ -11,7 +12,7 @@ namespace SLHS.Web
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-            Response.Redirect("/Forms/Public/Default.apsx", true);
+            //Response.Redirect(WebConstant.PublicDefaultUrl);
         }
     }
 }

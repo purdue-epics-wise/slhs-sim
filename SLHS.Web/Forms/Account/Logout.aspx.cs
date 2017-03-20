@@ -4,6 +4,7 @@ using System.Linq;
 using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
+using SLHS.Web.Helpers;
 
 namespace SLHS.Web.Forms.Account
 {
@@ -12,7 +13,7 @@ namespace SLHS.Web.Forms.Account
         protected void Page_Load(object sender, EventArgs e)
         {
             Session.Abandon();
-            Response.Redirect("/Forms/Public/", true);
+            Response.Redirect(WebConstant.PublicDefaultUrl, true);
         }
     }
 }

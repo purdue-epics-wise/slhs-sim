@@ -15,9 +15,9 @@ namespace SLHS.Web.Utils
         /// </summary>
         /// <param name="member"></param>
         /// <returns></returns>
-        public static Role getRole(this Member member)
-        {
-            return null;
-        }
+        //public static Role getRole(this Member member)
+        //{
+        //    return null;
+        //}
     }
 }
