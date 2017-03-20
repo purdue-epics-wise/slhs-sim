@@ -34,6 +34,10 @@
 	                <p><strong>How do I start?: </strong>Contact Barbara 
 	                Cicolski at Speech, Language and Hearing Science Depart at Purdue 
 	                University.</p>
+                    <p><strong>This a test </strong>Contact Barbara 
+	                Cicolski at Speech, Language and Hearing Science Depart at Purdue 
+	                University.</p>
+
 
                 </div>
                 <!-- END main stuff -->
