@@ -267,18 +267,10 @@ namespace SLHS.Web.Forms.Student
                 + "<br> Or See your result in the Result page"
                 + "<br> <hr />";
 
-            //simple result link
-            HyperLink resultLink = new HyperLink();
-
+            //redirect student to see the result           
             //ex: "/Forms/Student/ViewResult.aspx?trainID=1"
-            resultLink.NavigateUrl = WebConstant.ViewResultUrl + "?" + WebConstant.TrainID + trainingId;
-            Button resultBtn = new Button();
-            resultBtn.Text = "==> Result";
-            resultLink.Controls.Add(resultBtn);
-
-            //add them
-            result.Controls.Add(label);
-            result.Controls.Add(resultLink);
+            Response.Redirect( WebConstant.ViewResultUrl + "?" + WebConstant.TrainID + "="+ trainingId);
+            
         }
 
        

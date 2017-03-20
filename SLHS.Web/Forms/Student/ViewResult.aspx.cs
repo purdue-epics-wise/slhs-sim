@@ -5,6 +5,7 @@ using System.Data.Linq;
 using System.Linq;
 using System.Web;
 using System.Web.UI;
+using System.Web.UI.HtmlControls;
 using System.Web.UI.WebControls;
 
 namespace SLHS.Web.Forms.Student
@@ -19,6 +20,8 @@ namespace SLHS.Web.Forms.Student
         private Train curTrain;
         private Member curMember;
 
+        private int totalQuestions; //count the total questions student answered
+        private int correctQuestions; //count how many those correct.
 
         protected void Page_Load(object sender, EventArgs e)
         {
@@ -31,6 +34,8 @@ namespace SLHS.Web.Forms.Student
             LoadMember();
             LoadTrainingID();
             LoadPreviousAnswers();
+            LoadQuestionWithAnswer();
+            LoadScore();
         }
 
         /// <summary>
@@ -63,8 +68,8 @@ namespace SLHS.Web.Forms.Student
             }
             else
             {
-                //error
-                trainingId = -1;
+                //no training, throw student back
+                Response.Redirect(WebConstant.PublicDefaultUrl, true);
             }
 
             //get the actual train.
@@ -72,7 +77,7 @@ namespace SLHS.Web.Forms.Student
                                       where t.Id == trainingId
                                       select t;
 
-            if (query.Count<Train>() == 0)
+            if (query.Count() == 0)
             {
                 return;
             }
@@ -86,7 +91,103 @@ namespace SLHS.Web.Forms.Student
         /// </summary>
         void LoadQuestionWithAnswer()
         {
+            //init some variable                        
+            int curQuestion = 0;
+            totalQuestions = previousAnswers.Count;
+            correctQuestions = 0;
 
+            //display each question-choices-correct answer
+            foreach(Question question in previousAnswers.Keys)
+            {
+                //wrap question around <div id="question1">
+                HtmlGenericControl questionDiv = new HtmlGenericControl("div");
+                questionDiv.ID = "question" + curQuestion;
+
+                //question header
+                HtmlGenericControl header = new HtmlGenericControl("h3");
+                header.InnerText = "Question " + curQuestion;
+                header.Attributes.Add("class", "questionHeader"); //add css to make it looks good
+
+                //question content
+                HtmlGenericControl h3 = new HtmlGenericControl("h3");
+                h3.InnerText = question.Content;
+
+                //question choice
+                RadioButtonList radioList = new RadioButtonList();
+                radioList.Enabled = false; //disable so that user cannot choose
+                EntitySet<Choice> choiceSet = question.ChoiceSet.Choices;
+
+                //previous choice
+                QuestionResult result;
+                previousAnswers.TryGetValue(question, out result);
+                if (result == null)
+                {
+                    DisplayError();
+                    return;
+                }
+
+                //increase points if correct
+                if (result.ChoiceId == question.ChoiceCorrectId)
+                {
+                    correctQuestions++;
+                }
+
+                //load choice[] into a question
+                //choice will be ListItem(content, id)             
+                foreach (Choice choice in choiceSet)
+                {
+                    ListItem item = new ListItem(choice.Content, choice.Id.ToString());
+
+                    //make text->red if student pick this
+                    //the class can be found in Content/Training.css
+                    if (choice.Id == result.ChoiceId)
+                    {
+                        item.Attributes.CssStyle.Add("color", "red");
+                        item.Selected = true;                  
+                    }
+                        
+
+                    //make text->green if this is correct                   
+                    if (choice.Id == question.ChoiceCorrectId)
+                    {
+                        item.Attributes.CssStyle.Clear();
+                        item.Attributes.CssStyle.Add("color", "green");                      
+                    }    
+                    
+                    //add item to radio button list
+                    radioList.Items.Add(item);
+                  
+                }
+
+                //add those to question div
+                questionDiv.Controls.Add(header);
+                questionDiv.Controls.Add(h3);
+                questionDiv.Controls.Add(radioList);
+                curQuestion++;
+
+                //add those to quiz div
+                //so it looks like quiz = [question1, question2]
+                quiz.Controls.Add(questionDiv);
+                
+            }
+        }
+
+        /// <summary>
+        /// Display score of student
+        /// on <div id="score"></div>
+        /// </summary>
+        void LoadScore()
+        {
+            //simple calculate
+            HtmlGenericControl points = new HtmlGenericControl("h3");
+            int percent = (correctQuestions / totalQuestions) * 100;
+
+            //display those
+            points.InnerText = "Score: " 
+                + correctQuestions + " / " + totalQuestions
+                + "<br/>" + percent + " %";
+
+            score.Controls.Add(points);
         }
 
         /// <summary>
@@ -120,6 +221,18 @@ namespace SLHS.Web.Forms.Student
                 //track them in dictionary
                 previousAnswers.Add(question, result);
             }
+        }
+
+        /// <summary>
+        /// simply display possible error in train page
+        /// </summary>
+        private void DisplayError()
+        {
+            Label label = new Label();
+            label.Text = "Some  thing goes wrong<br>";
+
+            result.Controls.Add(label);
+
         }
     }
 }

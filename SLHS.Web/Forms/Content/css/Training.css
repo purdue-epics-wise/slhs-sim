@@ -23,3 +23,12 @@ input.radio {
     font-weight:bold;
     text-decoration:underline;
 }
+
+.chosenChoice {
+    
+    color: red;
+}
+
+.correctChoice {
+    color: green;
+}

@@ -116,6 +116,7 @@
     <Content Include="Forms\Professor\ViewData.aspx" />
     <Content Include="Forms\Public\FAQ.aspx" />
     <Content Include="Forms\Student\Training.aspx" />
+    <Content Include="Forms\Student\TrainResult.aspx" />
     <Content Include="Forms\Student\ViewResult.aspx" />
     <Content Include="packages.config" />
     <Content Include="ApplicationInsights.config">
@@ -247,6 +248,13 @@
     </Compile>
     <Compile Include="Forms\Student\Training.aspx.designer.cs">
       <DependentUpon>Training.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\Student\TrainResult.aspx.cs">
+      <DependentUpon>TrainResult.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Forms\Student\TrainResult.aspx.designer.cs">
+      <DependentUpon>TrainResult.aspx</DependentUpon>
     </Compile>
     <Compile Include="Forms\Student\ViewResult.aspx.cs">
       <DependentUpon>ViewResult.aspx</DependentUpon>

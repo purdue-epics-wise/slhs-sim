@@ -1,5 +1,7 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Shared/SLHS.Master" AutoEventWireup="true" CodeBehind="ViewResult.aspx.cs" Inherits="SLHS.Web.Forms.Student.ViewResult" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
+    <!-- Some CSS to make questions look pretty-->
+    <link rel="stylesheet" href="/Forms/Content/css/Training.css" />
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="BodyContentPlaceHolder1" runat="server">
 
@@ -19,13 +21,26 @@
             <div class="8u  12u(narrower) important(narrower)">
                 <!-- Main stuff -->
                 <div id="content">
-                   
+                   <!-- Video section -->
+                    <video id="video" width="640" height="480" controls="controls">
+                        <source src="/assets/video/video1.mp4" type="video/mp4"/>
+                      
+                        Your browser does not support.
+                    </video>
+                    <!-- END Video section -->
+
+                    <!-- Score section -->
+                    <div id="score" runat="server">
+                       
+                    </div>
+                    <!-- END Score section-->
+
                     <!-- Quiz section -->
                     <div id="quiz" runat="server">
                         
                     </div>
                    
-                    <asp:Button ID="Button1" runat="server" Text="Submit Answers" OnClick="ButtonSubmit_Click" />
+                   
                     <!-- END Quiz section -->
 
                     <!--Error/Result section-->
