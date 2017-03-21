@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title>videoplayer</title>
+        <script type="text/css">
+            // css goes here
+        </script>
+    </head>
+    <body>
+        <video id="video" width="640" height="480" controls>
+            <source src="video1.mp4" type="video/mp4">
+            Your browser does not support.
+        </video>
+        <div id="quiz1" style="display:none">
+            <h3>quizzes</h3>
+            <br>
+            <p>this is quiz 1</p>
+            <p>1. This is an example quiz question</p>
+            <form action="">
+                <input type="radio" name="gender" value="male"> Male<br>
+                <input type="radio" name="gender" value="female"> Female<br>
+                <input type="radio" name="gender" value="other"> Other
+            </form>
+            <br>
+            <p>2. This is an example quiz question</p>
+            <form action="">
+                <input type="radio" name="gender" value="male"> Male<br>
+                <input type="radio" name="gender" value="female"> Female<br>
+                <input type="radio" name="gender" value="other"> Other
+            </form>
+            <br>
+            <p>3. This is an example quiz question</p>
+            <form action="">
+                <input type="radio" name="gender" value="male"> Male<br>
+                <input type="radio" name="gender" value="female"> Female<br>
+                <input type="radio" name="gender" value="other"> Other
+            </form>
+            <button onclick="next()">next1</button>
+        </div>
+        <div id="quiz2" style="display:none">
+            <h3>quizzes</h3>
+            <br>
+            <p>This is quiz 2</p>
+            <p>1. This is an example quiz question</p>
+            <form action="">
+                <input type="radio" name="gender" value="male"> Male<br>
+                <input type="radio" name="gender" value="female"> Female<br>
+                <input type="radio" name="gender" value="other"> Other
+            </form>
+            <br>
+            <p>2. This is an example quiz question</p>
+            <form action="">
+                <input type="radio" name="gender" value="male"> Male<br>
+                <input type="radio" name="gender" value="female"> Female<br>
+                <input type="radio" name="gender" value="other"> Other
+            </form>
+            <br>
+            <p>3. This is an example quiz question</p>
+            <form action="">
+                <input type="radio" name="gender" value="male"> Male<br>
+                <input type="radio" name="gender" value="female"> Female<br>
+                <input type="radio" name="gender" value="other"> Other
+            </form>
+            <button onclick="next()">next2</button>
+        </div>
+        <div id="quiz3" style="display:none">
+            <h3>quizzes</h3>
+            <br>
+            <p>This is quiz 3</p>
+            <p>1. This is an example quiz question</p>
+            <form action="">
+                <input type="radio" name="gender" value="male"> Male<br>
+                <input type="radio" name="gender" value="female"> Female<br>
+                <input type="radio" name="gender" value="other"> Other
+            </form>
+            <br>
+            <p>2. This is an example quiz question</p>
+            <form action="">
+                <input type="radio" name="gender" value="male"> Male<br>
+                <input type="radio" name="gender" value="female"> Female<br>
+                <input type="radio" name="gender" value="other"> Other
+            </form>
+            <br>
+            <p>3. This is an example quiz question</p>
+            <form action="">
+                <input type="radio" name="gender" value="male"> Male<br>
+                <input type="radio" name="gender" value="female"> Female<br>
+                <input type="radio" name="gender" value="other"> Other
+            </form>
+            <button onclick="next()">submit3</button>
+        </div>
+    </body>
+
+    <script type='text/javascript'>
+        var points = [5, 10, 15],
+            index = 0,
+            currentStopTime = points[index];
+        function displayQuiz(i) {
+            if (i === -1) {
+                document.getElementById('quiz1').style.display = "none";
+                document.getElementById('quiz2').style.display = "none";
+                document.getElementById('quiz3').style.display = "none";
+            } else if (i === 0) {
+                document.getElementById('quiz1').style.display = "block";
+                document.getElementById('quiz2').style.display = "none";
+                document.getElementById('quiz3').style.display = "none";
+            } else if (i === 1) {
+                document.getElementById('quiz1').style.display = "none";
+                document.getElementById('quiz2').style.display = "block";
+                document.getElementById('quiz3').style.display = "none";
+            } else {
+                document.getElementById('quiz1').style.display = "none";
+                document.getElementById('quiz2').style.display = "none";
+                document.getElementById('quiz3').style.display = "block";
+            }
+        }
+
+        var video = document.getElementById('video');
+
+        function next() {
+            if (points.length > ++index) {
+                currentStopTime = points[index];
+                displayQuiz(-1);
+                video.play();
+            } else {
+                alert("finished");
+            }
+        }
+
+        video.addEventListener("timeupdate", function() {
+            if (this.currentTime >= currentStopTime) {
+                this.pause();
+                this.currentTime = currentStopTime;
+                displayQuiz(index);
+            }
+        });
+
+    </script>
+</html>
