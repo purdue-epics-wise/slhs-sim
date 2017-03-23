@@ -38,5 +38,14 @@ namespace SLHS.Web.Shared {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.ContentPlaceHolder BodyContentPlaceHolder1;
+        
+        /// <summary>
+        /// ContentPlaceHolderScript control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.ContentPlaceHolder ContentPlaceHolderScript;
     }
 }

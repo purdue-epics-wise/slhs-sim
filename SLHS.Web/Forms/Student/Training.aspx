@@ -51,4 +51,14 @@
         </div>
     </div>
 </section>
+
+
+</asp:Content>
+
+<asp:Content ID="Content3" ContentPlaceHolderID="ContentPlaceHolderScript" runat="server">
+       
+<script src="/Forms/Content/js/Training.js" type="text/javascript"></script>
+
+
+
 </asp:Content>

@@ -183,7 +183,7 @@ namespace SLHS.Web.Forms.Student
             int percent = (correctQuestions / totalQuestions) * 100;
 
             //display those
-            points.InnerText = "Score: " 
+            points.InnerHtml = "Score: " 
                 + correctQuestions + " / " + totalQuestions
                 + "<br/>" + percent + " %";
 

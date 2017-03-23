@@ -150,5 +150,10 @@
 <!--[if lte IE 8]><script src="assets/js/ie/respond.min.js"></script><![endif]-->
 <script src="/assets/js/main.js"></script>
 
+
+<asp:ContentPlaceHolder ID="ContentPlaceHolderScript" runat="server">
+        
+</asp:ContentPlaceHolder>
+
 </body>
 </html>

@@ -119,6 +119,7 @@ namespace SLHS.Web.Forms.Student
                 //wrap question around <div id="question1">
                 HtmlGenericControl questionDiv = new HtmlGenericControl("div");
                 questionDiv.ID = "question" + curQuestion;
+                questionDiv.Attributes.CssStyle.Add("display", "none"); //Chuyang made me do it
 
                 //question header
                 HtmlGenericControl header = new HtmlGenericControl("h3");
@@ -147,11 +148,22 @@ namespace SLHS.Web.Forms.Student
                 validator.ErrorMessage = "You forgot this question :|";
                 curQuestion++;
 
+                //add JavaScript button
+                Button preButton = new Button();
+                preButton.OnClientClick = "prev(); return false;"; //function in Training.js
+                preButton.Text = "Prev";
+
+                Button nextButton = new Button();
+                nextButton.OnClientClick = "next(); return false;"; //return false: set postBack to False 
+                nextButton.Text = "Next";
+
                 //add those to question div
                 questionDiv.Controls.Add(header);
                 questionDiv.Controls.Add(h3);
                 questionDiv.Controls.Add(radioList);
                 questionDiv.Controls.Add(validator);
+                questionDiv.Controls.Add(preButton);
+                questionDiv.Controls.Add(nextButton);
 
                 //add those to quiz div
                 //so it looks like quiz = [question1, question2]
