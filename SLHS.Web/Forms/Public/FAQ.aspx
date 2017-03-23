@@ -22,21 +22,17 @@
             <div class="8u  12u(narrower) important(narrower)">
                 <!-- Main stuff -->
                 <div id="content">
-                    <p><strong>What is project about?</strong>: We are a 
-	                student of 4 at Purdue EPICS program involved in creating a webpage for 
-	                PPVT-IV testing</p>
-	                <p><strong>What is PPVT-IV</strong>: PPVT-IV is a test 
-	                that is required for SLHS department to evaluate the an individual's&nbsp; 
-	                vocabulary skills.</p>
-	                <p><strong>What is your purpose?</strong>: By providing 
+                    <p><strong>What is our project about?</strong>: We are an EPICS program
+	                students of 4 at Purdue EPICS program involved in creating a webpage that trains  
+                    SLHS students to become a test proctor for PPVT-IV testing service.</p>
+	                <p><strong>What is PPVT-IV testing? </strong>: PPVT-IV is a test that evaluates an individuals ability in language understanding
+	                English vocabulary skills.</p>
+	                <p><strong>What is our purpose?</strong>: By providing 
 	                a learning web-paged program for SLHS students, we believe that we can train 
-	                students to become test proctor for students who needs to be evaluated.</p>
-	                <p><strong>How do I start?: </strong>Contact Barbara 
+	                students to become test proctor for students who needs to be evaluated. This would significantly reduce the amount of time necessary to train each student. This program would at student's pace and does not require for student to be on site. All you need is you and your computer. </p>
+	                <p><strong>How do I start?: </strong>: First you have to contact Barbara 
 	                Cicolski at Speech, Language and Hearing Science Depart at Purdue 
-	                University.</p>
-                    <p><strong>This a test </strong>Contact Barbara 
-	                Cicolski at Speech, Language and Hearing Science Depart at Purdue 
-	                University.</p>
+	                University.Her e-mail is cicholsb@purdue.edu. Once you get an approval from her, she will provide the direction on how one should start to get trained.</p>
 
 
                 </div>
