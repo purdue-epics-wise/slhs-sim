@@ -1,6 +1,8 @@
-﻿using System;
+﻿using SLHS.Web.Helpers;
+using System;
 using System.Collections.Generic;
 using System.Data;
+using System.Data.Linq;
 using System.Linq;
 using System.Web;
 using System.Web.UI;
@@ -10,14 +12,38 @@ namespace SLHS.Web.Forms.Student
 {
     public partial class TrainResult : System.Web.UI.Page
     {
+        //some constant
+        private const string TRAINING = "Training";
+        private const string SCORE    = "Score";
+        private const string PERCENT  = "Percent";
+        private const string PASS     = "Pass";
+
         private SLHSDataContext SLHS_DB = new SLHSDataContext();
-        private int passGrade = 100; //student needs to be above this grade to pass
+        private int passPercent = 100; //student needs to be above this to pass
 
         private Member curMember;
         protected void Page_Load(object sender, EventArgs e)
         {
+            //check signed in
+            if (Session[WebConstant.User] == null)
+            {
+                Response.Redirect(WebConstant.PublicDefaultUrl, true);
+            }
+
+            LoadMember();
             LoadDataTable();
         }
+
+
+        /// <summary>
+        /// simple function to load Session["User"] into
+        /// private field
+        /// </summary>
+        void LoadMember()
+        {
+            curMember = (Member)Session[WebConstant.User];
+        }
+
 
         /// <summary>
         /// populate data into GridView
@@ -31,10 +57,14 @@ namespace SLHS.Web.Forms.Student
             AddColumnToTable(table);
 
             //add rows
-            table.Rows.Add("training 1", "2/2", 100, true);
-            table.Rows.Add("training 2", "3/3", 100, true);
-            table.Rows.Add("training 3", "2/5", 40, false);
-            table.Rows.Add("training 4", "0/2", 0, false);
+            IQueryable<Train> query = from t in SLHS_DB.Trains
+                                      select t;
+
+            Train[] trainings = query.ToArray();
+            foreach (Train t in trainings)
+            {
+                AddRowToTable(table, t);
+            }
 
             //bind data to grid view
             gridViewResult.DataSource = table;
@@ -47,16 +77,57 @@ namespace SLHS.Web.Forms.Student
         /// <param name="table"></param>
         void AddColumnToTable(DataTable table)
         {
-            table.Columns.Add("Training", typeof(string));
-            table.Columns.Add("Score", typeof(string));
-            table.Columns.Add("Percent", typeof(int));
-            table.Columns.Add("Pass", typeof(bool));
+            table.Columns.Add(TRAINING, typeof(string));
+            table.Columns.Add(SCORE   , typeof(string));
+            table.Columns.Add(PERCENT , typeof(int));
+            table.Columns.Add(PASS    , typeof(bool));
         }
 
-
-        void AddRowToTable(DataTable table, QuestionResult result)
+        /// <summary>
+        /// for every training available, calculate their score
+        /// that a student get,
+        /// put the score in a table_row, 
+        /// put that row into the 'table'
+        /// </summary>
+        /// <param name="table"></param>
+        /// <param name="training"></param>
+        void AddRowToTable(DataTable table, Train training)
         {
+         
+            //get all the question_result to determine student score
+            EntitySet<Question> questions = training.Questions;
+            int allQuestions = questions.Count;
+            int correctQuestions = 0;
+          
+            //calculate
+            foreach (Question q in questions)
+            {
+                //since every student can only answer once
+                QuestionResult result = q.QuestionResults.Where(r => r.StudentId == curMember.Id).FirstOrDefault();
+                
+                //student not answer yet   
+                if (result == null) break;        
+                if (result.ChoiceId == q.ChoiceCorrectId)
+                    correctQuestions++;
 
+            }
+
+            //put them together  
+            bool isPass = false;
+            string score = correctQuestions + "/" + allQuestions;
+            int percent = (correctQuestions / allQuestions) * 100;
+            if (percent > passPercent)
+                isPass = true;
+            
+            //put data into row
+            DataRow row = table.NewRow();
+            row[TRAINING] = training.Name;
+            row[SCORE]    = score;
+            row[PERCENT]  = percent;
+            row[PASS] = isPass;
+
+            //add them to table
+            table.Rows.Add(row);
         }
 
 

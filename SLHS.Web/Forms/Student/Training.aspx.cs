@@ -31,9 +31,12 @@ namespace SLHS.Web.Forms.Student
                 Response.Redirect(WebConstant.PublicDefaultUrl, true);
             }
 
-            //load things up
+            //load check first
             LoadMember();
             LoadTrainingID();
+
+            //load content
+            LoadVideo();
             LoadPreviousAnswers();
             LoadQuestion();
             
@@ -86,7 +89,22 @@ namespace SLHS.Web.Forms.Student
             
         }
 
-        
+        /// <summary>
+        /// LoadVideo() load the specific video for the training
+        /// for now, it will load simple video with that training
+        /// ex: traingID = 2, video = "video2.mp4"
+        /// </summary>
+        private void LoadVideo()
+        {
+            //get video source
+            string source = "/assets/video/video" + curTrain.Id + ".mp4";
+            HtmlGenericControl videoSrc = new HtmlGenericControl("source");
+            videoSrc.Attributes.Add("src", source);
+            videoSrc.Attributes.Add("type", "video/mp4");
+
+            //append video source to video
+            video.Controls.Add(videoSrc);
+        }
         
         /// <summary>
         /// LoadQuestion() based on current training

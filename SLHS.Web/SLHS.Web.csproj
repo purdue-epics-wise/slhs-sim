@@ -106,7 +106,8 @@
     <Content Include="assets\images\pic01.jpg" />
     <Content Include="assets\images\pic02.jpg" />
     <Content Include="assets\video\video1.mp4" />
-    <Content Include="assets\video\video1.ogv" />
+    <Content Include="assets\video\video2.mp4" />
+    <Content Include="assets\video\video3.mp4" />
     <Content Include="Default.aspx" />
     <Content Include="Forms\Account\Login.aspx" />
     <Content Include="Forms\Account\Logout.aspx" />

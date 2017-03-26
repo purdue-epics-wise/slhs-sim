@@ -13,6 +13,15 @@ namespace SLHS.Web.Forms.Student {
     public partial class Training {
         
         /// <summary>
+        /// video control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlVideo video;
+        
+        /// <summary>
         /// quiz control.
         /// </summary>
         /// <remarks>

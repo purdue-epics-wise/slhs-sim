@@ -13,7 +13,7 @@ function displayQuiz(index) {
     }
 }
 
-var video = document.getElementById('video');
+var video = document.getElementById('BodyContentPlaceHolder1_video');
 
 function prev() {
     if (index > 0) {

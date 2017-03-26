@@ -23,6 +23,7 @@
                 <!-- Main stuff -->
                 <div id="content">
                    
+                    <h3> Results in available trainings</h3>
                     <!-- Training Result section-->                  
                     <div id="trainResult" runat="server">
                         <!-- GridView:: display multiple trainings result-->

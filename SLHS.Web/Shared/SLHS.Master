@@ -52,6 +52,7 @@
                                     <a href="#">Simulation <i class="fa fa-caret-down" aria-hidden="true"></i></a>
                                     <ul>
                                         <li><a href="/Forms/Student/Training.aspx?trainID=1">Training 1</a></li>
+                                        <li><a href="/Forms/Student/Training.aspx?trainID=2">Training 2</a></li>
                                         <li><a href="/Forms/Student/TrainResult.aspx">Train Result</a></li>
                                         
                                     </ul>
