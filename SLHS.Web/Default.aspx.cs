@@ -12,7 +12,7 @@ namespace SLHS.Web
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-            //Response.Redirect(WebConstant.PublicDefaultUrl);
+            Response.Redirect("Forms/Public/Default.aspx");
         }
     }
 }

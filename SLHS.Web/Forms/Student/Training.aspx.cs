@@ -130,8 +130,9 @@ namespace SLHS.Web.Forms.Student
                 DisplayNoQuestion(message:"questionSet null or no questions right now");
                 return;
             }
-            
-            //render questions                  
+
+            //render questions   
+            int i = 0;   // recording question number            
             foreach (Question question in questionSet)
             {
                 //wrap question around <div id="question1">
@@ -166,22 +167,31 @@ namespace SLHS.Web.Forms.Student
                 validator.ErrorMessage = "You forgot this question :|";
                 curQuestion++;
 
-                //add JavaScript button
-                Button preButton = new Button();
-                preButton.OnClientClick = "prev(); return false;"; //function in Training.js
-                preButton.Text = "Prev";
-
-                Button nextButton = new Button();
-                nextButton.OnClientClick = "next(); return false;"; //return false: set postBack to False 
-                nextButton.Text = "Next";
-
                 //add those to question div
                 questionDiv.Controls.Add(header);
                 questionDiv.Controls.Add(h3);
                 questionDiv.Controls.Add(radioList);
                 questionDiv.Controls.Add(validator);
-                questionDiv.Controls.Add(preButton);
+
+
+                //add JavaScript button
+                if (i != 0) // no need to load prev button for question 0
+                {
+                    Button preButton = new Button();
+                    preButton.OnClientClick = "prev(); return false;"; //function in Training.js
+                    preButton.Text = "Prev";
+                    questionDiv.Controls.Add(preButton);
+                }
+
+                Button nextButton = new Button();
+                nextButton.OnClientClick = "next(); return false;"; //return false: set postBack to False 
+                nextButton.Text = "Next";
+                if (i == questionSet.Count - 1) // last question
+                {
+                    nextButton.Text = "Submit";
+                } 
                 questionDiv.Controls.Add(nextButton);
+
 
                 //add those to quiz div
                 //so it looks like quiz = [question1, question2]
@@ -190,7 +200,7 @@ namespace SLHS.Web.Forms.Student
                 //add those to dictionary to use 
                 //with the previous answer dictionary
                 questionDict.Add(question, radioList);
-                
+                i++;
             }
 
         }

@@ -5,11 +5,17 @@
 //asp make ID looks sucks
 var questions = document.getElementById('BodyContentPlaceHolder1_quiz').getElementsByTagName('div');
 function displayQuiz(index) {
+    if (index == questions.length) { // display all
+        for (var i = 0; i < questions.length; i++) {
+            questions[i].style.display = 'block';
+        }
+        return;
+    }
     for (var i = 0; i < questions.length; i++) {
         questions[i].style.display = 'none';
     }
     if (index != -1) {
-        questions[index].style.display = 'block';
+            questions[index].style.display = 'block';
     }
 }
 
@@ -23,12 +29,13 @@ function prev() {
 }
 
 function next() {
+    console.log(index);
     if (points.length > ++index) {
         currentStopTime = points[index];
         displayQuiz(-1);
         video.play();
     } else {
-        alert("finished");
+        document.getElementById("Button1").click();
     }
 }
 
