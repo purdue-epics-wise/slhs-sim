@@ -97,7 +97,7 @@ namespace SLHS.Web.Forms.Student
         private void LoadVideo()
         {
             //get video source
-            string source = "/assets/video/video" + curTrain.Id + ".mp4";
+            string source = "/assets/video/video" + curTrain.Id + ".webm";
             HtmlGenericControl videoSrc = new HtmlGenericControl("source");
             videoSrc.Attributes.Add("src", source);
             videoSrc.Attributes.Add("type", "video/mp4");
