@@ -50,9 +50,12 @@
                     </div>
                     <!-- END Error/Result section-->
 
+                    <!-- http://selectpdf.com/save-as-pdf-link/ -->
+                    <a href="http://selectpdf.com/save-as-pdf/" runat="server">Save as Pdf</a>
                 </div>
                 <!-- END main stuff -->
             </div>
+            
         </div>
     </div>
 </section>
