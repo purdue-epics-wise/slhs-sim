@@ -103,6 +103,13 @@
     <Content Include="assets\css\font-awesome-4.7.0\css\font-awesome.min.css" />
     <Content Include="assets\css\font-awesome-4.7.0\fonts\fontawesome-webfont.svg" />
     <Content Include="assets\css\font-awesome-4.7.0\HELP-US-OUT.txt" />
+    <Content Include="assets\images\Chau.png" />
+    <Content Include="assets\images\Chuyang.png" />
+    <Content Include="assets\images\head shot spring 2015.jpg" />
+    <Content Include="assets\images\Jay.png" />
+    <Content Include="assets\images\Lyles Porter Hall.png" />
+    <Content Include="assets\images\Lyles-Porter.jpg" />
+    <Content Include="assets\images\Nick.png" />
     <Content Include="assets\images\pic01.jpg" />
     <Content Include="assets\images\pic02.jpg" />
     <Content Include="assets\video\video1.mp4" />
