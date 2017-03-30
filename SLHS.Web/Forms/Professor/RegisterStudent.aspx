@@ -22,16 +22,36 @@
                 <!-- END Side bar -->
             </div>
             <div class="8u  12u(narrower) important(narrower)">
-                <!-- Main stuff -->
+                <!-- First Name -->
                 <div id="content">
                     <asp:Table ID="Table1" runat="server">
                         <asp:TableRow>
-                            <asp:TableCell>Student name</asp:TableCell>
+                            <asp:TableCell>Student First Name</asp:TableCell>
                             <asp:TableCell> <asp:TextBox ID="TextName" runat="server"></asp:TextBox></asp:TableCell>
                         </asp:TableRow>
                     </asp:Table>
                 </div>
-                <!-- END main stuff -->
+                <!-- END First Name -->
+                <!-- Last Name -->
+                <div id="content">
+                    <asp:Table ID="Table2" runat="server">
+                        <asp:TableRow>
+                            <asp:TableCell>Student Last Name</asp:TableCell>
+                            <asp:TableCell> <asp:TextBox ID="TextBox1" runat="server"></asp:TextBox></asp:TableCell>
+                        </asp:TableRow>
+                    </asp:Table>
+                </div>
+                <!-- END Last name -->
+                <!-- ID -->
+                <div id="content">
+                    <asp:Table ID="Table3" runat="server">
+                        <asp:TableRow>
+                            <asp:TableCell>Student ID</asp:TableCell>
+                            <asp:TableCell> <asp:TextBox ID="TextBox2" runat="server"></asp:TextBox></asp:TableCell>
+                        </asp:TableRow>
+                    </asp:Table>
+                </div>
+                <!-- END ID -->
             </div>
         </div>
     </div>
