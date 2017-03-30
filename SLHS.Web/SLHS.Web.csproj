@@ -115,6 +115,7 @@
     <Content Include="Forms\Content\css\Training.css" />
     <Content Include="Forms\Professor\RegisterStudent.aspx" />
     <Content Include="Forms\Professor\ViewData.aspx" />
+    <Content Include="Forms\Public\Contact.aspx" />
     <Content Include="Forms\Public\FAQ.aspx" />
     <Content Include="Forms\Student\Training.aspx" />
     <Content Include="Forms\Student\TrainResult.aspx" />
@@ -228,6 +229,13 @@
     </Compile>
     <Compile Include="Forms\Public\About.aspx.designer.cs">
       <DependentUpon>About.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\Public\Contact.aspx.cs">
+      <DependentUpon>Contact.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Forms\Public\Contact.aspx.designer.cs">
+      <DependentUpon>Contact.aspx</DependentUpon>
     </Compile>
     <Compile Include="Forms\Public\Default.aspx.cs">
       <DependentUpon>Default.aspx</DependentUpon>
