@@ -36,7 +36,7 @@
                         
                     </div>
                    
-                    <asp:Button ID="Button1" runat="server" Text="Submit Answers" OnClick="ButtonSubmit_Click" Visible="false" />
+                    <asp:Button ID="Button1" runat="server" Text="Submit Answers" OnClick="ButtonSubmit_Click" style="display:none;" />
                     <!-- END Quiz section -->
 
                     <!--Error/Result section-->
