@@ -39,7 +39,7 @@
                                     <ul>
                                         <li><a href="/Forms/Public/About.aspx">About</a></li>
                                         <li><a href="/Forms/Public/FAQ.aspx">FAQ</a></li>
-                                        
+                                         <li><a href="/Forms/Public/Contact.aspx">Contact</a></li>
                                     </ul>
                                 </li>
                                  <% if (Session["UserRole"] == null)  { %>          
