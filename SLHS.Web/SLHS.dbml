@@ -27,6 +27,7 @@
       <Column Name="CreatedDate" Type="System.DateTime" DbType="DateTime NOT NULL" CanBeNull="false" />
       <Column Name="LastLoginDate" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
       <Association Name="Member_QuestionResult" Member="QuestionResults" ThisKey="Id" OtherKey="StudentId" Type="QuestionResult" />
+      <Association Name="Member_MemberInformation" Member="MemberInformations" ThisKey="Id" OtherKey="MemberId" Type="MemberInformation" />
       <Association Name="Role_Member" Member="Role" ThisKey="RoleId" OtherKey="Id" Type="Role" IsForeignKey="true" />
     </Type>
   </Table>
@@ -65,6 +66,17 @@
       <Column Name="Id" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
       <Column Name="Name" Type="System.String" DbType="NVarChar(50) NOT NULL" CanBeNull="false" />
       <Association Name="Train_Question" Member="Questions" ThisKey="Id" OtherKey="TrainingId" Type="Question" />
+    </Type>
+  </Table>
+  <Table Name="dbo.MemberInformations" Member="MemberInformations">
+    <Type Name="MemberInformation">
+      <Column Name="Id" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="MemberId" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="FirstName" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Column Name="LastName" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Column Name="Age" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="Email" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Association Name="Member_MemberInformation" Member="Member" ThisKey="MemberId" OtherKey="Id" Type="Member" IsForeignKey="true" />
     </Type>
   </Table>
 </Database>

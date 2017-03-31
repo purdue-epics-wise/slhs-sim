@@ -115,7 +115,10 @@ namespace SLHS.Web.Forms.Student
             //put them together  
             bool isPass = false;
             string score = correctQuestions + "/" + allQuestions;
-            int percent = (correctQuestions / allQuestions) * 100;
+
+            //calculate percent
+            double percent = ((double)correctQuestions / allQuestions) * 100;
+            percent = Math.Round(percent);
             if (percent > passPercent)
                 isPass = true;
             

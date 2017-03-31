@@ -28,6 +28,9 @@ function prev() {
     }
 }
 
+/*
+ * 
+ */
 function next() {
     console.log(index);
     if (points.length > ++index) {
@@ -35,7 +38,8 @@ function next() {
         displayQuiz(-1);
         video.play();
     } else {
-        document.getElementById("Button1").click();
+        //unnecessary code.
+        document.getElementById("BodyContentPlaceHolder1_Button1").click();
     }
 }
 

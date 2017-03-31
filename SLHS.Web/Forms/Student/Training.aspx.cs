@@ -186,9 +186,13 @@ namespace SLHS.Web.Forms.Student
                 Button nextButton = new Button();
                 nextButton.OnClientClick = "next(); return false;"; //return false: set postBack to False 
                 nextButton.Text = "Next";
-                if (i == questionSet.Count - 1) // last question
+
+                // last question, make the button fire function Submit
+                if (i == questionSet.Count - 1) 
                 {
                     nextButton.Text = "Submit";
+                    nextButton.OnClientClick = "";
+                    nextButton.Click += ButtonSubmit_Click; //add function to trigger function
                 } 
                 questionDiv.Controls.Add(nextButton);
 

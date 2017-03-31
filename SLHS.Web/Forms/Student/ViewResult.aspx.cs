@@ -180,7 +180,8 @@ namespace SLHS.Web.Forms.Student
         {
             //simple calculate
             HtmlGenericControl points = new HtmlGenericControl("h3");
-            int percent = (correctQuestions / totalQuestions) * 100;
+            double percent = ((double) correctQuestions / totalQuestions) * 100;
+            percent = Math.Round(percent);
 
             //display those
             points.InnerHtml = "Score: " 
