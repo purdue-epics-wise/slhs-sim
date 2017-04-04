@@ -9,7 +9,7 @@
                     <!-- Side bar -->
                     <div id="sidebar">
                         <section>
-						    <h3>SLHS login system</h3>
+						    <h3>View student data</h3>
 						    <p>Develop by team of Purdue students</p>
 						    <footer>
 							    <a href="#" class="button">Continue Reading</a>
@@ -21,7 +21,30 @@
                 <div class="8u  12u(narrower) important(narrower)">
                     <!-- Main stuff -->
                     <div id="content">
+                        <!-- Grid View section -->
+                        <asp:GridView ID="gridViewStudent" runat="server" CellPadding="4" ForeColor="#333333" GridLines="None" AllowPaging="True" AllowSorting="True" AutoGenerateColumns="False" OnSelectedIndexChanged="GridViewStudent_SelectedIndexChanged"
+                            emptydatatext="There are no data to display">
+                            <AlternatingRowStyle BackColor="White" />
+                            <EditRowStyle BackColor="#2461BF" />
+                            <FooterStyle BackColor="#507CD1" Font-Bold="True" ForeColor="White" />
+                            <HeaderStyle BackColor="#507CD1" Font-Bold="True" ForeColor="White" />
+                            <PagerStyle BackColor="#2461BF" ForeColor="White" HorizontalAlign="Center" />
+                            <RowStyle BackColor="#EFF3FB" />
+                            <SelectedRowStyle BackColor="#D1DDF1" Font-Bold="True" ForeColor="#333333" />
+                            <SortedAscendingCellStyle BackColor="#F5F7FB" />
+                            <SortedAscendingHeaderStyle BackColor="#6D95E1" />
+                            <SortedDescendingCellStyle BackColor="#E9EBEF" />
+                            <SortedDescendingHeaderStyle BackColor="#4870BE" />
+
+
+                            <Columns>
+                                <asp:TemplateField>
+
+                                </asp:TemplateField>
+                            </Columns>
+                        </asp:GridView>
                        
+                        <!-- END Grid section -->
                     </div>
                     <!-- END main stuff -->
                 </div>

@@ -123,7 +123,7 @@ namespace SLHS.Web.Forms.Student
                 isPass = true;
             
             //put data into row
-            DataRow row = table.NewRow();
+            DataRow row = table.NewRow(); //get row accoring to table format
             row[TRAINING] = training.Name;
             row[SCORE]    = score;
             row[PERCENT]  = percent;

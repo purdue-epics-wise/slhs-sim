@@ -37,40 +37,55 @@
                             
                             <asp:TableRow>
                             <asp:TableCell>Student First Name</asp:TableCell>
-                            <asp:TableCell> <asp:TextBox ID="TextFirstNm" runat="server"></asp:TextBox></asp:TableCell>
+                            <asp:TableCell> <asp:TextBox ID="TextBoxFirstName" runat="server"></asp:TextBox></asp:TableCell>
+                            <asp:TableCell><asp:RequiredFieldValidator ID="RequiredFieldValidator1" runat="server" ErrorMessage="Required" ControlToValidate="TextBoxFirstName"></asp:RequiredFieldValidator></asp:TableCell>
                             </asp:TableRow>
 
                             <asp:TableRow>
                             <asp:TableCell>Student Last Name</asp:TableCell>
-                            <asp:TableCell> <asp:TextBox ID="TextBoxLastNm" runat="server"></asp:TextBox></asp:TableCell>
+                            <asp:TableCell> <asp:TextBox ID="TextBoxLastName" runat="server"></asp:TextBox></asp:TableCell>
+                            <asp:TableCell><asp:RequiredFieldValidator ID="RequiredFieldValidator2" runat="server" ErrorMessage="Required" ControlToValidate="TextBoxLastName"></asp:RequiredFieldValidator></asp:TableCell>
                             </asp:TableRow>
 
                             <asp:TableRow>
-                            <asp:TableCell>Student ID</asp:TableCell>
+                            <asp:TableCell>Purdue ID</asp:TableCell>
                             <asp:TableCell> <asp:TextBox ID="TextBoxID" runat="server"></asp:TextBox></asp:TableCell>
+                            <asp:TableCell><asp:RequiredFieldValidator ID="RequiredFieldValidator3" runat="server" ErrorMessage="Required" ControlToValidate="TextBoxID"></asp:RequiredFieldValidator></asp:TableCell>
                             </asp:TableRow>
 
                             <asp:TableRow>
                             <asp:TableCell>Age</asp:TableCell>
                             <asp:TableCell> <asp:TextBox ID="TextBoxAge" runat="server"></asp:TextBox></asp:TableCell>
+                            <asp:TableCell>
+                                <asp:RangeValidator ID="RangeValidator1" runat="server" ErrorMessage="RangeValidator" Type="Integer" MaximumValue="100" MinimumValue="10" ControlToValidate="TextBoxAge"></asp:RangeValidator></asp:TableCell>
                             </asp:TableRow>
+
                             <asp:TableRow>
                             <asp:TableCell>E-mail</asp:TableCell>
                             <asp:TableCell> <asp:TextBox ID="TextBoxEmail" runat="server"></asp:TextBox></asp:TableCell>
+                            <asp:TableCell><asp:RegularExpressionValidator ID="regexEmailValid" runat="server" ValidationExpression="\w+([-+.]\w+)*@\w+([-.]\w+)*\.\w+([-.]\w+)*" ControlToValidate="TextBoxEmail" ErrorMessage="Invalid Email Format"></asp:RegularExpressionValidator></asp:TableCell>
                             </asp:TableRow>
                        
                     </asp:Table>
+
+                    <!-- Save Button-->
+                    <asp:Button ID="ButtonSave" runat="server" Text="Add new student" OnClick="ButtonSave_Click" />
+
+                    <!-- End Button-->
+
+                    <!-- Result Section -->
+                    <div id="result" runat="server">
+
+                    </div>
+                    <!-- End result Section -->
                 </div>
                 
 
 
 
 
-                <br />
-<!-- Save Button-->
-                <asp:Button ID="ButtonSave" runat="server" Text="Save" />
-
-                <!-- End Button-->
+            
+                
 
 
             </div>

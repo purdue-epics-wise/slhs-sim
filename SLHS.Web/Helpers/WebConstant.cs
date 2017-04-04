@@ -5,10 +5,11 @@ using System.Web;
 
 namespace SLHS.Web.Helpers
 {
-    public class WebConstant
+    public static class WebConstant
     {
         
         public const string User = "User";
+        public const string Professor = "Professor";
         public const string UserRole = "UserRole";
         public const string TrainID = "trainID";
 
