@@ -20,7 +20,7 @@ List of our tech:
  1. [ASP.NET](https://www.asp.net/) - [License](https://aspnet.codeplex.com/license) main framework for project
  2. [Bootstrap](http://getbootstrap.com/) - [License](https://github.com/twbs/bootstrap/blob/master/LICENSE)
  3. [jQuery](http://jquery.com/) - [License](https://jquery.org/license/)
- 4. [Video.js](http://www.videojs.com/) - [License](https://github.com/videojs/video.js/blob/master/LICENSE) JavaScript library for HTML5 video player
+
  
 ## Development ##
  
