@@ -33,7 +33,7 @@ namespace SLHS.Web.Forms.Account
             e.Authenticated = true;
             Session[WebConstant.UserRole] = member.Role.Content;
             Session[WebConstant.User] = member;
-            Response.Redirect(WebConstant.PublicDefaultUrl);
+            Response.Redirect(WebConstant.TourUrl);
         }
     }
 }

@@ -15,5 +15,7 @@ namespace SLHS.Web.Helpers
 
         public const string PublicDefaultUrl = "/Forms/Public/Default.aspx";
         public const string ViewResultUrl = "/Forms/Student/ViewResult.aspx";
+        public const string TrainingUrl = "/Forms/Student/Training.aspx?trainID=1";
+        public const string TourUrl = "/Forms/Student/Tour.aspx";
     }
 }
