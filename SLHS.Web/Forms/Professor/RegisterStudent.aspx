@@ -47,11 +47,6 @@
                             <asp:TableCell><asp:RequiredFieldValidator ID="RequiredFieldValidator2" runat="server" ErrorMessage="Required" ControlToValidate="TextBoxLastName"></asp:RequiredFieldValidator></asp:TableCell>
                             </asp:TableRow>
 
-                            <asp:TableRow>
-                            <asp:TableCell>Purdue ID</asp:TableCell>
-                            <asp:TableCell> <asp:TextBox ID="TextBoxID" runat="server"></asp:TextBox></asp:TableCell>
-                            <asp:TableCell><asp:RequiredFieldValidator ID="RequiredFieldValidator3" runat="server" ErrorMessage="Required" ControlToValidate="TextBoxID"></asp:RequiredFieldValidator></asp:TableCell>
-                            </asp:TableRow>
 
                             <asp:TableRow>
                             <asp:TableCell>Age</asp:TableCell>

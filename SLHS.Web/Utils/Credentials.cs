@@ -36,6 +36,7 @@ namespace SLHS.Web.Utils
         /// </returns>
         public static Member Login(string username, string password)
         {
+            //query member
             Member member = null;
             IQueryable<Member> memberQuery;
 
@@ -49,6 +50,11 @@ namespace SLHS.Web.Utils
                 member = memberQuery.First<Member>();
             }
 
+            //update datetime
+            member.LastLoginDate = DateTime.Now;
+            SlHS_DB.SubmitChanges();
+
+            //return
             return member;
         }
 
@@ -59,10 +65,10 @@ namespace SLHS.Web.Utils
         /// </summary>
         /// <param name="member"></param>
         /// <returns></returns>
-        public static RegisterStatus Register(Member member)
+        public static RegisterStatus Register(MemberInformation memberInformation)
         {
             //check null
-            if (member == null)
+            if (memberInformation == null)
             {
                 return RegisterStatus.ERROR;
             }
@@ -70,14 +76,49 @@ namespace SLHS.Web.Utils
             //check if email exist
             IQueryable<Member> memberQuery;
             memberQuery = from mem in SlHS_DB.Members
-                          where (mem.Email == member.Email)
+                          where (mem.Email == memberInformation.Email)
                           select mem;
 
             if (memberQuery.Count() > 0)
                 return RegisterStatus.EMAIL_EXIST;
 
-            //create random username, password
+            //create new member
+            Member member = new Member();
 
+            //add connection to information
+            member.MemberInformations.Add(memberInformation);
+
+            //create random password
+            int passwordLength = 8;
+            int numNonAlphaChar = 3;
+            string randPass = 
+                System.Web.Security.Membership.GeneratePassword(passwordLength, numNonAlphaChar);
+
+            //random username
+            Member lastMem = SlHS_DB.Members.ToArray().LastOrDefault();
+            int nextID = 1;
+            if (lastMem != null)
+            {
+                nextID = lastMem.Id + 1;
+            }
+
+            string randUsername = "member" + nextID;
+
+            //for debugging, write to output
+            System.Diagnostics.Debug.WriteLine("username: " + randUsername);
+            System.Diagnostics.Debug.WriteLine("password: " + randPass);
+
+            //insert to database, table Credentials, and MemberInformations
+            member.LastLoginDate = null;
+            member.Username = randUsername;
+            member.Password = randPass;
+            member.CreatedDate = DateTime.Now;
+            member.Email = memberInformation.Email;
+            member.RoleId = (int) Credentials.MemberRole.STUDENT;
+
+            //final call
+            SlHS_DB.Members.InsertOnSubmit(member);
+            SlHS_DB.SubmitChanges();
 
             return RegisterStatus.SUCCESS;
         }

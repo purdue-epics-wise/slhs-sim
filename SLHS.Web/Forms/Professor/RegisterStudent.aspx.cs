@@ -1,4 +1,5 @@
-﻿using System;
+﻿using SLHS.Web.Utils;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
@@ -20,7 +21,6 @@ namespace SLHS.Web.Forms.Professor
             //get name
             string lastName = TextBoxLastName.Text;
             string firstName = TextBoxFirstName.Text;
-            string purdueID = TextBoxID.Text;
 
             //check integer
             int age;
@@ -29,6 +29,24 @@ namespace SLHS.Web.Forms.Professor
 
             //get email
             string email = TextBoxEmail.Text;
+
+            //new information
+            MemberInformation memInfo = new MemberInformation();
+            memInfo.LastName = lastName;
+            memInfo.FirstName = firstName;
+            memInfo.Email = email;
+            memInfo.Age = age;
+
+            //register
+            Credentials.RegisterStatus status = Credentials.Register(memInfo);
+            if (status == Credentials.RegisterStatus.SUCCESS)
+            {
+                result.InnerText = "SUCCESS: Register student success";
+            }
+            else
+            {
+                result.InnerText = "FAIL: not register yet";
+            }
         }
 
 
