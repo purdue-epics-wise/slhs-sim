@@ -33,6 +33,8 @@ namespace SLHS.Web.Forms.Account
             e.Authenticated = true;
             Session[WebConstant.UserRole] = member.Role.Content;
             Session[WebConstant.User] = member;
+            
+            //take students to tour page
             Response.Redirect(WebConstant.TourUrl);
         }
     }
