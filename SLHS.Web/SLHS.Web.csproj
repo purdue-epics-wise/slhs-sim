@@ -120,6 +120,7 @@
     <Content Include="Forms\Account\Logout.aspx" />
     <Content Include="Forms\Content\js\Training.js" />
     <Content Include="Forms\Content\css\Training.css" />
+    <Content Include="Forms\Professor\EditTraining.aspx" />
     <Content Include="Forms\Professor\RegisterStudent.aspx" />
     <Content Include="Forms\Professor\ViewData.aspx" />
     <Content Include="Forms\Public\Contact.aspx" />
@@ -216,6 +217,13 @@
     </Compile>
     <Compile Include="Forms\Account\Logout.aspx.designer.cs">
       <DependentUpon>Logout.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\Professor\EditTraining.aspx.cs">
+      <DependentUpon>EditTraining.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Forms\Professor\EditTraining.aspx.designer.cs">
+      <DependentUpon>EditTraining.aspx</DependentUpon>
     </Compile>
     <Compile Include="Forms\Professor\RegisterStudent.aspx.cs">
       <DependentUpon>RegisterStudent.aspx</DependentUpon>
