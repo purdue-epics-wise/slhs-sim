@@ -1,5 +1,7 @@
 ﻿<%@ Page Language="C#" MasterPageFile="~/Shared/SLHS.Master" AutoEventWireup="true" CodeBehind="Tour.aspx.cs" Inherits="SLHS.Web.Forms.Student.Tour" %>
-<!--This page serves as an instruction page and shows up when students log in-->
+
+<%--This page serves as an instruction page and shows up when students log in--%>
+
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="BodyContentPlaceHolder1" runat="server">
