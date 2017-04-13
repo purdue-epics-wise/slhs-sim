@@ -29,7 +29,7 @@
 						</h1>
 					<!-- Nav -->
 						<nav id="nav">
-							<ul>
+							<ul id="listNav" runat="server">
 								<li class="current"><a href="/Forms/Public/Default.aspx"><i class="fa fa-home" aria-hidden="true"></i>
  Home</a></li>
                                 <li>
@@ -37,6 +37,7 @@
  Information <i class="fa fa-caret-down" aria-hidden="true"></i>
 </a>
                                     <ul>
+                                     
                                         <li><a href="/Forms/Public/About.aspx">About</a></li>
                                         <li><a href="/Forms/Public/FAQ.aspx">FAQ</a></li>
                                          <li><a href="/Forms/Public/Contact.aspx">Contact</a></li>
@@ -51,6 +52,7 @@
                                  <li>
                                     <a href="#">Simulation <i class="fa fa-caret-down" aria-hidden="true"></i></a>
                                     <ul>
+                                        <li><a href="/Forms/Student/Tour.aspx">Tour guide</a></li>
                                         <li><a href="/Forms/Student/Training.aspx?trainID=1">Training 1</a></li>
                                         <li><a href="/Forms/Student/Training.aspx?trainID=2">Training 2</a></li>
                                         <li><a href="/Forms/Student/TrainResult.aspx">Train Result</a></li>

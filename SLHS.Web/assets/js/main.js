@@ -81,6 +81,15 @@
 					$('#titleBar, #navPanel, #page-wrapper')
 						.css('transition', 'none');
 
+        
+
 	});
 
 })(jQuery);
+
+//add navigation
+$(document).ready(function () {
+
+    $('nav.ul').find('a[href="' + location.pathname + '"]')
+        .closest('li').addClass('current');
+});

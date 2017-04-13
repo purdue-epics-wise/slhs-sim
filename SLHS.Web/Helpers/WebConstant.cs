@@ -5,6 +5,11 @@ using System.Web;
 
 namespace SLHS.Web.Helpers
 {
+
+    /// <summary>
+    /// Some useful constants that can help reduce typing all
+    /// these things again.
+    /// </summary>
     public static class WebConstant
     {
         
