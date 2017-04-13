@@ -26,7 +26,8 @@ List of our tech:
  
  5. Download project
  - Clone from [Github](https://github.com/purdue-epics-wise/slhs-sim), it is branch Spring2017
- - Download database file: [SLHS_DB](https://sharepoint.ecn.purdue.edu/epics/teams/wise/Semester%20Documentation/Spring%202017/SLHS/SLHS_DB.mdf)
+ - Download database file: [SLHS_DB](https://sharepoint.ecn.purdue.edu/epics/teams/wise/Semester%20Documentation/Spring%202017/SLHS/SLHS_DB.mdf) 
+ - and put database to SLHS.Web/App_data (the database is on SharePoint->Semester Documentation->Spring2017->SLHS
  6. Open project
  - use Visual Studio 2015, File->Open website->choose where you clone slhs-sim
  - in solution explorer, right click the website icon (slhs-sim) -> add existing item -> choose the database file
