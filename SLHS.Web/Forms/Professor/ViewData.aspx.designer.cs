@@ -13,6 +13,15 @@ namespace SLHS.Web.Forms.Professor {
     public partial class ViewData {
         
         /// <summary>
+        /// result control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl result;
+        
+        /// <summary>
         /// gridViewStudent control.
         /// </summary>
         /// <remarks>

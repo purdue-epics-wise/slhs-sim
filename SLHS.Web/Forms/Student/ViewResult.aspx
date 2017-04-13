@@ -22,8 +22,8 @@
                 <!-- Main stuff -->
                 <div id="content">
                    <!-- Video section -->
-                    <video id="video" width="640" height="480" controls="controls">
-                        <source src="/assets/video/video1.mp4" type="video/mp4"/>
+                    <video id="video" width="640" height="480" controls="controls" runat="server">
+                        <%--<source src="/assets/video/video1.mp4" type="video/mp4"/>--%>
                       
                         Your browser does not support.
                     </video>

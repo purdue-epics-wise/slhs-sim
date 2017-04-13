@@ -1,7 +1,9 @@
 ﻿using SLHS.Web.Helpers;
+using SLHS.Web.Utils;
 using System;
 using System.Collections.Generic;
 using System.Data;
+using System.Data.Linq;
 using System.Linq;
 using System.Web;
 using System.Web.UI;
@@ -13,6 +15,11 @@ namespace SLHS.Web.Forms.Professor
     {
         //will have use for this later
         private Member curMember;
+
+        //database connection
+        private SLHSDataContext SLHS_DB = new SLHSDataContext();
+
+        private int curStudentIndex;
 
         //useful constant
         private const string NUMBER = "Number";
@@ -50,10 +57,24 @@ namespace SLHS.Web.Forms.Professor
         /// </summary>
         void LoadDataTable()
         {
+            //create table
             DataTable table = new DataTable();
             AddColumnToTable(table);
 
-            DataRow row = table.NewRow();
+            //query all students
+            IQueryable<Member> query = from mem in SLHS_DB.Members
+                                           where mem.RoleId == (int)Credentials.MemberRole.STUDENT
+                                           select mem;
+
+            Member[] students = query.ToArray();
+            
+            //add them to table
+            curStudentIndex = 0;
+
+            foreach (Member student in students)
+            {
+                AddRowToTable(table, student);
+            }
            
 
             //bind data to grid view
@@ -73,7 +94,36 @@ namespace SLHS.Web.Forms.Professor
             table.Columns.Add(LASTNAME  , typeof(string));
             table.Columns.Add(AGE       , typeof(int));
             table.Columns.Add(EMAIL     , typeof(string));
-            table.Columns.Add(EDIT);
+            //table.Columns.Add(EDIT);
+        }
+
+        /// <summary>
+        /// Used student information to add row to table
+        /// </summary>
+        /// <param name="table"></param>
+        /// <param name="student"></param>
+        void AddRowToTable(DataTable table, Member student)
+        {
+            //simple check
+            if (student == null || table == null) return;
+
+            //get information, since a member only has 1 information set
+            MemberInformation infor = student.MemberInformations.FirstOrDefault();
+            if (infor == null)
+                return;
+
+            //add new row
+            DataRow row = table.NewRow();
+            row[NUMBER] = curStudentIndex;
+            row[FIRSTNAME] = infor.FirstName;
+            row[LASTNAME] = infor.LastName;
+            row[AGE] = infor.Age;
+            row[EMAIL] = infor.Email;
+
+            table.Rows.Add(row);
+
+            //update pointer
+            curStudentIndex++;
         }
     }
 }

@@ -21,8 +21,16 @@
                 <div class="8u  12u(narrower) important(narrower)">
                     <!-- Main stuff -->
                     <div id="content">
+
+                        <!-- Result section -->
+                        <div id="result" runat="server">
+
+                        </div>
+                        <!-- END Result section -->
+
+
                         <!-- Grid View section -->
-                        <asp:GridView ID="gridViewStudent" runat="server" CellPadding="4" ForeColor="#333333" GridLines="None" AllowPaging="True" AllowSorting="True" AutoGenerateColumns="False" OnSelectedIndexChanged="GridViewStudent_SelectedIndexChanged"
+                        <asp:GridView ID="gridViewStudent" runat="server" CellPadding="4" ForeColor="#333333"
                             emptydatatext="There are no data to display">
                             <AlternatingRowStyle BackColor="White" />
                             <EditRowStyle BackColor="#2461BF" />
@@ -37,14 +45,11 @@
                             <SortedDescendingHeaderStyle BackColor="#4870BE" />
 
 
-                            <Columns>
-                                <asp:TemplateField>
-
-                                </asp:TemplateField>
-                            </Columns>
+                            
                         </asp:GridView>
                        
                         <!-- END Grid section -->
+                        
                     </div>
                     <!-- END main stuff -->
                 </div>
