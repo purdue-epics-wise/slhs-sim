@@ -26,7 +26,7 @@
                 <img src="../../assets/images/head shot spring 2015.jpg" alt="Professor Barbara Cicholski" style="width:320px" />
                 <h1>Professor Barbara Cicholski</h1>
                 <p>info...</p>
-                <p>email...</p>
+                <p>cicholsb@purdue.edu</p>
                 <img src="../../assets/images/Lyles-Porter.jpg" alt="Dah building" style="width:320px;height=320px">
             </div>
 
@@ -38,7 +38,7 @@
                 <img src="../../assets/images/Nick.png" alt="Nick" style="width:320px" />
                 <h1>Nicholas Proffer</h1>
                 <p>info...</p>
-                <p>email...</p>            
+                <p>nicholasproffer@gmail.com</p>            
             </div>
 
             <div class="4u 12u">    <!--Bottom right column-->
