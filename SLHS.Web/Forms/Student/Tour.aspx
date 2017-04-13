@@ -11,7 +11,7 @@
 		<div class="container">
 			<header class="major">
                 <asp:Label ID="Label1" runat="server"></asp:Label>
-				<h2>What is Peabody Picture Vocabulary Test</h2>
+				<h2>What is the Peabody Picture Vocabulary Test?</h2>
 				<p>The Peabody Picture Vocabulary Test, the 2007 edition of which is known as the PPVT-IV, is an untimed test of receptive vocabulary for Standard American English and is intended to provide a quick estimate of verbal ability and scholastic aptitude. It was developed in 1959 by special education specialists Lloyd M. Dunn and Leota M. Dunn. The current version lists L.M. Dunn and his son D.M. Dunn as authors.</p>
 			</header>
 		</div>
