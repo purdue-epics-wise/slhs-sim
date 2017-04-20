@@ -182,7 +182,7 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="assets\css\Arcana.css" />
-    <Content Include="assets\images\logo.png" />
+    <Content Include="assets\images\Purdue_logo.png" />
     <Content Include="assets\js\ie\backgroundsize.min.htc" />
     <Content Include="assets\js\ie\html5shiv.js" />
     <Content Include="assets\js\ie\PIE.htc" />
