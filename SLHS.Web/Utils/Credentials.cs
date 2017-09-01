@@ -48,6 +48,9 @@ namespace SLHS.Web.Utils
             if (memberQuery.Count<Member>() > 0)
             {
                 member = memberQuery.First<Member>();
+            } else
+            {
+                return null;
             }
 
             //update datetime
