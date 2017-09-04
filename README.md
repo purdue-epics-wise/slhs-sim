@@ -29,7 +29,7 @@ List of our tech:
  - Download database file: [SLHS_DB](https://sharepoint.ecn.purdue.edu/epics/teams/wise/Semester%20Documentation/Spring%202017/SLHS/SLHS_DB.mdf) 
  - and put database to SLHS.Web/App_data (the database is on SharePoint->Semester Documentation->Spring2017->SLHS
  2. Open project
- - use Visual Studio 2015 or higher, File->Open Project/Solution->choose where you clone slhs-sim
+ - use Visual Studio 2015 or higher, File->Open Project/Solution->choose where you clone slhs-sim (SLHS.sln)
  - in solution explorer, right click the website icon (slhs-sim) -> add existing item -> choose the database file
  - Tools -> Connect to database -> MS SQL Server Database file -> choose the Database file
  - In the Visual Studios solution explorer, navigate to SLHS.Web -> Forms -> Public.  Then right click on Default.aspx, and click "Set As Start Page"
