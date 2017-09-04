@@ -31,7 +31,8 @@ List of our tech:
  2. Open project
  - use Visual Studio 2015 or higher, File->Open Project/Solution->choose where you clone slhs-sim
  - in solution explorer, right click the website icon (slhs-sim) -> add existing item -> choose the database file
- -  Tools -> Connect to database -> MS SQL Server Database file -> choose the Database file
+ - Tools -> Connect to database -> MS SQL Server Database file -> choose the Database file
+ - In the Visual Studios solution explorer, navigate to SLHS.Web -> Forms -> Public.  Then right click on Default.aspx, and click "Set As Start Page"
  3. Run project
 
 
