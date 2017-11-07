@@ -11,12 +11,9 @@ namespace SLHS.Web.Forms.Professor
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-            LoadResult();
+           
         }
 
-        void LoadResult()
-        {
-            test10.InnerText = "hello";
-        }
+       
     }
 }
