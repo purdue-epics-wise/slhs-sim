@@ -7,6 +7,7 @@ using System.Linq;
 using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
+using System.Diagnostics;
 
 namespace SLHS.Web.Forms.Student
 {
@@ -121,7 +122,10 @@ namespace SLHS.Web.Forms.Student
             percent = Math.Round(percent);
             if (percent > passPercent)
                 isPass = true;
-            
+            if(percent.ToString() == "NaN")
+            {
+                percent = 0;
+            }
             //put data into row
             DataRow row = table.NewRow(); //get row accoring to table format
             row[TRAINING] = training.Name;

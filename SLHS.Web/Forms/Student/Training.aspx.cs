@@ -7,6 +7,7 @@ using SLHS.Web.Helpers;
 using System.Collections.Generic;
 using SLHS.Web;
 using System.Collections;
+using System.Diagnostics;
 
 namespace SLHS.Web.Forms.Student
 {
@@ -75,6 +76,7 @@ namespace SLHS.Web.Forms.Student
                 //error
                 trainingId = -1;
             }
+            Debug.WriteLine(trainingId);
 
             //get the actual train.
             IQueryable<Train> query = from t in SLHS_DB.Trains
@@ -200,6 +202,8 @@ namespace SLHS.Web.Forms.Student
                 //add those to quiz div
                 //so it looks like quiz = [question1, question2]
                 quiz.Controls.Add(questionDiv);
+               
+              
 
                 //add those to dictionary to use 
                 //with the previous answer dictionary
