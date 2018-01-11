@@ -53,7 +53,7 @@
                                  <% if ((string) Session["UserRole"] == "Student")  { %>          
                                  <li>
                                     <a href="#">Simulation <i class="fa fa-caret-down" aria-hidden="true"></i></a>
-                                    <ul>
+                                    <ul id="ListStudentLink">
                                         <li><a href="/Forms/Student/Tour.aspx">Tour guide</a></li>
                                         <li><a href="/Forms/Student/Training.aspx?trainID=1">Training 1</a></li>
                                         <li><a href="/Forms/Student/Training.aspx?trainID=2">Training 2</a></li>
@@ -68,7 +68,8 @@
                                     <a href="#">Data <i class="fa fa-caret-down" aria-hidden="true"></i></a>
                                     <ul>
                                         <li><a href="/Forms/Professor/ViewData.aspx">View Data</a></li>
-                                        <li><a href="/Forms/Professor/RegisterStudent.aspx">Register Students</a></li> 
+                                        <li><a href="/Forms/Professor/RegisterStudent.aspx">Register Students</a></li>
+                                        <li><a href="/Forms/Professor/EditTraining.aspx">Edit Training</a></li>
                                     </ul>
                                 </li>
                                  <%  } %>      
