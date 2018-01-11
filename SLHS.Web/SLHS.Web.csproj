@@ -194,7 +194,10 @@
     <Content Include="assets\js\util.js" />
     <Content Include="Forms\Public\About.aspx" />
     <Content Include="Forms\Public\Default.aspx" />
-    <Content Include="Web.config" />
+    <Content Include="SLHS_DB.mdf" />
+    <Content Include="Web.config">
+      <SubType>Designer</SubType>
+    </Content>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Default.aspx.cs">
