@@ -65,7 +65,7 @@ namespace SLHS.Web.Forms.Professor
                 try
                 {
                     string filename = Path.GetFileName(FileUploadControl.FileName);
-                    if(Path.GetExtension(filename) == ".webm")
+                    if(Path.GetExtension(filename) == ".mp4")
                     {
                         convertToBinaryStream();
                         
@@ -73,7 +73,7 @@ namespace SLHS.Web.Forms.Professor
                     }
                     else
                     {
-                        StatusLabel.Text = "Upload status: The file could not be uploaded. The following error occured: File needs to be in .webm format";                       
+                        StatusLabel.Text = "Upload status: The file could not be uploaded. The following error occured: File needs to be in .mp4 format";                       
                     }
                     FileUploadControl.SaveAs(Server.MapPath("~/") + filename);
                 }
