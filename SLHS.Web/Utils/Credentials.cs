@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
+using System.Net.Mail;
 
 namespace SLHS.Web.Utils
 {
@@ -48,9 +49,6 @@ namespace SLHS.Web.Utils
             if (memberQuery.Count<Member>() > 0)
             {
                 member = memberQuery.First<Member>();
-            } else
-            {
-                return null;
             }
 
             //update datetime
@@ -122,6 +120,32 @@ namespace SLHS.Web.Utils
             //final call
             SlHS_DB.Members.InsertOnSubmit(member);
             SlHS_DB.SubmitChanges();
+
+            //sends mail
+            string username = member.Username;
+            string pwd = member.Password;
+            string messageBody = string.Format("Your username is {0} and your password is {1}", username, pwd);
+
+            System.Net.Mail.MailMessage message = new System.Net.Mail.MailMessage(//creates a message with these inputs
+            "slhspurdueepics@gmail.com",                 //from
+            member.Email,                                //to
+            "Your SLHS Credentials",                     //sub
+            messageBody);                                //body
+
+            message.IsBodyHtml = true;
+            SmtpClient smtp = new SmtpClient();
+            smtp.Host = "smtp.gmail.com"; //Or Your SMTP Server Address
+
+            //Credentials for the SLHS dummy gmail I set up 
+            smtp.Credentials = new System.Net.NetworkCredential("slhspurdueepics@gmail.com", "NarutoIsBad");
+            smtp.Port = 587;
+
+            //Or your Smtp Email ID and Password
+            smtp.EnableSsl = true;
+            smtp.Send(message);
+
+            //mail.To.Add(TextBoxEmail.Text);
+            //mail.From = "pchang1996@gmail.com";
 
             return RegisterStatus.SUCCESS;
         }
