@@ -47,7 +47,7 @@ namespace SLHS.Web.Forms.Professor
                     using (SqlCommand cmd = new SqlCommand())
                     {
                         cmd.CommandText = "insert into Trains(Name, Data) values (@Name, @Data)";
-                        cmd.Parameters.AddWithValue("@Name", "Training " + (count + 1).ToString());
+                        cmd.Parameters.AddWithValue("@Name", "Training" + (count + 1).ToString());
                         cmd.Parameters.AddWithValue("@Data", bytes);
                         cmd.Connection = con;
                         con.Open();
@@ -65,7 +65,7 @@ namespace SLHS.Web.Forms.Professor
                 try
                 {
                     string filename = Path.GetFileName(FileUploadControl.FileName);
-                    if(Path.GetExtension(filename) == ".mp4")
+                    if(Path.GetExtension(filename) == ".webm")
                     {
                         convertToBinaryStream();
                         
@@ -73,7 +73,7 @@ namespace SLHS.Web.Forms.Professor
                     }
                     else
                     {
-                        StatusLabel.Text = "Upload status: The file could not be uploaded. The following error occured: File needs to be in .mp4 format";                       
+                        StatusLabel.Text = "Upload status: The file could not be uploaded. The following error occured: File needs to be in .webm format";                       
                     }
                     FileUploadControl.SaveAs(Server.MapPath("~/") + filename);
                 }
