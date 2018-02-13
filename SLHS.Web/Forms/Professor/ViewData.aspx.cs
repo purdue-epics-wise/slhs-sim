@@ -42,8 +42,8 @@ namespace SLHS.Web.Forms.Professor
         void CheckMember()
         {
             //check signed in
-            Member member = (Member)Session[WebConstant.User];
-            if (member == null || member.Role.Content != WebConstant.Professor)
+            Member member = (Member) Session[WebConstant.User];
+            if ( member == null || member.Role.Content != WebConstant.Professor)
             {
                 Response.Redirect(WebConstant.PublicDefaultUrl, true);
             }
@@ -63,11 +63,11 @@ namespace SLHS.Web.Forms.Professor
 
             //query all students
             IQueryable<Member> query = from mem in SLHS_DB.Members
-                                       where mem.RoleId == (int)Credentials.MemberRole.STUDENT
-                                       select mem;
+                                           where mem.RoleId == (int)Credentials.MemberRole.STUDENT
+                                           select mem;
 
             Member[] students = query.ToArray();
-
+            
             //add them to table
             curStudentIndex = 0;
 
@@ -75,7 +75,7 @@ namespace SLHS.Web.Forms.Professor
             {
                 AddRowToTable(table, student);
             }
-
+           
 
             //bind data to grid view
             gridViewStudent.DataSource = table;
@@ -89,11 +89,11 @@ namespace SLHS.Web.Forms.Professor
         /// <param name="table"></param>
         void AddColumnToTable(DataTable table)
         {
-            table.Columns.Add(NUMBER, typeof(int));
-            table.Columns.Add(FIRSTNAME, typeof(string));
-            table.Columns.Add(LASTNAME, typeof(string));
-            table.Columns.Add(AGE, typeof(int));
-            table.Columns.Add(EMAIL, typeof(string));
+            table.Columns.Add(NUMBER    , typeof(int));
+            table.Columns.Add(FIRSTNAME , typeof(string));
+            table.Columns.Add(LASTNAME  , typeof(string));
+            table.Columns.Add(AGE       , typeof(int));
+            table.Columns.Add(EMAIL     , typeof(string));
             //table.Columns.Add(EDIT);
         }
 
@@ -124,16 +124,6 @@ namespace SLHS.Web.Forms.Professor
 
             //update pointer
             curStudentIndex++;
-        }
-
-        protected void RemoveStudentsDropDown_SelectedIndexChanged(object sender, EventArgs e)
-        {
-
-        }
-
-        protected void TextBox1_TextChanged(object sender, EventArgs e)
-        {
-
         }
     }
 }
