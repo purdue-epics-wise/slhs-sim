@@ -2,8 +2,6 @@
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="BodyContentPlaceHolder1" runat="server">
-     &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                    <asp:SqlDataSource ID="SqlDataSource1" runat="server" ConnectionString="<%$ ConnectionStrings:SLHS_DBConnectionString2 %>" SelectCommand="SELECT [MemberId], [FirstName] + ' ' + [LastName] as MemberName FROM [MemberInformations]"></asp:SqlDataSource>
     <section class="wrapper style1">
         <div class="container">
             <div class="row 200%">
@@ -22,20 +20,10 @@
                 </div>
                 <div class="8u  12u(narrower) important(narrower)">
                     <!-- Main stuff -->
-                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                     <div id="content">
 
                         <!-- Result section -->
                         <div id="result" runat="server">
-
-                            Remove Students:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                <asp:DropDownList ID="RemoveStudentsDropDown" runat="server" Height="40px" OnSelectedIndexChanged="RemoveStudentsDropDown_SelectedIndexChanged" Width="204px" DataSourceID="SqlDataSource1" DataTextField="MemberName" DataValueField="MemberId">
-                    <asp:ListItem Value="1">Test1</asp:ListItem>
-                    <asp:ListItem Value="2">Test2</asp:ListItem>
-                    <asp:ListItem Value="3">Test3</asp:ListItem>
-                </asp:DropDownList>
-                            <asp:Button ID="Button1" runat="server" Text="Remove" />
-                            <br />
 
                         </div>
                         <!-- END Result section -->
@@ -54,17 +42,17 @@
                             <SortedAscendingCellStyle BackColor="#F5F7FB" />
                             <SortedAscendingHeaderStyle BackColor="#6D95E1" />
                             <SortedDescendingCellStyle BackColor="#E9EBEF" />
-                            <SortedDescendingHeaderStyle BackColor="#4870BE" BorderStyle="Outset" />
+                            <SortedDescendingHeaderStyle BackColor="#4870BE" />
 
 
                             
                         </asp:GridView>
                        
                         <!-- END Grid section -->
+                        
                     </div>
                     <!-- END main stuff -->
                 </div>
-               
             </div>
         </div>
     </section>
