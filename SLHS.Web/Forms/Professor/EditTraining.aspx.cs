@@ -67,33 +67,24 @@ namespace SLHS.Web.Forms.Professor
                 try
                 {
                     string filename = Path.GetFileName(FileUploadControl.FileName);
-<<<<<<< HEAD
-                    if(Path.GetExtension(filename) == ".webm" || Path.GetExtension(filename) == ".mp4")
-=======
-                    if(Path.GetExtension(filename) == ".webm") //checks to see if the video is in the correct format
->>>>>>> origin/Fall_2017
+
+                    if (Path.GetExtension(filename) == ".webm" || Path.GetExtension(filename) == ".mp4")
                     {
                         //ensures video is saved first before data is stripped by ConvertToBinaryStream()
-                        FileUploadControl.SaveAs(Server.MapPath("/assets/video/") + filename); 
+                        FileUploadControl.SaveAs(Server.MapPath("/assets/video/") + filename);
 
                         //uploads video data to database, iterates what training number the video belongs to
                         //this deletes the data from the video so it must be done AFTER video is properly saved
+                        FileUploadControl.SaveAs(Server.MapPath("/assets/video/") + filename);
                         ConvertToBinaryStream();
-                        
+
                         StatusLabel.Text = "Upload status: File uploaded!";
                     }
                     else
                     {
-<<<<<<< HEAD
-                        StatusLabel.Text = "Upload status: The file could not be uploaded. The following error occured: File needs to be in .webm or .mp4 format";                       
-                    }
-                    FileUploadControl.SaveAs(Server.MapPath("/assets/video/") + filename);
-=======
                         //refuses upload if format is incorrect
-                        StatusLabel.Text = "Upload status: The file could not be uploaded. The following error occured: File needs to be in .webm format";                         
+                        StatusLabel.Text = "Upload status: The file could not be uploaded. The following error occured: File needs to be in .webm or .mp4 format";
                     }
-                    
->>>>>>> origin/Fall_2017
                 }
                 catch (Exception ex)
                 {
