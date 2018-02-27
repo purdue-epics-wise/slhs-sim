@@ -2213,7 +2213,10 @@
 	input[type="reset"],
 	input[type="button"],
 	.button {
-		-moz-appearance: none;
+		border-style: none;
+    border-color: inherit;
+    border-width: 0;
+    -moz-appearance: none;
 		-webkit-appearance: none;
 		-ms-appearance: none;
 		appearance: none;
@@ -2221,13 +2224,9 @@
 		-webkit-transition: background-color 0.2s ease-in-out, color 0.2s ease-in-out, box-shadow 0.2s ease-in-out;
 		-ms-transition: background-color 0.2s ease-in-out, color 0.2s ease-in-out, box-shadow 0.2s ease-in-out;
 		transition: background-color 0.2s ease-in-out, color 0.2s ease-in-out, box-shadow 0.2s ease-in-out;
-		background-image: -moz-linear-gradient(top, rgba(0,0,0,0), rgba(0,0,0,0.15)), url("images/bg01.png");
-		background-image: -webkit-linear-gradient(top, rgba(0,0,0,0), rgba(0,0,0,0.15)), url("images/bg01.png");
-		background-image: -ms-linear-gradient(top, rgba(0,0,0,0), rgba(0,0,0,0.15)), url("images/bg01.png");
 		background-image: linear-gradient(top, rgba(0,0,0,0), rgba(0,0,0,0.15)), url("images/bg01.png");
 		background-color: #37c0fb;
 		border-radius: 5px;
-		border: 0;
 		color: #fff;
 		cursor: pointer;
 		display: inline-block;
@@ -2238,7 +2237,8 @@
 		text-decoration: none;
 		font-weight: 600;
 		letter-spacing: -0.025em;
-	}
+    margin-right: 0px;
+}
 
 		input[type="submit"]:hover,
 		input[type="reset"]:hover,

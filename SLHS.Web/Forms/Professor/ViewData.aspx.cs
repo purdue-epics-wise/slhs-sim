@@ -125,5 +125,15 @@ namespace SLHS.Web.Forms.Professor
             //update pointer
             curStudentIndex++;
         }
+
+        protected void DropDownList1_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        protected void TextBox1_TextChanged(object sender, EventArgs e)
+        {
+
+        }
     }
 }

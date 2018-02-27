@@ -24,6 +24,14 @@
 
                         <!-- Result section -->
                         <div id="result" runat="server">
+                            <asp:SqlDataSource ID="SqlDataSource1" runat="server" ConnectionString="<%$ ConnectionStrings:SLHS_DBConnectionString %>" SelectCommand="SELECT MemberId, FirstName + ' ' + LastName AS MemberName FROM MemberInformations"></asp:SqlDataSource>
+
+                            <asp:Label ID="Label1" runat="server" Text="Remove Students: "></asp:Label>
+
+                            <asp:DropDownList ID="DropDownList1" runat="server" OnSelectedIndexChanged="DropDownList1_SelectedIndexChanged" DataSourceID="SqlDataSource1" DataTextField="MemberName" DataValueField="MemberId">
+                            </asp:DropDownList>
+
+                            <asp:Button ID="Button1" runat="server" Height="35px" Text="Remove" Width="100px" />
 
                         </div>
                         <!-- END Result section -->
