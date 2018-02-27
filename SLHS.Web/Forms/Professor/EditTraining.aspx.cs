@@ -58,10 +58,9 @@ namespace SLHS.Web.Forms.Professor
            }
        }
 
- 
-        //TODO: Make it possible to upload files
-        protected void UploadButton_Click(object sender, EventArgs e)
-        {
+         protected void UploadButton_Click(object sender, EventArgs e)
+        { 
+            int curTrainId = countRows(); //gets the current training id
             if (FileUploadControl.HasFile)
             {
                 try
@@ -69,6 +68,9 @@ namespace SLHS.Web.Forms.Professor
                     string filename = Path.GetFileName(FileUploadControl.FileName);
                     if(Path.GetExtension(filename) == ".webm") //checks to see if the video is in the correct format
                     {
+                        //changes file name to be in line with proper format
+                        filename = "video" + curTrainId + ".webm";
+
                         //ensures video is saved first before data is stripped by ConvertToBinaryStream()
                         FileUploadControl.SaveAs(Server.MapPath("/assets/video/") + filename); 
 
