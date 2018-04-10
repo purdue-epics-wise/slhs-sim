@@ -29,6 +29,8 @@ namespace SLHS.Web.Forms.Professor
         private const string EMAIL = "Email";
         private const string EDIT = "Edit";
 
+        int Button = 0;
+
         protected void Page_Load(object sender, EventArgs e)
         {
             CheckMember();
@@ -43,7 +45,7 @@ namespace SLHS.Web.Forms.Professor
         {
             //check signed in
             Member member = (Member) Session[WebConstant.User];
-            if ( member == null || member.Role.Content != WebConstant.Professor)
+            if (member == null || member.Role.Content != WebConstant.Professor)
             {
                 Response.Redirect(WebConstant.PublicDefaultUrl, true);
             }
@@ -75,12 +77,17 @@ namespace SLHS.Web.Forms.Professor
             {
                 AddRowToTable(table, student);
             }
-           
+
+            DataRow row;
 
             //bind data to grid view
             gridViewStudent.DataSource = table;
             gridViewStudent.DataBind();
 
+            //if (Button == 1)
+            //{
+            //    DeleteRow(table, students[curStudentIndex], row);
+            //}
         }
 
         /// <summary>
@@ -126,14 +133,59 @@ namespace SLHS.Web.Forms.Professor
             curStudentIndex++;
         }
 
+        //User-defined function that has highest chance of working. You need to look more into DataRow.Delete Method () using this linke:
+        //https://msdn.microsoft.com/en-us/library/system.data.datarow.delete(v=vs.110).aspx
+        //void DeleteRow(DataTable table, Member student, DataRow row)
+        //{
+        //    //simple check
+        //    if (student == null || table == null) return;
+
+        //    //get information, since a member only has 1 information set
+        //    MemberInformation infor = student.MemberInformations.FirstOrDefault();
+        //    if (infor == null)
+        //        return;
+
+        //    //add new row
+        //    //DataRow row = table.student;
+
+        //    table.Rows.Remove.row[student];
+
+        //}
+
+
+        //drop-down
         protected void DropDownList1_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            DropDownList1.Items.RemoveAt(DropDownList1.SelectedIndex);
+
+            //Tried different predefined functions to remove rows within a class within a subset within a table.
+            //MemberInformation memInfo = MemberInformation();
+
+            //int selectedIndex = DropDownList1.SelectedIndex;
+
+            //SqlDataSource1.ClientID.RemoveAt(selectedIndex);
+            //SqlDataSource1.MemberInformation
+            //SLHS_DB.ClientID.RemoveAt(DropDownList1.SelectedIndex);
+            //SqlDataSource1.DeleteCommand(DropDownList1.SelectedIndex);
+            //SLHS_DB.MemberInformations.Row[0].Delete();
+            //this.GetTable<MemberInformation>();
+            //SqlDataSource1.MemberInformations.Rows.Delete();
+            //gridViewStudent.DataSource.Identity();
+            //SLHS_DB.MemberInformations.RemoveAt(DropDownList1.SelectedIndex);
+
+            //SqlDataSource1.Name
+            //CheckMember();
+            //LoadDataTable();
+        }
+
+        protected void gridViewStudent_SelectedIndexChanged(object sender, EventArgs e)
         {
 
         }
 
-        protected void TextBox1_TextChanged(object sender, EventArgs e)
+        protected void Button1_Click(object sender, EventArgs e)
         {
-
+            Button = 1;
         }
     }
 }
